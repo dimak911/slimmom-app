@@ -36,8 +36,6 @@ export const SideBarContainer = styled.div`
     margin-bottom: 40px;
   }
   }
-  @media (min-width: 768px) {
-  }
   @media (min-width: 1200px) {
      &:first-child {
     margin-bottom: 60px;
@@ -96,13 +94,9 @@ export const Span = styled.span`
 
 `;
 export const Ul = styled.ul`
-    /* display: flex;
-    align-items: flex-end;
-    flex-direction: column; */
     text-align: end;
 `;
 
 export const Li = styled.li`
-    /* height: 17px; */
     text-align: end;
 `;
