@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { lazy } from 'react';
+import { RestrictedRoute } from 'components/RestrictedRoute';
+import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
+
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 
 export const App = () => {
   return (
     <>
       <GlobalStyle />
-      <div>
-        <h1>Start here</h1>
-      </div>
+
+      <Routes>
+        <Route
+          path="/signup"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegistrationPage />}
+            />
+          }
+        />
+      </Routes>
+
     </>
   );
 };
