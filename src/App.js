@@ -15,7 +15,7 @@ export const App = () => {
           path="/signup"
           element={
             <RestrictedRoute
-              redirectTo="/contacts"
+              redirectTo="/login"
               component={<RegistrationPage />}
             />
           }

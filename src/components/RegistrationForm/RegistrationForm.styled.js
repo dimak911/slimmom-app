@@ -125,9 +125,6 @@ export const LinkLoggin = styled(NavLink)`
 `;
 
 export const Error = styled.p`
-  position: absolute;
-  top: 20px;
-  left: 0px;
   max-width: 100%;
   margin: ${p => p.theme.space[0]}px;
 

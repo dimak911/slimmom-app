@@ -48,7 +48,6 @@ export const RegistrationForm = () => {
                     Name *
                     <InputForm
                         value={nameValue}
-                        // placeholder="Name"
                         type="text"
                         {...register('name', {
                             required: {
@@ -64,7 +63,6 @@ export const RegistrationForm = () => {
                     Email *
                     <InputForm
                         value={emailValue}
-                        // placeholder="Email"
                         type="email"
                         {...register('email', {
                             required: {
@@ -85,7 +83,6 @@ export const RegistrationForm = () => {
                     Password *
                     <InputForm
                         value={passwordValue}
-                        // placeholder="Password"
                         type="password"
                         {...register('password', {
                             minLength: {
