@@ -1,4 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { productListReducer } from '../components/DiaryProducListItem/productListSlice';
+
 import { authReducer } from '../redux/auth/slice';
 import {
   persistStore,
@@ -21,6 +23,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    productList: productListReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
