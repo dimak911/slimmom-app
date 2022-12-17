@@ -31,6 +31,10 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family:  "GothamPro-Bold";
   }
+  p {
+  margin: 0;
+  padding: 0;
+}
   ul {
     list-style: none;
     padding: 0;
