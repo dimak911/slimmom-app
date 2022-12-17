@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { lazy } from 'react';
+import { RestrictedRoute } from 'components/RestrictedRoute';
+import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
-import { DiaryProductListItem } from './components/DiaryProducListItem/DiaryProducListItem';
-import { useSelector } from 'react-redux';
+
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 
 export const App = () => {
-  const productsList = useSelector(state => state.productList.productsDiary);
-  // console.log(productsList);
   return (
     <>
       <GlobalStyle />
-      <ul>
-        {/* {productsList.map(item => console.log(item))} */}
-        {productsList.map(item => (
-          <DiaryProductListItem item={item} key={item.id} />
-        ))}
-      </ul>
+
+      <Routes>
+        <Route
+          path="/signup"
+          element={
+            <RestrictedRoute
+              redirectTo="/login"
+              component={<RegistrationPage />}
+            />
+          }
+        />
+      </Routes>
     </>
   );
 };
