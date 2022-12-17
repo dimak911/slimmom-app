@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { calculateValue } from 'Redux/calculate/slice';
+import { calculateValue } from 'redux/calculate/slice';
 import { Container } from 'components/Container.styled';
 import {
   Form,
