@@ -5,6 +5,7 @@ import { store } from './app/store';
 import { App } from './App';
 import { theme } from 'theme';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -15,6 +16,6 @@ root.render(
       <Provider store={store}>
         <App />
       </Provider>
-      </ThemeProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
