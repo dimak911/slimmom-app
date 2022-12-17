@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { registration } from 'Redux/auth/operations';
+import { registration } from 'redux/auth/operations';
 import { Container } from 'components/Container.styled';
 import {
     RegisterForm,
