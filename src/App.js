@@ -7,6 +7,7 @@ export const App = () => {
       <GlobalStyle />
       <div>
         <h1>Start here</h1>
+        
       </div>
     </>
   );
