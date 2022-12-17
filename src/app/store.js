@@ -1,4 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { productListReducer } from '../components/DiaryProducListItem/productListSlice';
+
 import { authReducer } from '../redux/auth/slice';
 import { calculateSlice } from 'redux/calculate/slice';
 import {
@@ -23,6 +25,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     calculate: calculateSlice.reducer,
+    productList: productListReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
