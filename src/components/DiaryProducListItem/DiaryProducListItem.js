@@ -1,26 +1,31 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeItem } from './actions';
-//
+import { removeItem } from 'redux/products/slice';
+
 import {
-  DiaryProductListItemStyled,
   ProductName,
   ProductWeight,
   ProductKcal,
+  SuffixKcal,
   RemoveButton,
   Cross,
 } from './DiaryProducListItem.styled';
 
-export const DiaryProductListItem = ({ item }) => {
+export const DiaryProductListItem = ({
+  id,
+  prodName,
+  prodWeight,
+  prodKcal,
+}) => {
   const dispatch = useDispatch();
 
-  const { id, prodName, prodWeight, prodKcal } = item;
-
   return (
-    <DiaryProductListItemStyled>
+    <>
       <ProductName>{prodName}</ProductName>
       <ProductWeight>{prodWeight} g</ProductWeight>
-      <ProductKcal>{prodKcal} kcal</ProductKcal>
+      <ProductKcal>
+        {prodKcal} <SuffixKcal>kcal</SuffixKcal>
+      </ProductKcal>
       <RemoveButton
         type="button"
         onClick={() => {
@@ -31,6 +36,6 @@ export const DiaryProductListItem = ({ item }) => {
       >
         <Cross />
       </RemoveButton>
-    </DiaryProductListItemStyled>
+    </>
   );
 };
