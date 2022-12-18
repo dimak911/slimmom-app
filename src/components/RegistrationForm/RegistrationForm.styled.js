@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
-
 export const RegisterForm = styled.form`
   margin-top: ${p => p.theme.spaceForm[2]}px;
   padding-left: ${p => p.theme.spaceForm[1]}px;
@@ -15,8 +14,13 @@ export const RegisterForm = styled.form`
     flex-direction: column;
     align-items: flex-start;
     margin-top: ${p => p.theme.spaceForm[4]}px;
+    margin-bottom: 420px;
     padding-left: ${p => p.theme.space[0]}px;
     padding-right: ${p => p.theme.space[0]}px;
+  }
+
+  @media screen and (min-width: 1280px){
+    margin-bottom: 180px;
   }
 `;
 
@@ -100,6 +104,7 @@ export const ButtonRegister = styled.button`
 
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;
+    margin-bottom: ${p => p.theme.space[0]}px;
   }
 `;
 
