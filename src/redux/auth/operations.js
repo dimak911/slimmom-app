@@ -8,7 +8,7 @@ const setAuthHeader = token => {
 };
 
 export const registration = createAsyncThunk(
-  'auth/register',
+  'auth/signup',
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/auth/signup', credentials);

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
 export const RegisterForm = styled.form`
   margin-top: ${p => p.theme.spaceForm[2]}px;
@@ -8,6 +7,12 @@ export const RegisterForm = styled.form`
   padding-right: ${p => p.theme.spaceForm[1]}px;
 
   color: ${p => p.theme.colors.secondary};
+
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-family: Verdana-Bold;
+  font-size: ${p => p.theme.fontSizes.xs};
+  letter-spacing: 0.04em;
+  line-height: 1.21;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -27,12 +32,8 @@ export const RegisterForm = styled.form`
 export const Title = styled.h2`
   margin-bottom: ${p => p.theme.spaceForm[3]}px;
 
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
-  font-style: normal;
+  font-family: Verdana-Bold;
   font-size: ${p => p.theme.fontSizes.xs};
-  letter-spacing: 0.04em;
-  line-height: 1.21;
   text-transform: uppercase;
   text-align: center;
 
@@ -45,13 +46,6 @@ export const Label = styled.label`
   flex-direction: column;
   margin-bottom: ${p => p.theme.spaceForm[2]}px;
 
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
-  font-style: normal;
-  font-size: ${p => p.theme.fontSizes.xs};
-  letter-spacing: 0.04em;
-  line-height: 1.21;
-
   @media screen and (min-width: 768px) {
     width: 240px;
   }
@@ -62,13 +56,6 @@ export const InputForm = styled.input`
   border: none;
   outline: none;
   border-bottom: 1px solid ${p => p.theme.colors.input};
-
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
-  font-style: normal;
-  font-size: ${p => p.theme.fontSizes.xs};
-  letter-spacing: 0.04em;
-  line-height: 1.21;
 `;
 
 export const ButtonWrap = styled.div`
@@ -87,15 +74,8 @@ export const ButtonRegister = styled.button`
   margin-bottom: ${p => p.theme.spaceForm[1]}px;
   padding: ${p => p.theme.spaceForm[0]}px;
 
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
-  font-style: normal;
-  font-size: ${p => p.theme.fontSizes.xs};
-  letter-spacing: 0.04em;
-  line-height: 1.21;
-
   border-radius: ${p => p.theme.radii.button};
-  border: none;
+  border: 2px solid ${p => p.theme.colors.accent};
 
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};
@@ -113,12 +93,6 @@ export const LinkLoggin = styled(NavLink)`
   width: 182px;
   padding: ${p => p.theme.spaceForm[0]}px;
 
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
-  font-style: normal;
-  font-size: ${p => p.theme.fontSizes.xs};
-  letter-spacing: 0.04em;
-  line-height: 1.21;
   text-decoration: none;
   text-align: center;
 
@@ -133,12 +107,7 @@ export const Error = styled.p`
   max-width: 100%;
   margin: ${p => p.theme.space[0]}px;
 
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
   font-style: italic;
-  font-size: ${p => p.theme.fontSizes.xs};
-  letter-spacing: 0.04em;
-  line-height: 1.21;
   text-decoration: none;
   text-align: center;
 
