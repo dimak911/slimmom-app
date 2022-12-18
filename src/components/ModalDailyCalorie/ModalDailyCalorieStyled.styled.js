@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as CloseIcon } from '../../icons/close-cross.svg';
 
 export const ModalBackdropStyled = styled.div`
   height: 100vh;
@@ -19,6 +20,18 @@ export const ModalDailyCalorieStyled = styled.div`
 
   @media (max-width: 672px) {
     width: 100vw;
+  }
+`;
+
+export const CloseIconStyled = styled(CloseIcon)`
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+  fill: ${props => props.theme.colors.black};
+  :hover,
+  :focus {
+    fill: ${props => props.theme.colors.accent};
   }
 `;
 

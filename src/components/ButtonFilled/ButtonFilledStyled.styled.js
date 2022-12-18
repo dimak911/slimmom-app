@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonFillingStyled = styled.button`
+export const ButtonFilledStyled = styled.button`
   display: block;
   width: 210px;
   height: 43px;
@@ -12,9 +12,12 @@ export const ButtonFillingStyled = styled.button`
   border-radius: 30px;
   border-color: transparent;
   cursor: pointer;
+  :active {
+    transform: translateY(4px);
+  }
 `;
 
-export const ButtonFillingTitleStyled = styled.span`
+export const ButtonFilledTitleStyled = styled.span`
   width: 160px;
   height: 17px;
   font-weight: 700;

@@ -8,12 +8,14 @@ import {
   FoodListWrapperStyled,
   FoodListStyled,
   ModalBackdropStyled,
+  CloseIconStyled,
 } from './ModalDailyCalorieStyled.styled';
 
 export function ModalDailyCalorie() {
   return (
     <ModalBackdropStyled>
       <ModalDailyCalorieStyled>
+        <CloseIconStyled />
         <ModalsHeadStyled>
           Your recommended daily
           <br /> calorie intake is

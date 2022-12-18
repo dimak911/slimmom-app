@@ -1,12 +1,12 @@
 import {
-  ButtonFillingStyled,
-  ButtonFillingTitleStyled,
-} from './ButtonFillingStyled.styled';
+  ButtonFilledStyled,
+  ButtonFilledTitleStyled,
+} from './ButtonFilledStyled.styled';
 
 export function ButtonFilling(props) {
   return (
-    <ButtonFillingStyled type="submit">
-      <ButtonFillingTitleStyled>{props.children}</ButtonFillingTitleStyled>
-    </ButtonFillingStyled>
+    <ButtonFilledStyled type="submit">
+      <ButtonFilledTitleStyled>{props.children}</ButtonFilledTitleStyled>
+    </ButtonFilledStyled>
   );
 }
