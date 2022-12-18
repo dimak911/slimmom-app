@@ -5,16 +5,19 @@ import { store } from './app/store';
 import { App } from './App';
 import { theme } from 'theme';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

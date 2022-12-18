@@ -8,8 +8,10 @@ export const theme = {
     secondary: '#9B9FAA',
     accent: '#FC842D',
     count: '#264061',
+    error: '#FF0000',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
+  spaceForm: [13, 20, 40, 60, 160],
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'system-ui, sans-serif',
@@ -40,6 +42,7 @@ export const theme = {
     sm: '4px',
     md: '8px',
     lg: '16px',
+    button: '30px',
     round: '50%',
   },
 };
