@@ -2,11 +2,11 @@ import { Link ,Section,Wrapper} from './Navigation.styled';
 
 
 export const Navigation = () => (
-    <Section>
+        <Section>
  
-<Wrapper>
-        <Link to="">DIARY</Link>
-        <Link to="">CALCULATOR</Link>
-</Wrapper>
+                <Wrapper>
+                        <Link to="">DIARY</Link>
+                        <Link to="">CALCULATOR</Link>
+                </Wrapper>
         </Section>
-)
+);
