@@ -9,6 +9,7 @@ export const theme = {
     accent: '#FC842D',
     count: '#264061',
     error: '#FF0000',
+    track: '#F0F1F3',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   spaceForm: [13, 20, 40, 60, 160],

@@ -36,4 +36,23 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+
+  p {
+    padding: 0;
+    margin: 0;
+  }
+
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${p => p.theme.colors.track};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: ${p => p.theme.colors.count};
+  }
 `;
