@@ -7,6 +7,7 @@ export const theme = {
     primary: '#212121',
     secondary: '#9B9FAA',
     accent: '#FC842D',
+    count: '#264061',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
@@ -20,6 +21,7 @@ export const theme = {
     m: '24px',
     l: '26px',
     xl: '34px',
+    xxl: '48px',
   },
   fontWeights: {
     normal: 400,

@@ -1,12 +1,13 @@
 import React from 'react';
 import { GlobalStyle } from 'components/GlobalStyle';
+import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
 
 export const App = () => {
   return (
     <>
       <GlobalStyle />
       <div>
-        <h1>Start here</h1>
+        <ModalDailyCalorie />
       </div>
     </>
   );
