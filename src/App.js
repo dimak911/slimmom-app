@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
+import { DiaryDateCalendar } from 'components/DiaryDateCalendar/DiaryDateCalendar';
 
 // import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
 // import { DairyProductList } from 'components/DairyProductList/DairyProductList';
@@ -32,6 +33,7 @@ export const App = () => {
             <RestrictedRoute redirectTo="/signup" component={<LoginPage />} />
           }
         />
+        <Route path="diary/:date" element={<DiaryDateCalendar />}></Route>
       </Routes>
     </>
   );
