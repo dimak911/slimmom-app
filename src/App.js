@@ -1,5 +1,4 @@
-import React, { lazy } from 'react';
-import { useState } from 'react';
+import React, { lazy, useState } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
@@ -7,6 +6,7 @@ import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalori
 // import { DairyProductList } from 'components/DairyProductList/DairyProductList';
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
 
 export const App = () => {
   const [isModalOpen, setIsModalopen] = useState(true);
@@ -26,6 +26,12 @@ export const App = () => {
               redirectTo="/login"
               component={<RegistrationPage />}
             />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/signup" component={<LoginPage />} />
           }
         />
       </Routes>
