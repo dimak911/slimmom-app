@@ -9,6 +9,7 @@
     "match-sorter": "^6.3.1",
     "modern-normalize": "^1.1.0",
     "react": "^18.2.0",
+    "react-datetime": "^3.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.40.0",
     "react-redux": "^8.0.5",
