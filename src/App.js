@@ -6,6 +6,7 @@ import { GlobalStyle } from 'components/GlobalStyle';
 // import { DairyProductList } from 'components/DairyProductList/DairyProductList';
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
 
 export const App = () => {
   return (
@@ -21,6 +22,12 @@ export const App = () => {
               redirectTo="/login"
               component={<RegistrationPage />}
             />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/signup" component={<LoginPage />} />
           }
         />
       </Routes>
