@@ -9,12 +9,12 @@ const authSlice = createSlice({
     error: null,
     isLoggedIn: false,
   },
-  extraReducers: {
-    [registration.fulfilled](state, action) {
+  extraReducers: builder => {
+    builder.addCase(registration, (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-    },
+    });
   },
 });
 
