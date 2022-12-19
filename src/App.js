@@ -1,9 +1,29 @@
-import React from "react";
+import React, { lazy } from 'react';
+import { RestrictedRoute } from 'components/RestrictedRoute';
+import { Route, Routes } from 'react-router-dom';
+import { GlobalStyle } from 'components/GlobalStyle';
+// import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
+// import { DairyProductList } from 'components/DairyProductList/DairyProductList';
+
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 
 export const App = () => {
   return (
-    <div>
-      <h1>Start here</h1>
-    </div>
+    <>
+      <GlobalStyle />
+      {/* <ModalDailyCalorie /> */}
+      {/* <DairyProductList /> */}
+      <Routes>
+        <Route
+          path="/signup"
+          element={
+            <RestrictedRoute
+              redirectTo="/login"
+              component={<RegistrationPage />}
+            />
+          }
+        />
+      </Routes>
+    </>
   );
 };
