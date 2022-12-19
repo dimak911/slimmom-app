@@ -22,9 +22,7 @@ export function ModalDailyCalorie({ closeModal }) {
         closeModal();
       }
     };
-
     window.addEventListener('keydown', keydownHandler);
-
     return () => window.removeEventListener('keydown', keydownHandler);
   });
 
