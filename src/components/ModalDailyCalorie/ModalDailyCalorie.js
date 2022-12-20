@@ -25,6 +25,15 @@ export function ModalDailyCalorie({ closeModal, children }) {
     }
   };
 
+  const { height, age, currentWeight, desiredWeight } = calculateData;
+
+  const countedCalories =
+    10 * currentWeight +
+    6.25 * height -
+    5 * age -
+    161 -
+    10 * (currentWeight - desiredWeight);
+
   return createPortal(
     <ModalBackdropStyled onClick={onBackdropClickHandler}>
       <ModalDailyCalorieStyled>

@@ -1,11 +1,12 @@
 import React, { lazy } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute';
+import { PrivateRoute } from 'components/PrivateRoute';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
-import { DiaryDateCalendar } from 'components/DiaryDateCalendar/DiaryDateCalendar';
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
+const MainPage = lazy(() => import('pages/MainPage'));
 
 export const App = () => {
   return (
@@ -16,7 +17,7 @@ export const App = () => {
           path="/signup"
           element={
             <RestrictedRoute
-              redirectTo="/login"
+              redirectTo="/diary/:date"
               component={<RegistrationPage />}
             />
           }
@@ -27,7 +28,10 @@ export const App = () => {
             <RestrictedRoute redirectTo="/signup" component={<LoginPage />} />
           }
         />
-        <Route path="diary/:date" element={<DiaryDateCalendar />}></Route>
+        <Route
+          path="/"
+          element={<RestrictedRoute redirectTo="/" component={<MainPage />} />}
+        />
       </Routes>
     </>
   );

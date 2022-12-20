@@ -143,6 +143,15 @@ export const ButtonSubmit = styled.button`
   color: ${p => p.theme.colors.white};
 
   cursor: pointer;
+  opacity: 0.6;
+  :enabled {
+    :hover,
+    :focus,
+    :active {
+      opacity: 1;
+    }
+  }
+  transition: opacity 200ms ease-in;
 
   opacity: 0.6;
 
