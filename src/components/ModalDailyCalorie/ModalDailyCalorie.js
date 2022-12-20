@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ButtonFilling } from '../ButtonFilled/ButtonFilled';
 import {
   ModalDailyCalorieStyled,
@@ -11,11 +13,29 @@ import {
   CloseIconStyled,
 } from './ModalDailyCalorieStyled.styled';
 
-export function ModalDailyCalorie() {
-  return (
-    <ModalBackdropStyled>
+const modalContainer = document.getElementById('modal-root');
+
+export function ModalDailyCalorie({ closeModal }) {
+  useEffect(() => {
+    const keydownHandler = event => {
+      if (event.code === 'Escape') {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', keydownHandler);
+    return () => window.removeEventListener('keydown', keydownHandler);
+  });
+
+  const onBackdropClickHandler = event => {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  };
+
+  return createPortal(
+    <ModalBackdropStyled onClick={onBackdropClickHandler}>
       <ModalDailyCalorieStyled>
-        <CloseIconStyled />
+        <CloseIconStyled onClick={() => closeModal()} />
         <ModalsHeadStyled>
           Your recommended daily
           <br /> calorie intake is
@@ -33,6 +53,7 @@ export function ModalDailyCalorie() {
         </FoodListWrapperStyled>
         <ButtonFilling>Start losing weight</ButtonFilling>
       </ModalDailyCalorieStyled>
-    </ModalBackdropStyled>
+    </ModalBackdropStyled>,
+    modalContainer
   );
 }
