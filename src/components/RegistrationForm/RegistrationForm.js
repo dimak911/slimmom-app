@@ -100,7 +100,7 @@ export const RegistrationForm = () => {
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
           <ButtonRegister type="submit">Register</ButtonRegister>
-          <LinkLoggin to="login"> Log in </LinkLoggin>
+          <LinkLoggin to="/login"> Log in </LinkLoggin>
         </ButtonWrap>
       </RegisterForm>
     </Container>

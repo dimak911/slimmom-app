@@ -5,12 +5,12 @@ import {
   DiaryProductListStyled,
   DiaryProductListItemStyled,
 } from './DiaryProductList.styled';
-
+import { DiaryAddProductForm } from '../DiaryAddProductForm/DiaryAddProductForm';
 export const DairyProductList = () => {
   const products = useSelector(productsList);
-
   return (
-    <>
+    <div>
+      <DiaryAddProductForm/>
       {products.length > 0 ? (
         <DiaryProductListStyled>
           {products.map(({ id, prodName, prodWeight, prodKcal }) => (
@@ -27,6 +27,6 @@ export const DairyProductList = () => {
       ) : (
         <p>Not found any product</p>
       )}
-    </>
+    </div>
   );
 };

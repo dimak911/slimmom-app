@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchDiaryProducts } from './operations';
+import { fetchDiaryProducts, sideBarInfo } from './operations';
 
 export const productListSlice = createSlice({
   name: 'productList',
+  sideBarInfo: [],
   initialState: {
     productsDiary: [
       {
@@ -65,7 +66,13 @@ export const productListSlice = createSlice({
     builder.addCase(fetchDiaryProducts.rejected, (state, action) => {
       state.productsDiary = [];
     });
+    builder.addCase(sideBarInfo, (state, action) => {
+      state.sideBarInfo = action.payload.result;
+      console.log("action.payload",action.payload)
+      state.isLoggedIn = true;
+    });
   },
 });
+
 
 export const { removeItem, getList } = productListSlice.actions;
