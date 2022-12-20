@@ -25,6 +25,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
+      
       {isModalOpen && <ModalDailyCalorie closeModal={closeModal} />}
       {/* <DairyProductList /> */}
       <DailyCaloriesForm />
