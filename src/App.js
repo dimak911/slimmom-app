@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute';
+import { PrivateRoute } from 'components/PrivateRoute';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
 
@@ -16,7 +17,7 @@ export const App = () => {
           path="/signup"
           element={
             <RestrictedRoute
-              redirectTo="/login"
+              redirectTo="/diary/:date"
               component={<RegistrationPage />}
             />
           }
