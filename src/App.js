@@ -1,11 +1,13 @@
 import React, { lazy } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute';
-import { PrivateRoute } from 'components/PrivateRoute';
+// import { PrivateRoute } from 'components/PrivateRoute';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 
-const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
+const RegistrationPage = lazy(() =>
+  import('pages/RegistrationPage/RegistrationPage')
+);
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const MainPage = lazy(() => import('pages/MainPage'));
 
