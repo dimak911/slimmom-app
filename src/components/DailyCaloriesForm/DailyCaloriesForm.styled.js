@@ -124,7 +124,7 @@ export const ButtonWrap = styled.div`
   }
 `;
 
-export const ButtonRegister = styled.button`
+export const ButtonSubmit = styled.button`
   width: 182px;
   margin-bottom: ${p => p.theme.spaceForm[1]}px;
   padding: ${p => p.theme.spaceForm[0]}px;
@@ -143,6 +143,14 @@ export const ButtonRegister = styled.button`
   color: ${p => p.theme.colors.white};
 
   cursor: pointer;
+
+  opacity: 0.6;
+
+  :hover {
+    opacity: 1;
+  }
+
+  transition: opacity 200ms ease-in;
 
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;

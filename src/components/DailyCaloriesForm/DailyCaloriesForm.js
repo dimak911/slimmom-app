@@ -8,7 +8,7 @@ import {
   Title,
   InputForm,
   Label,
-  ButtonRegister,
+  ButtonSubmit,
   ButtonWrap,
   RadiobuttonLabel,
   BloodTypeValue,
@@ -154,37 +154,9 @@ export const DailyCaloriesForm = ({ openModal }) => {
         </ColumnWrap>
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
-          <ButtonRegister type="submit">Start losing weight</ButtonRegister>
+          <ButtonSubmit type="submit">Start losing weight</ButtonSubmit>
         </ButtonWrap>
       </Form>
     </Container>
   );
 };
-
-// import { useState } from 'react';
-// import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
-
-// export const MainPage = () => {
-//   const [calculateData, setCalculateData] = useState({});
-//   const [showModal, setShowModal] = useState(false);
-
-//   const openModal = data => {
-//     // setIsLoading(true);
-//     setCalculateData(data);
-//     setShowModal(true);
-//     // setIsLoading(false);
-//   };
-
-//   const closeModal = () => {
-//     setShowModal(false);
-//   };
-
-//   return (
-//     <>
-//       <DailyCaloriesForm openModal={openModal} />
-//       {showModal && (
-//         <ModalDailyCalorie onClose={closeModal} calculateData={calculateData} />
-//       )}
-//     </>
-//   );
-// };
