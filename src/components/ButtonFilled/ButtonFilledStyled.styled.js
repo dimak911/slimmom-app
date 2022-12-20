@@ -11,10 +11,13 @@ export const ButtonFilledStyled = styled.button`
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
   border-color: transparent;
+  opacity: 0.6;
   cursor: pointer;
   :active {
-    transform: translateY(4px);
+    /* transform: translateY(4px); */
+    opacity: 1;
   }
+  transition: opacity 200ms ease-in;
 `;
 
 export const ButtonFilledTitleStyled = styled.span`

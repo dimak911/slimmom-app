@@ -15,7 +15,7 @@ import {
 
 const modalContainer = document.getElementById('modal-root');
 
-export function ModalDailyCalorie({ closeModal }) {
+export function ModalDailyCalorie({ closeModal, calculateData }) {
   useEffect(() => {
     const keydownHandler = event => {
       if (event.code === 'Escape') {
@@ -32,6 +32,15 @@ export function ModalDailyCalorie({ closeModal }) {
     }
   };
 
+  const { height, age, currentWeight, desiredWeight } = calculateData;
+
+  const countedCalories =
+    10 * currentWeight +
+    6.25 * height -
+    5 * age -
+    161 -
+    10 * (currentWeight - desiredWeight);
+
   return createPortal(
     <ModalBackdropStyled onClick={onBackdropClickHandler}>
       <ModalDailyCalorieStyled>
@@ -40,7 +49,7 @@ export function ModalDailyCalorie({ closeModal }) {
           Your recommended daily
           <br /> calorie intake is
         </ModalsHeadStyled>
-        <CaloriesCountStyled>2800 ккал</CaloriesCountStyled>
+        <CaloriesCountStyled>{countedCalories} ккал</CaloriesCountStyled>
         <FoodListWrapperStyled>
           <LineStyled />
           <FoodListTitleStyled>Foods you should not eat</FoodListTitleStyled>
