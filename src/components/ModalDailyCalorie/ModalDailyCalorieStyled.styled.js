@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { ReactComponent as CloseIcon } from '../../icons/close-cross.svg';
 
 export const ModalBackdropStyled = styled.div`
+  position: absolute;
+  top: 0;
   height: 100vh;
   width: 100vw;
   background: rgba(33, 33, 33, 0.12);
