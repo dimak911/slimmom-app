@@ -22,6 +22,8 @@ export const App = () => {
     setIsModalopen(true);
     window.document.body.style.overflow = 'hidden';
   };
+
+  console.log(openModal);
   return (
     <>
       <GlobalStyle />
