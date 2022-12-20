@@ -29,8 +29,9 @@ export const App = () => {
       <GlobalStyle />
       {isModalOpen && <ModalDailyCalorie closeModal={closeModal} />}
       {/* <DairyProductList /> */}
-      <DailyCaloriesForm />
+
       <Routes>
+        <Route path="/" element={<DailyCaloriesForm />} />
         <Route
           path="/signup"
           element={
