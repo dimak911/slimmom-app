@@ -37,7 +37,7 @@ export const UserName = styled.p`
   color: #212121;
 `;
 
-export const Btn = styled.button`
+export const Button = styled.button`
   border: none;
   background: none;
   padding-left: 15px;
