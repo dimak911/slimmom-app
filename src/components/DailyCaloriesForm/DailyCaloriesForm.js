@@ -26,7 +26,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
     handleSubmit,
     reset,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
@@ -154,7 +154,9 @@ export const DailyCaloriesForm = ({ openModal }) => {
         </ColumnWrap>
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
-          <ButtonSubmit type="submit">Start losing weight</ButtonSubmit>
+          <ButtonSubmit type="submit" disabled={!isValid}>
+            Start losing weight
+          </ButtonSubmit>
         </ButtonWrap>
       </Form>
     </Container>

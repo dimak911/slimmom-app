@@ -146,8 +146,12 @@ export const ButtonSubmit = styled.button`
 
   opacity: 0.6;
 
-  :hover {
-    opacity: 1;
+  :enabled {
+    :hover,
+    :focus,
+    :active {
+      opacity: 1;
+    }
   }
 
   transition: opacity 200ms ease-in;
