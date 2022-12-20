@@ -3,11 +3,12 @@ import { RestrictedRoute } from 'components/RestrictedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
-import { DailyCaloriesForm } from 'components/DailyCaloriesForm';
+// import { DailyCaloriesForm } from 'components/DailyCaloriesForm';
 import { DiaryDateCalendar } from 'components/DiaryDateCalendar/DiaryDateCalendar';
 
 // import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
 // import { DairyProductList } from 'components/DairyProductList/DairyProductList';
+import { Layout } from 'components/Layout/Layout';
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
@@ -18,33 +19,35 @@ export const App = () => {
     setIsModalopen(false);
     window.document.body.style.overflow = 'unset';
   };
-  const openModal = () => {
-    setIsModalopen(true);
-    window.document.body.style.overflow = 'hidden';
-  };
+  // const openModal = () => {
+  //   setIsModalopen(true);
+  //   window.document.body.style.overflow = 'hidden';
+  // };
   return (
     <>
       <GlobalStyle />
       {isModalOpen && <ModalDailyCalorie closeModal={closeModal} />}
       {/* <DairyProductList /> */}
-      <DailyCaloriesForm />
+      {/* <DailyCaloriesForm /> */}
       <Routes>
-        <Route
-          path="/signup"
-          element={
-            <RestrictedRoute
-              redirectTo="/login"
-              component={<RegistrationPage />}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/signup" component={<LoginPage />} />
-          }
-        />
-        <Route path="diary/:date" element={<DiaryDateCalendar />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route
+            path="/signup"
+            element={
+              <RestrictedRoute
+                redirectTo="/login"
+                component={<RegistrationPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/signup" component={<LoginPage />} />
+            }
+          />
+          <Route path="diary/:date" element={<DiaryDateCalendar />}></Route>
+        </Route>
       </Routes>
     </>
   );
