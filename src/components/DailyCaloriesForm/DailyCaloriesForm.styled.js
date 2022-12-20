@@ -153,6 +153,18 @@ export const ButtonSubmit = styled.button`
   }
   transition: opacity 200ms ease-in;
 
+  opacity: 0.6;
+
+  :enabled {
+    :hover,
+    :focus,
+    :active {
+      opacity: 1;
+    }
+  }
+
+  transition: opacity 200ms ease-in;
+
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;
   }
