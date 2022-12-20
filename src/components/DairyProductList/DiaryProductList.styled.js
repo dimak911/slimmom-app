@@ -28,3 +28,4 @@ export const DiaryProductListItemStyled = styled.li`
   display: flex;
   margin-bottom: 16px;
 `;
+
