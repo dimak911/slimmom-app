@@ -1,5 +1,6 @@
 import React, { lazy, useState } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute';
+import { PrivateRoute } from 'components/PrivateRoute';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
@@ -11,6 +12,7 @@ import { DiaryDateCalendar } from 'components/DiaryDateCalendar/DiaryDateCalenda
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
+const CalculatorPage = lazy(() => import('pages/CalculatorPage/CalculatorPage'));
 
 export const App = () => {
   const [isModalOpen, setIsModalopen] = useState(false);
@@ -33,7 +35,7 @@ export const App = () => {
           path="/signup"
           element={
             <RestrictedRoute
-              redirectTo="/login"
+              redirectTo="/diary/:date"
               component={<RegistrationPage />}
             />
           }
@@ -45,6 +47,12 @@ export const App = () => {
           }
         />
         <Route path="diary/:date" element={<DiaryDateCalendar />}></Route>
+        <Route
+          path="/calculate"
+          element={<CalculatorPage />
+            // <PrivateRoute redirectTo="/login" component={<CalculatorPage />} />
+          }
+        />
       </Routes>
     </>
   );

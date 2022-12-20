@@ -1,20 +1,20 @@
 import styled from 'styled-components';
-import descktopBanana1x from '../images/pictures/descktop-banana-1x.png';
-import descktopBanana2x from '../images/pictures/descktop-banana-2x.png';
-import descktopLeafs1x from '../images/pictures/descktop-leafs-1x.png';
-import descktopLeafs2x from '../images/pictures/descktop-leafs-2x.png';
-import descktopStrawberry1x from '../images/pictures/descktop-strawberry-1x.png';
-import descktopStrawberry2x from '../images/pictures/descktop-strawberry-2x.png';
-import descktopFone1x from '../images/pictures/descktop-fone-1x.png';
-import descktopFone2x from '../images/pictures/descktop-fone-2x.png';
-import tabletBanana1x from '../images/pictures/tablet-banana-1x.png';
-import tabletBanana2x from '../images/pictures/tablet-banana-2x.png';
-import tabletLeafs1x from '../images/pictures/tablet-leafs-1x.png';
-import tabletLeafs2x from '../images/pictures/tablet-leafs-2x.png';
-import tabletStrawberry1x from '../images/pictures/tablet-strawberry-1x.png';
-import tabletStrawberry2x from '../images/pictures/tablet-strawberry-2x.png';
-import tabletFone1x from '../images/pictures/tablet-fone-1x.png';
-import tabletFone2x from '../images/pictures/tablet-fone-2x.png';
+import descktopBanana1x from '../../images/pictures/descktop-banana-1x.png';
+import descktopBanana2x from '../../images/pictures/descktop-banana-2x.png';
+import descktopLeafs1x from '../../images/pictures/descktop-leafs-1x.png';
+import descktopLeafs2x from '../../images/pictures/descktop-leafs-2x.png';
+import descktopStrawberry1x from '../../images/pictures/descktop-strawberry-1x.png';
+import descktopStrawberry2x from '../../images/pictures/descktop-strawberry-2x.png';
+import descktopFone1x from '../../images/pictures/descktop-fone-1x.png';
+import descktopFone2x from '../../images/pictures/descktop-fone-2x.png';
+import tabletBanana1x from '../../images/pictures/tablet-banana-1x.png';
+import tabletBanana2x from '../../images/pictures/tablet-banana-2x.png';
+import tabletLeafs1x from '../../images/pictures/tablet-leafs-1x.png';
+import tabletLeafs2x from '../../images/pictures/tablet-leafs-2x.png';
+import tabletStrawberry1x from '../../images/pictures/tablet-strawberry-1x.png';
+import tabletStrawberry2x from '../../images/pictures/tablet-strawberry-2x.png';
+import tabletFone1x from '../../images/pictures/tablet-fone-1x.png';
+import tabletFone2x from '../../images/pictures/tablet-fone-2x.png';
 
 export const FoneImages = styled.div`
 
