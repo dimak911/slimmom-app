@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchDiaryProducts } from './operations';
 
 export const productListSlice = createSlice({
   name: 'productList',
@@ -56,6 +57,14 @@ export const productListSlice = createSlice({
     getList: state => {
       return state;
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(fetchDiaryProducts.fulfilled, (state, action) => {
+      state.productsDiary = action.payload;
+    });
+    builder.addCase(fetchDiaryProducts.rejected, (state, action) => {
+      state.productsDiary = [];
+    });
   },
 });
 
