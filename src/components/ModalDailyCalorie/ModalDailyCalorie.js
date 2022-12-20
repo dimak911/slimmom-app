@@ -11,7 +11,7 @@ import {
   CloseIconStyled,
 } from './ModalDailyCalorieStyled.styled';
 
-export function ModalDailyCalorie() {
+export function ModalDailyCalorie({ onClose, calculateData }) {
   return (
     <ModalBackdropStyled>
       <ModalDailyCalorieStyled>

@@ -18,7 +18,7 @@ import {
   Error,
 } from './DailyCaloriesForm.styled';
 
-export const DailyCaloriesForm = () => {
+export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
 
   const {
@@ -46,6 +46,7 @@ export const DailyCaloriesForm = () => {
 
   const onSubmitForm = data => {
     dispatch(calculateValue(data));
+    openModal(data);
     reset();
   };
 
@@ -154,9 +155,36 @@ export const DailyCaloriesForm = () => {
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
           <ButtonRegister type="submit">Start losing weight</ButtonRegister>
-          {/* <LinkLoggin to="login"> Log in </LinkLoggin> */}
         </ButtonWrap>
       </Form>
     </Container>
   );
 };
+
+// import { useState } from 'react';
+// import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
+
+// export const MainPage = () => {
+//   const [calculateData, setCalculateData] = useState({});
+//   const [showModal, setShowModal] = useState(false);
+
+//   const openModal = data => {
+//     // setIsLoading(true);
+//     setCalculateData(data);
+//     setShowModal(true);
+//     // setIsLoading(false);
+//   };
+
+//   const closeModal = () => {
+//     setShowModal(false);
+//   };
+
+//   return (
+//     <>
+//       <DailyCaloriesForm openModal={openModal} />
+//       {showModal && (
+//         <ModalDailyCalorie onClose={closeModal} calculateData={calculateData} />
+//       )}
+//     </>
+//   );
+// };
