@@ -5,26 +5,29 @@ import { DairyProductList } from '../components/DairyProductList/DairyProductLis
 import styled from 'styled-components';
 import { Container } from '../components/Container.styled';
 import img from '../images/icons/Vector.png';
+import { DiaryAddProductForm } from '../components/DiaryAddProductForm/DiaryAddProductForm';
 
 
 const DiaryPage = () => {
-    const [modal,modalSet] = useState(false)
+    const [isShowAddForm, setIsShowAddForm] = useState(false)
     const openModal = () => {
-        // modalSet(true)
+        setIsShowAddForm(!isShowAddForm)
+       
     }
-
     return (
         <Container>
             <Box>
                 {/* <DailyCaloriesForm /> */}
-                <DairyProductList />
-                <ButtonBox>
+                {!isShowAddForm && <BoxForm><DiaryAddProductForm img={img} /></BoxForm>}
+                {!isShowAddForm && <DairyProductList />}
+                {!isShowAddForm && <ButtonBox>
                     <Button onClick={openModal}>
                     <img src={ img } />
-                </Button>
-                {modal && <DairyProductList />}
-                </ButtonBox>
-                <SideBar />
+                    </Button>
+                </ButtonBox>}
+                {isShowAddForm && <DiaryAddProductForm img={"Add"} openModal={openModal} />}
+                
+                {!isShowAddForm && <SideBar />}
             </Box>
         </Container>
     )
@@ -37,8 +40,14 @@ export const Box = styled.div`
         display: flex;
         justify-content: center;
     }
-    
 `;
+
+export const BoxForm = styled.div`
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
+`;
+
 export const Button = styled.button`
   padding: ${p => p.theme.space[3]}px;
   width: ${p => p.theme.space[3]*6}px;
@@ -60,5 +69,6 @@ export const ButtonBox = styled.div`
   padding: 60px 136px;
   @media screen and (min-width: 768px) {
     display: none;
+    
   }
 `;

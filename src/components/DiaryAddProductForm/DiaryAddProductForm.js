@@ -1,7 +1,4 @@
 import { useForm } from 'react-hook-form';
-// import { useDispatch } from 'react-redux';
-// import { login } from 'redux/auth/operations';
-import img from '../../images/icons/Vector.png';
 import {
   SigninForm,
   InputForm,
@@ -10,14 +7,14 @@ import {
   Span,
   Error,
   LabelProduct,
+  Div
 } from './DiaryAddProductForm.styled';
 
-export const DiaryAddProductForm = () => {
+export const DiaryAddProductForm = ({img,openModal}) => {
   // const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    reset,
     watch,
     formState: { errors },
   } = useForm({
@@ -32,13 +29,14 @@ export const DiaryAddProductForm = () => {
 
   const onSubmitForm = credentials => {
     console.log(productValue,weigthValue)
+    openModal()
     // dispatch(login(credentials));
     // reset();
   };
 
   return (
-    <div style={{marginBottom: 60}}>
-      <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
+    <Div>
+      <SigninForm  onSubmit={handleSubmit(onSubmitForm)}>
         <LabelProduct>
           Enter product name
           <InputForm
@@ -61,16 +59,16 @@ export const DiaryAddProductForm = () => {
             {...register('weigth', {
               required: {
                 value: true,
-              },
+              }
             })}
           />
           {errors.weigth && <Error>{errors.weigth?.message}</Error>}
         </LabelWeigt>
 
-          <ButtonLogin type="submit">
-          <img src={ img } />
+        <ButtonLogin type="submit">
+          {img !== "Add"? <img src={ img } />: "Add"}
           </ButtonLogin>
       </SigninForm>
-    </div>
+    </Div>
   );
 };

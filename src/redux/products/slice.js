@@ -65,8 +65,7 @@ export const productListSlice = createSlice({
     });
     builder.addCase(sideBarInfo, (state, action) => {
       state.sideBarInfo = action.payload.result;
-      console.log("action.payload",action.payload)
-      state.isLoggedIn = true;
+    });
     builder.addCase(removeDiaryListItem.fulfilled, (state, action) => {
       const idx = state.productsDiary.findIndex(
         product => product.id === action.payload

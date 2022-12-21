@@ -3,13 +3,16 @@ import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { useDispatch } from 'react-redux';
 import { sideBarInfo } from 'redux/products/operations';
 import { useSelector } from 'react-redux';
-    
+import { useEffect } from 'react';
 
 export const SideBar = () => {
     const dispatch = useDispatch();
-    dispatch(sideBarInfo());
+
+    useEffect(() => {
+        dispatch(sideBarInfo());
+    },[]);
+    
     const info = useSelector(sideBarInfoSelectors)
-    console.log(info)
     return (
         <Box>
             <SideBarContainer>

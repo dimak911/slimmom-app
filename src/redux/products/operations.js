@@ -23,9 +23,11 @@ export const sideBarInfo = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await axios.get('/diary/dayinfo');
-      return result;
+      return result.data;
     } catch (error) {
-      return rejectWithValue(error); 
+      return rejectWithValue(error);
+    }
+  });
 
 export const removeDiaryListItem = createAsyncThunk(
   'products/removeItem',
