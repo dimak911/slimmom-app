@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Container } from 'components/Container.styled';
 import { DailyCaloriesForm } from 'components/DailyCaloriesForm';
 import { ModalDailyCalorie } from 'components/ModalDailyCalorie';
-import { MainPageWrapper } from './MainPageStyled.styled';
+import { DailyCalorieIntake } from 'components/DailyCalorieIntake/DailyCalorieIntake';
+import { Box } from 'components/Box';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalopen] = useState(false);
@@ -20,15 +21,20 @@ const MainPage = () => {
   };
 
   return (
-    <MainPageWrapper>
-      <DailyCaloriesForm openModal={openModal} />
-      {isModalOpen && (
-        <ModalDailyCalorie
-          closeModal={closeModal}
-          calculateData={calculateData}
-        />
-      )}
-    </MainPageWrapper>
+    <Container>
+      <Box display="flex">
+        <Box>
+          <Box height="68px">Logo + Navigation</Box>
+          <DailyCaloriesForm openModal={openModal} />
+          {isModalOpen && (
+            <ModalDailyCalorie closeModal={closeModal}>
+              <DailyCalorieIntake calculateData={calculateData} />
+            </ModalDailyCalorie>
+          )}
+        </Box>
+        <Box width="600px">IMAGE</Box>
+      </Box>
+    </Container>
   );
 };
 
