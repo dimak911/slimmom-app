@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { sideBarInfo } from './operations';
+import { fetchsideBarInfo } from './operations';
 import { fetchDiaryProducts } from './operations';
 import { removeDiaryListItem } from './operations';
 
@@ -63,7 +63,7 @@ export const productListSlice = createSlice({
     builder.addCase(fetchDiaryProducts.rejected, (state, action) => {
       state.productsDiary = [];
     });
-    builder.addCase(sideBarInfo, (state, action) => {
+    builder.addCase(fetchsideBarInfo, (state, action) => {
       state.sideBarInfo = action.payload.result;
     });
     builder.addCase(removeDiaryListItem.fulfilled, (state, action) => {

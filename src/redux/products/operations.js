@@ -18,7 +18,7 @@ export const fetchDiaryProducts = createAsyncThunk(
 );
 
 
-export const sideBarInfo = createAsyncThunk(
+export const fetchsideBarInfo = createAsyncThunk(
   'diary/dayinfo',
   async (_, { rejectWithValue }) => {
     try {

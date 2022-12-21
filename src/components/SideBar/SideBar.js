@@ -1,7 +1,7 @@
 import { SideBarContainer, Box, Title, P, Span, TextBox, Ul, Li } from './SideBar.styled';
 import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { useDispatch } from 'react-redux';
-import { sideBarInfo } from 'redux/products/operations';
+import { fetchsideBarInfo } from 'redux/products/operations';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -9,7 +9,7 @@ export const SideBar = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(sideBarInfo());
+        dispatch(fetchsideBarInfo());
     },[]);
     
     const info = useSelector(sideBarInfoSelectors)
