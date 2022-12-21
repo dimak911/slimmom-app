@@ -3,15 +3,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-
-  unset() {
-    axios.defaults.headers.common.Authorization = ``;
-  },
-};
 
 export const fetchDiaryProducts = createAsyncThunk(
   'products/fetchAll',
@@ -31,11 +22,9 @@ export const sideBarInfo = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await axios.get('/diary/dayinfo');
-      token.unset();
-     console.log(result.data)
+      return result;
     } catch (error) {
-      console.log(error);
-      return rejectWithValue(error);
+      return rejectWithValue(error); 
     }
   }
 );
