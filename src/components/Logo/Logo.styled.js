@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LogoContainer = styled.img`
+export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
 
@@ -29,14 +29,11 @@ export const LogoText = styled.img`
   display: none;
 
   @media screen and (min-width: 768px) {
-    .logoText {
-        display: block;
-        margin-left: 10px;
-        
-    }
+    display: inline-block;
+    margin-left: 10px;
+  }
 
-    @media screen and (min-width: 1280px) {
-    .logoText {
-        margin-left: -10px;
-    }
+  @media screen and (min-width: 1280px) {
+    margin-left: -10px;
+  }
 `;

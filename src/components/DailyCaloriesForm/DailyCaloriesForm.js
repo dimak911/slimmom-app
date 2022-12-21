@@ -8,7 +8,7 @@ import {
   Title,
   InputForm,
   Label,
-  ButtonRegister,
+  ButtonSubmit,
   ButtonWrap,
   RadiobuttonLabel,
   BloodTypeValue,
@@ -18,7 +18,7 @@ import {
   Error,
 } from './DailyCaloriesForm.styled';
 
-export const DailyCaloriesForm = () => {
+export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
 
   const {
@@ -26,7 +26,7 @@ export const DailyCaloriesForm = () => {
     handleSubmit,
     reset,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
@@ -46,6 +46,7 @@ export const DailyCaloriesForm = () => {
 
   const onSubmitForm = data => {
     dispatch(calculateValue(data));
+    openModal(data);
     reset();
   };
 
@@ -153,8 +154,9 @@ export const DailyCaloriesForm = () => {
         </ColumnWrap>
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
-          <ButtonRegister type="submit">Start losing weight</ButtonRegister>
-          {/* <LinkLoggin to="login"> Log in </LinkLoggin> */}
+          <ButtonSubmit type="submit" disabled={!isValid}>
+            Start losing weight
+          </ButtonSubmit>
         </ButtonWrap>
       </Form>
     </div>
