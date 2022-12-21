@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute';
-// import { PrivateRoute } from 'components/PrivateRoute';
-import { Route, Routes } from 'react-router-dom';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 
@@ -10,6 +10,8 @@ const RegistrationPage = lazy(() =>
 );
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const MainPage = lazy(() => import('pages/MainPage'));
+const CalculatorPage = lazy(() => import('pages/CalculatorPage/CalculatorPage'));
+// додати сторінку DiaryPage
 
 export const App = () => {
   return (
@@ -17,6 +19,7 @@ export const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route index element={<MainPage />} />
           <Route
             path="/signup"
             element={
@@ -29,16 +32,24 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/signup" component={<LoginPage />} />
+              <RestrictedRoute redirectTo="/diary/:date" component={<LoginPage />} />
             }
           />
           <Route
-            path="/"
+            path="/diary/:date"
             element={
-              <RestrictedRoute redirectTo="/" component={<MainPage />} />
+              <PrivateRoute redirectTo="/login" component={<CalculatorPage />} />
+              // замінити тут коспонент на сторінку DiaryPage
+            }
+          />
+          <Route
+            path="/calculate"
+            element={
+              <PrivateRoute redirectTo="/login" component={<CalculatorPage />} />
             }
           />
         </Route>
+        <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
     </>
   );

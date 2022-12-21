@@ -17,21 +17,23 @@ import tabletFone1x from '../../images/pictures/tablet-fone-1x.png';
 import tabletFone2x from '../../images/pictures/tablet-fone-2x.png';
 
 export const FoneImages = styled.div`
+z-index: 3;
+
   @media screen and (min-width: 768px) {
     position: absolute;
-    z-index: 1;
-    height: 100vh;
+    width: 100%;
     background-image: url(${tabletStrawberry1x}), url(${tabletBanana1x}),
       url(${tabletFone1x}), url(${tabletLeafs1x});
     background-size: 291px, 498px, 553px, 740px;
-    background-position: right -36px top 381px, left 277px top 513px,
-      left 247px top 381px, left 16px bottom 279px;
+    background-position: right 0px top 381px, right 0px bottom 0px,
+      right 0px bottom 0px, right 12px top 0px;
     background-repeat: no-repeat;
   }
 
   @media (min-device-pixel-ratio: 2) and (min-width: 768px),
     (min-resolution: 192dpi) and (min-width: 768px),
     (min-resolution: 2dppx) and (min-width: 768px) {
+      
     background-image: url(${tabletStrawberry2x}), url(${tabletBanana2x}),
       url(${tabletFone2x}, url(${tabletLeafs2x}));
   }
@@ -39,9 +41,9 @@ export const FoneImages = styled.div`
   @media screen and (min-width: 1280px) {
     background-image: url(${descktopLeafs1x}), url(${descktopBanana1x}),
       url(${descktopStrawberry1x}), url(${descktopFone1x});
-    background-size: 746px, 773px, 286px, 602px;
-    background-position: left 339px top -26px, left 782px top -102px,
-      left 958px top 506px, left 678px bottom 34px;
+    background-size: 746px, 498px, 286px, 602px;
+    background-position: right 195px top -146px, right 0px top -146px,
+      right 36px bottom 65px, right 0px bottom 0px;
   }
   @media (min-device-pixel-ratio: 2) and (min-width: 1280px),
     (min-resolution: 192dpi) and (min-width: 1280px),
