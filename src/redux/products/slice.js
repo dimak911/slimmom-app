@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchDiaryProducts, sideBarInfo } from './operations';
+
+import { sideBarInfo } from './operations';
+import { fetchDiaryProducts } from './operations';
+import { removeDiaryListItem } from './operations';
 
 export const productListSlice = createSlice({
   name: 'productList',
@@ -49,12 +52,6 @@ export const productListSlice = createSlice({
     ],
   },
   reducers: {
-    removeItem: (state, { payload }) => {
-      const idx = state.productsDiary.findIndex(
-        product => product.id === payload
-      );
-      state.productsDiary.splice(idx, 1);
-    },
     getList: state => {
       return state;
     },
@@ -70,6 +67,14 @@ export const productListSlice = createSlice({
       state.sideBarInfo = action.payload.result;
       console.log("action.payload",action.payload)
       state.isLoggedIn = true;
+    builder.addCase(removeDiaryListItem.fulfilled, (state, action) => {
+      const idx = state.productsDiary.findIndex(
+        product => product.id === action.payload
+      );
+      state.productsDiary.splice(idx, 1);
+    });
+    builder.addCase(removeDiaryListItem.rejected, (state, action) => {
+      return state;
     });
   },
 });
