@@ -6,11 +6,11 @@ import {
   DiaryProductListItemStyled,
 } from './DiaryProductList.styled';
 
+
 export const DairyProductList = () => {
   const products = useSelector(productsList);
-
   return (
-    <>
+    <div>
       {products.length > 0 ? (
         <DiaryProductListStyled>
           {products.map(({ id, prodName, prodWeight, prodKcal }) => (
@@ -27,6 +27,6 @@ export const DairyProductList = () => {
       ) : (
         <p>Not found any product</p>
       )}
-    </>
+    </div>
   );
 };
