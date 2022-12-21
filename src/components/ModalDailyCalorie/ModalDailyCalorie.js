@@ -8,7 +8,7 @@ import {
 
 const modalContainer = document.getElementById('modal-root');
 
-export function ModalDailyCalorie({ closeModal, children }) {
+export function ModalDailyCalorie({ closeModal, children, calculateData }) {
   useEffect(() => {
     const keydownHandler = event => {
       if (event.code === 'Escape') {
@@ -25,14 +25,14 @@ export function ModalDailyCalorie({ closeModal, children }) {
     }
   };
 
-  const { height, age, currentWeight, desiredWeight } = calculateData;
+  // const { height, age, currentWeight, desiredWeight } = calculateData;
 
-  const countedCalories =
-    10 * currentWeight +
-    6.25 * height -
-    5 * age -
-    161 -
-    10 * (currentWeight - desiredWeight);
+  // const countedCalories =
+  //   10 * currentWeight +
+  //   6.25 * height -
+  //   5 * age -
+  //   161 -
+  //   10 * (currentWeight - desiredWeight);
 
   return createPortal(
     <ModalBackdropStyled onClick={onBackdropClickHandler}>
