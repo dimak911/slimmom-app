@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { productListSlice } from 'redux/products/slice';
 import { authReducer } from 'redux/auth/slice';
 import { calculateSlice } from 'redux/calculate/slice';
-
+import { loadingReduser } from 'redux/loader/slice';
 import {
   persistStore,
   persistReducer,
@@ -26,6 +26,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     calculate: calculateSlice.reducer,
     productList: productListSlice.reducer,
+    loading: loadingReduser,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
