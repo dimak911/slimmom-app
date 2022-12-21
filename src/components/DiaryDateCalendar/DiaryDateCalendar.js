@@ -1,19 +1,39 @@
 import moment from 'moment';
 import Datetime from 'react-datetime';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box } from 'components/Box';
 import 'react-datetime/css/react-datetime.css';
 import { Container } from 'components/Container.styled';
 import calendarIcon from '../../images/icons/calendar.svg';
 import { DiaryDate } from './DiaryDateCalendar.styled';
+import { useDispatch } from 'react-redux';
+import { fetchDiaryProducts } from 'redux/products/operations';
+import { useNavigate, useParams } from 'react-router-dom';
+
+const formatDate = date => date.split('.').join('-');
 
 export const DiaryDateCalendar = () => {
-  const [date, setDate] = useState(() =>
-    moment(new Date()).format('DD.MM.YYYY')
-  );
+  let { date } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [diaryDate, setDiaryDate] = useState(() => {
+    if (date) return date.split('-').join('.');
+
+    const initialDate = moment(new Date()).format('DD.MM.YYYY');
+    navigate(`/diary/${formatDate(date)}`);
+
+    return initialDate;
+  });
+
+  useEffect(() => {
+    const formattedDate = diaryDate.split('.').join('-');
+    dispatch(fetchDiaryProducts(formattedDate));
+  }, [dispatch, diaryDate, navigate]);
 
   const handleChangeDate = value => {
-    setDate(moment(value).format('DD.MM.YYYY'));
+    const date = moment(value).format('DD.MM.YYYY');
+    setDiaryDate(date);
+    navigate(`/diary/${formatDate(date)}`);
   };
 
   const renderInput = (props, openCalendar) => {
@@ -24,7 +44,7 @@ export const DiaryDateCalendar = () => {
         gridGap="20px"
         onClick={openCalendar}
       >
-        <DiaryDate>{date}</DiaryDate>
+        <DiaryDate>{diaryDate}</DiaryDate>
         <img src={calendarIcon} width={20} height={20} alt="calendar" />
       </Box>
     );
@@ -35,7 +55,7 @@ export const DiaryDateCalendar = () => {
       <Container>
         <Datetime
           renderInput={renderInput}
-          value={date}
+          value={diaryDate}
           dateFormat="DD.MM.YYYY"
           closeOnSelect={true}
           timeFormat={false}

@@ -1,37 +1,55 @@
 import React, { lazy } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute';
-import { Route, Routes } from 'react-router-dom';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
+import { Layout } from 'components/Layout/Layout';
 
-// import { ModalDailyCalorie } from 'components/ModalDailyCalorie/ModalDailyCalorie';
-// import { DairyProductList } from 'components/DairyProductList/DairyProductList';
-
-const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
+const RegistrationPage = lazy(() =>
+  import('pages/RegistrationPage/RegistrationPage')
+);
 const LoginPage = lazy(() => import('pages/LoginPage'));
+const MainPage = lazy(() => import('pages/MainPage'));
+const CalculatorPage = lazy(() => import('pages/CalculatorPage/CalculatorPage'));
+// додати сторінку DiaryPage
 
 export const App = () => {
   return (
     <>
       <GlobalStyle />
-
-      {/* <ModalDailyCalorie /> */}
-      {/* <DairyProductList /> */}
       <Routes>
-        <Route
-          path="/signup"
-          element={
-            <RestrictedRoute
-              redirectTo="/login"
-              component={<RegistrationPage />}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/signup" component={<LoginPage />} />
-          }
-        />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<MainPage />} />
+          <Route
+            path="/signup"
+            element={
+              <RestrictedRoute
+                redirectTo="/diary/:date"
+                component={<RegistrationPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/diary/:date" component={<LoginPage />} />
+            }
+          />
+          <Route
+            path="/diary/:date"
+            element={
+              <PrivateRoute redirectTo="/login" component={<CalculatorPage />} />
+              // замінити тут коспонент на сторінку DiaryPage
+            }
+          />
+          <Route
+            path="/calculate"
+            element={
+              <PrivateRoute redirectTo="/login" component={<CalculatorPage />} />
+            }
+          />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
     </>
   );
