@@ -26,7 +26,7 @@ export const UserInfo = () => {
         {isLoading? <Loader/>: null}
         <UserName>{userName}</UserName>
         <Button type="button" onClick={isLogout}>
-          Exit
+          Вихід
         </Button>
       </UserInfoContainer>
     )
