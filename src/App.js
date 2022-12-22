@@ -32,7 +32,10 @@ export const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<MainPage />} />
+          <Route path="/"
+            element={
+              <RestrictedRoute redirectTo="/diary/:date" component={<MainPage />} />
+            } />
           <Route
             path="/signup"
             element={
