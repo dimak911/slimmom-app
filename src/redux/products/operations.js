@@ -15,3 +15,16 @@ export const fetchDiaryProducts = createAsyncThunk(
     }
   }
 );
+
+export const removeDiaryListItem = createAsyncThunk(
+  'products/removeItem',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.delete(`/diary/${id}`);
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
