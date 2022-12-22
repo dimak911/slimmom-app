@@ -21,21 +21,21 @@ export const DailyCalorieIntake = ({ calculateData }) => {
   return (
     <>
       <ModalsHeadStyled>
-        Your recommended daily
-        <br /> calorie intake is
+        Ваша рекомендована добова норма
+        <br /> споживання калорій становить
       </ModalsHeadStyled>
       <CaloriesCountStyled>{countedCalories} ккал</CaloriesCountStyled>
       <FoodListWrapperStyled>
         <LineStyled />
-        <FoodListTitleStyled>Foods you should not eat</FoodListTitleStyled>
+        <FoodListTitleStyled>Продукти, які ви не повинні їсти</FoodListTitleStyled>
         <FoodListStyled>
-          <li>1. Flour products</li>
-          <li>2. Milk</li>
-          <li>3. Red meat</li>
-          <li>4. Smoked meats</li>
+          <li>1. Борошняні вироби</li>
+          <li>2. Молоко</li>
+          <li>3. Червоне мясо</li>
+          <li>4. Копченості</li>
         </FoodListStyled>
       </FoodListWrapperStyled>
-      <ButtonFilling>Start losing weight</ButtonFilling>
+      <ButtonFilling>Почніть худнути</ButtonFilling>
     </>
   );
 };

@@ -9,8 +9,8 @@ export const Navigation = () => {
     <Container>
       <Wrapper>
         <Logo />
-        {isLoggedIn ? <Link to="/" end>DIARY</Link> : <Link to="/login">SIGN IN</Link>}
-        {isLoggedIn ? <Link to="/calculate">CALCULATOR</Link> : <Link to="/signup">REGISTRATION</Link>}
+        {isLoggedIn ? <Link to="/" end>ЩОДЕННИК</Link> : <Link to="/login">УВІЙТИ</Link>}
+        {isLoggedIn ? <Link to="/calculate">КАЛЬКУЛЯТОР</Link> : <Link to="/signup">РЕЄСТРАЦІЯ</Link>}
       </Wrapper>
     </Container>
   )
