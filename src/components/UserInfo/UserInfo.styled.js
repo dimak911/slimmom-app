@@ -46,8 +46,8 @@ export const Button = styled.button`
   color: #9b9faa;
   transition: all 250ms easy;
   cursor: pointer;
-  &:hover,
+  :hover,
   :focus {
-    color: #212121;
+    color: ${p => p.theme.colors.accent};
   }
 `;

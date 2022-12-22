@@ -1,7 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { login } from 'redux/auth/operations';
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { Loader } from 'components/Loader/Loader';
 import { Container } from 'components/Container.styled';
 
 import {
@@ -17,7 +20,7 @@ import {
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
-
+  const isLoading = useSelector(selectIsLoading);
   const {
     register,
     handleSubmit,
@@ -35,28 +38,30 @@ export const LogInForm = () => {
   const passwordValue = watch('password');
 
   const onSubmitForm = credentials => {
+    dispatch(showLoading());
     dispatch(login(credentials));
     reset();
   };
 
   return (
     <Container>
+      {isLoading? <Loader/> : null}
       <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
-        <Title>Log in</Title>
+        <Title>Авторизуватися</Title>
         <Label>
-          Email *
+          Електронна пошта *
           <InputForm
             value={emailValue}
             type="email"
             {...register('email', {
               required: {
                 value: true,
-                message: 'Please enter your email',
+                message: 'Будь ласка, введіть свою електронну адресу',
               },
               pattern: {
                 value:
                   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
-                message: 'Wrong format of email',
+                message: 'Неправильний формат електронної пошти',
               },
             })}
           />
@@ -64,18 +69,18 @@ export const LogInForm = () => {
         </Label>
 
         <Label>
-          Password *
+          Пароль *
           <InputForm
             value={passwordValue}
             type="password"
             {...register('password', {
               minLength: {
                 value: 8,
-                message: 'Your password must contain at least 8 characters',
+                message: 'Ваш пароль має містити не менше 8 символів',
               },
               required: {
                 value: true,
-                message: 'Please enter your password',
+                message: 'Будь ласка, введіть свій пароль',
               },
             })}
           />
@@ -83,8 +88,8 @@ export const LogInForm = () => {
         </Label>
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
-          <ButtonLogin type="submit">Log in</ButtonLogin>
-          <LinkRegister to="/signup"> Register </LinkRegister>
+          <ButtonLogin type="submit">Авторизуватися</ButtonLogin>
+          <LinkRegister to="/signup"> Зареєструватися </LinkRegister>
         </ButtonWrap>
       </SigninForm>
     </Container>

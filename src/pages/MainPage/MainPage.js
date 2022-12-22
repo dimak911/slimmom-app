@@ -4,14 +4,15 @@ import { Container } from 'components/Container.styled';
 import { DailyCaloriesForm } from 'components/DailyCaloriesForm';
 import { ModalDailyCalorie } from 'components/ModalDailyCalorie';
 import { DailyCalorieIntake } from 'components/DailyCalorieIntake/DailyCalorieIntake';
+import { Wrap } from './MainPage.styled';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalopen] = useState(false);
-  const [calculateData, setCalculateData] = useState({});
+  const [countedCalories, setCountedCalories] = useState({});
 
   const openModal = data => {
     setIsModalopen(true);
-    setCalculateData(data);
+    setCountedCalories(data);
     window.document.body.style.overflow = 'hidden';
   };
 
@@ -22,18 +23,16 @@ const MainPage = () => {
 
   return (
     <Container>
-      <Box display="flex">
-        <Box>
-          <Box height="68px">Logo + Navigation</Box>
+      <Wrap>
+        <Box display="flex">
           <DailyCaloriesForm openModal={openModal} />
           {isModalOpen && (
             <ModalDailyCalorie closeModal={closeModal}>
-              <DailyCalorieIntake calculateData={calculateData} />
+              <DailyCalorieIntake countedCalories={countedCalories} />
             </ModalDailyCalorie>
           )}
         </Box>
-        <Box width="600px">IMAGE</Box>
-      </Box>
+      </Wrap>
     </Container>
   );
 };

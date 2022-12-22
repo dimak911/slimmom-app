@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const ButtonFilledStyled = styled.button`
+export const ButtonFilledStyled = styled(NavLink)`
   display: block;
   width: 210px;
   height: 43px;
@@ -11,11 +12,11 @@ export const ButtonFilledStyled = styled.button`
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
   border-color: transparent;
-  opacity: 0.6;
   cursor: pointer;
-  :active {
-    /* transform: translateY(4px); */
-    opacity: 1;
+  :hover,
+  :focus {
+  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
+  transform: translateY(-7px);
   }
   transition: opacity 200ms ease-in;
 `;

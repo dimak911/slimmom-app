@@ -9,10 +9,9 @@ export const Box = styled.div`
     margin: 0 auto;
     padding: 40px 20px;
     width: 320px;
-    position: absolute;
+    /* position: absolute; */
   }
   @media (min-width: 768px) {
-    margin: 0 auto;
     padding: 80px 32px;
     width: 768px;
     display: flex;
@@ -21,7 +20,7 @@ export const Box = styled.div`
     background-repeat: no-repeat;
     background-position: right;
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     padding: 0;
     width: 517px;
     height: 850px;
@@ -36,7 +35,7 @@ export const SideBarContainer = styled.div`
     margin-bottom: 40px;
   }
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
      &:first-child {
     margin-bottom: 60px;
   }
@@ -59,7 +58,7 @@ export const Title = styled.h2`
   @media (min-width: 768px) {
     margin-bottom: 40px;
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 1280px) {
     margin-bottom: 40px;
   }
 `;

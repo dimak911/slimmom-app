@@ -1,83 +1,111 @@
-import { SideBarContainer, Box, Title, P, Span, TextBox, Ul, Li } from './SideBar.styled';
+import {
+  SideBarContainer,
+  Box,
+  Title,
+  P,
+  Span,
+  TextBox,
+  Ul,
+  Li,
+} from './SideBar.styled';
+// import { sideBarInfoSelectors } from 'redux/products/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchsideBarInfo } from 'redux/products/operations';
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { Loader } from 'components/Loader/Loader';
+import { useEffect } from 'react';
 
 export const SideBar = () => {
-    return (
-        <Box>
-            <SideBarContainer>
-                <Title>Summary for <span>20/06/2020</span></Title>
-                <TextBox>
-                    <ul>
-                        <li>
-                            <P>
-                                <Span>Left</Span>
-                            </P>
-                        </li>
-                        <li>
-                            <P>
-                                <Span>Consumed</Span>
-                            </P>
-                        </li>
-                        <li>
-                            <P>
-                                <Span>Daily rate</Span>
-                            </P>
-                        </li>
-                        <li>
-                            <P>
-                                <Span>n% of normal</Span>
-                            </P>
-                        </li>
-                    </ul>
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
-                    <Ul>
-                        <Li>
-                            <P>
-                                <Span>625 kcal</Span>
-                            </P>
-                        </Li>
-                        <Li>
-                            <P>
-                                <Span>2175 kcal</Span>
-                            </P>
-                        </Li>
-                        <Li>
-                            <P>
-                                <Span>2800 kcal</Span>
-                            </P>
-                        </Li>
-                        <Li>
-                            <P>
-                                <Span>78 %</Span>
-                            </P>
-                        </Li>
-                    </Ul>
-                </TextBox>
-          </SideBarContainer>
-          <SideBarContainer>
-            <Title>Food not recommended</Title>
-            <ul>
-                <li>
-                    <P>
-                        <span>Flour products</span>
-                    </P>
-                </li>
-                <li>
-                    <P>
-                        <span>Milk</span>
-                    </P>
-                </li>
-                <li>
-                    <P>
-                        <span>Read meat</span>
-                    </P>
-                </li>
-                <li>
-                    <P>
-                        <span>Smoked meats</span>
-                    </P>
-                </li>
-            </ul>
-        </SideBarContainer>
-        </Box>
-    )
-}
+  useEffect(() => {
+    dispatch(showLoading());
+    dispatch(fetchsideBarInfo());
+  }, [dispatch]);
+
+  // const info = useSelector(sideBarInfoSelectors)
+  return (
+    <Box>
+      <SideBarContainer>
+        {isLoading ? <Loader /> : null}
+        <Title>
+          Сумарно на <span>20/06/2020</span>
+        </Title>
+        <TextBox>
+          <ul>
+            <li>
+              <P>
+                <Span>Залишилось</Span>
+              </P>
+            </li>
+            <li>
+              <P>
+                <Span>Споживається</Span>
+              </P>
+            </li>
+            <li>
+              <P>
+                <Span>Добова норма</Span>
+              </P>
+            </li>
+            <li>
+              <P>
+                <Span>% від норми</Span>
+              </P>
+            </li>
+          </ul>
+
+          <Ul>
+            <Li>
+              <P>
+                <Span>000 ккал</Span>
+              </P>
+            </Li>
+            <Li>
+              <P>
+                <Span>000 ккал</Span>
+              </P>
+            </Li>
+            <Li>
+              <P>
+                <Span>000 ккал</Span>
+              </P>
+            </Li>
+            <Li>
+              <P>
+                <Span>000 ккал</Span>
+              </P>
+            </Li>
+          </Ul>
+        </TextBox>
+      </SideBarContainer>
+      <SideBarContainer>
+        <Title>Їжа не рекомендована</Title>
+        <ul>
+          <li>
+            <P>
+              <span>Борошняні вироби</span>
+            </P>
+          </li>
+          <li>
+            <P>
+              <span>Молоко</span>
+            </P>
+          </li>
+          <li>
+            <P>
+              <span>Червоне м'ясо</span>
+            </P>
+          </li>
+          <li>
+            <P>
+              <span>Копченості</span>
+            </P>
+          </li>
+        </ul>
+      </SideBarContainer>
+    </Box>
+  );
+};

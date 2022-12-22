@@ -3,6 +3,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
 
+
 export const fetchDiaryProducts = createAsyncThunk(
   'products/fetchAll',
   async (date, { rejectWithValue }) => {
@@ -15,6 +16,18 @@ export const fetchDiaryProducts = createAsyncThunk(
     }
   }
 );
+
+
+export const fetchsideBarInfo = createAsyncThunk(
+  'diary/dayinfo',
+  async (_, { rejectWithValue }) => {
+    try {
+      const result = await axios.get('/diary/dayinfo');
+      return result.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  });
 
 export const removeDiaryListItem = createAsyncThunk(
   'products/removeItem',
