@@ -13,8 +13,10 @@ const RegistrationPage = lazy(() =>
 );
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const MainPage = lazy(() => import('pages/MainPage/MainPage'));
-const CalculatorPage = lazy(() => import('pages/CalculatorPage/CalculatorPage'));
-const DiaryPage = lazy(() => import('pages/DiaryPage'));
+const CalculatorPage = lazy(() =>
+  import('pages/CalculatorPage/CalculatorPage')
+);
+// const DiaryPage = lazy(() => import('pages/DiaryPage'));
 // додати сторінку DiaryPage
 
 export const App = () => {
@@ -32,10 +34,15 @@ export const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/"
+          <Route
+            path="/"
             element={
-              <RestrictedRoute redirectTo="/diary/:date" component={<MainPage />} />
-            } />
+              <RestrictedRoute
+                redirectTo="/diary/:date"
+                component={<MainPage />}
+              />
+            }
+          />
           <Route
             path="/signup"
             element={
@@ -48,20 +55,29 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/diary/:date" component={<LoginPage />} />
+              <RestrictedRoute
+                redirectTo="/diary/:date"
+                component={<LoginPage />}
+              />
             }
           />
           <Route
             path="/diary/:date"
             element={
-              <PrivateRoute redirectTo="/login" component={<CalculatorPage />} />
+              <PrivateRoute
+                redirectTo="/login"
+                component={<CalculatorPage />}
+              />
               // замінити тут коспонент на сторінку DiaryPage
             }
           />
           <Route
             path="/calculate"
             element={
-              <PrivateRoute redirectTo="/login" component={<CalculatorPage />} />
+              <PrivateRoute
+                redirectTo="/login"
+                component={<CalculatorPage />}
+              />
             }
           />
         </Route>
