@@ -3,7 +3,6 @@ import Datetime from 'react-datetime';
 import { useEffect, useState } from 'react';
 import { Box } from 'components/Box';
 import 'react-datetime/css/react-datetime.css';
-import { Container } from 'components/Container.styled';
 import calendarIcon from '../../images/icons/calendar.svg';
 import { DiaryDate } from './DiaryDateCalendar.styled';
 import { useDispatch } from 'react-redux';
@@ -52,17 +51,15 @@ export const DiaryDateCalendar = () => {
 
   return (
     <>
-      <Container>
-        <Datetime
-          renderInput={renderInput}
-          value={diaryDate}
-          dateFormat="DD.MM.YYYY"
-          closeOnSelect={true}
-          timeFormat={false}
-          strictParsing={true}
-          onChange={handleChangeDate}
-        />
-      </Container>
+      <Datetime
+        renderInput={renderInput}
+        value={diaryDate}
+        dateFormat="DD.MM.YYYY"
+        closeOnSelect={true}
+        timeFormat={false}
+        strictParsing={true}
+        onChange={handleChangeDate}
+      />
     </>
   );
 };

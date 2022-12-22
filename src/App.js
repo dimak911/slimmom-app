@@ -18,7 +18,7 @@ const MainPage = lazy(() => import('pages/MainPage/MainPage'));
 const CalculatorPage = lazy(() =>
   import('pages/CalculatorPage/CalculatorPage')
 );
-const DiaryPage = lazy(() => import('pages/DiaryPage'));
+const DiaryPage = lazy(() => import('pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
