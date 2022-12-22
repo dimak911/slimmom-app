@@ -13,9 +13,14 @@ export const SigninForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 495px;
     margin-top: ${p => p.theme.spaceForm[4]}px;
     padding-left: ${p => p.theme.space[0]}px;
     padding-right: ${p => p.theme.space[0]}px;
+  }
+
+  @media screen and (min-width: 1280px){
+    margin-bottom: 255px;
   }
 `;
 
@@ -99,6 +104,7 @@ export const ButtonLogin = styled.button`
 
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;
+    margin-bottom: ${p => p.theme.space[0]}px;
   }
 `;
 
