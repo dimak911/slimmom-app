@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as CloseIcon } from '../../icons/close-cross.svg';
+import { ReactComponent as CloseIconCross } from '../../icons/close-cross.svg';
 
 export const ModalBackdropStyled = styled.div`
   position: absolute;
@@ -7,6 +7,10 @@ export const ModalBackdropStyled = styled.div`
   height: 100vh;
   width: 100vw;
   background: rgba(33, 33, 33, 0.12);
+
+  @media (max-width: 320px) {
+    top: 80px;
+  }
 `;
 
 export const ModalDailyCalorieStyled = styled.div`
@@ -23,9 +27,15 @@ export const ModalDailyCalorieStyled = styled.div`
   @media (max-width: 672px) {
     width: 100vw;
   }
+  @media (max-width: 320px) {
+    height: 100vh;
+    padding: 0;
+    top: 370px;
+  }
 `;
 
-export const CloseIconStyled = styled(CloseIcon)`
+export const CloseIconCrossStyled = styled(CloseIconCross)`
+  display: block;
   position: absolute;
   top: 25px;
   right: 25px;
@@ -34,5 +44,30 @@ export const CloseIconStyled = styled(CloseIcon)`
   :hover,
   :focus {
     fill: ${props => props.theme.colors.accent};
+  }
+
+  @media (max-width: 320px) {
+    display: none;
+  }
+`;
+
+export const CloseRectMobileStyled = styled.div`
+  display: none;
+  height: 40px;
+  padding: 16px 20px;
+  background-color: #eff1f3;
+
+  @media (max-width: 320px) {
+    display: block;
+    margin-bottom: 40px;
+  }
+`;
+
+export const CloseIconArrowStyled = styled.img`
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 320px) {
+    display: block;
   }
 `;

@@ -3,8 +3,11 @@ import { createPortal } from 'react-dom';
 import {
   ModalDailyCalorieStyled,
   ModalBackdropStyled,
-  CloseIconStyled,
+  CloseIconCrossStyled,
+  CloseIconArrowStyled,
+  CloseRectMobileStyled,
 } from './ModalDailyCalorieStyled.styled';
+import closeIconArrow from '../../icons/back-arrow.png';
 
 const modalContainer = document.getElementById('modal-root');
 
@@ -28,7 +31,10 @@ export function ModalDailyCalorie({ closeModal, children, calculateData }) {
   return createPortal(
     <ModalBackdropStyled onClick={onBackdropClickHandler}>
       <ModalDailyCalorieStyled>
-        <CloseIconStyled onClick={() => closeModal()} />
+        <CloseIconCrossStyled onClick={() => closeModal()} />
+        <CloseRectMobileStyled onClick={() => closeModal()}>
+          <CloseIconArrowStyled src={closeIconArrow} alt="back arrow" />
+        </CloseRectMobileStyled>
         {children}
       </ModalDailyCalorieStyled>
     </ModalBackdropStyled>,

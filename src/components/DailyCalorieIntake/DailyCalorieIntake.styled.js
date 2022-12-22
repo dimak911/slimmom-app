@@ -36,7 +36,7 @@ export const LineStyled = styled.span`
 export const FoodListWrapperStyled = styled.div`
   max-width: 330px;
   margin: ${props => props.theme.space[5]}px auto 0;
-  padding: 0 10px 0;
+  padding: 0 20px 0;
 `;
 
 export const FoodListTitleStyled = styled.p`
@@ -47,6 +47,10 @@ export const FoodListTitleStyled = styled.p`
   color: ${props => props.theme.colors.primary};
   font-size: ${props => props.theme.fontSizes.xs};
   letter-spacing: 0.04em;
+
+  @media (max-width: 320px) {
+    margin: 20px auto 0;
+  }
 `;
 
 export const FoodListStyled = styled.ul`
