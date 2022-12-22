@@ -1,7 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { registration } from 'redux/auth/operations';
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { Loader } from 'components/Loader/Loader';
 import { Container } from 'components/Container.styled';
 import {
     RegisterForm,
@@ -16,7 +19,7 @@ import {
 
 export const RegistrationForm = () => {
     const dispatch = useDispatch();
-
+    const isLoading = useSelector(selectIsLoading)
     const {
         register,
         handleSubmit,
@@ -36,23 +39,25 @@ export const RegistrationForm = () => {
     const passwordValue = watch('password');
 
     const onSubmitForm = credentials => {
+        dispatch(showLoading());
         dispatch(registration(credentials));
         reset();
     };
 
     return (
         <Container>
+            {isLoading? <Loader/>:null}
             <RegisterForm onSubmit={handleSubmit(onSubmitForm)}>
-                <Title>Register</Title>
+                <Title>Зареєструватися</Title>
                 <Label>
-                    Name *
+                    Ім'я *
                     <InputForm
                         value={nameValue}
                         type="text"
                         {...register('name', {
                             required: {
                                 value: true,
-                                message: 'Please enter your name',
+                                message: `Будь ласка, введіть своє ім'я`,
                             },
                         })}
                     />
@@ -60,19 +65,19 @@ export const RegistrationForm = () => {
                 </Label>
 
                 <Label>
-                    Email *
+                    Електронна пошта *
                     <InputForm
                         value={emailValue}
                         type="email"
                         {...register('email', {
                             required: {
                                 value: true,
-                                message: 'Please enter your email',
+                                message: 'Будь ласка, введіть свою електронну адресу',
                             },
                             pattern: {
                                 value:
                                     /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
-                                message: 'Wrong format of email',
+                                message: 'Неправильний формат електронної пошти',
                             },
                         })}
                     />
@@ -80,18 +85,18 @@ export const RegistrationForm = () => {
                 </Label>
 
                 <Label>
-                    Password *
+                    Пароль *
                     <InputForm
                         value={passwordValue}
                         type="password"
                         {...register('password', {
                             minLength: {
                                 value: 8,
-                                message: 'Your password must contain at least 8 characters',
+                                message: 'Ваш пароль має містити не менше 8 символів',
                             },
                             required: {
                                 value: true,
-                                message: 'Please enter your password',
+                                message: 'Будь ласка, введіть свій пароль',
                             },
                         })}
                     />
@@ -99,8 +104,8 @@ export const RegistrationForm = () => {
                 </Label>
 
                 <ButtonWrap display="flex" flexDirection="column" alignItems="center">
-                    <ButtonRegister type="submit">Register</ButtonRegister>
-                    <LinkLoggin to="/login"> Log in </LinkLoggin>
+                    <ButtonRegister type="submit">Зареєструватися</ButtonRegister>
+                    <LinkLoggin to="/login"> Авторизуватися </LinkLoggin>
                 </ButtonWrap>
             </RegisterForm>
         </Container>

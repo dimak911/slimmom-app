@@ -22,9 +22,9 @@ export const DiaryProductListItem = ({
   return (
     <>
       <ProductName>{prodName}</ProductName>
-      <ProductWeight>{prodWeight} g</ProductWeight>
+      <ProductWeight>{prodWeight} г</ProductWeight>
       <ProductKcal>
-        {prodKcal} <SuffixKcal>kcal</SuffixKcal>
+        {prodKcal} <SuffixKcal>ккал</SuffixKcal>
       </ProductKcal>
       <RemoveButton
         type="button"
