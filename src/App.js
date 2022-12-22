@@ -14,15 +14,11 @@ const RegistrationPage = lazy(() =>
   import('pages/RegistrationPage/RegistrationPage')
 );
 const LoginPage = lazy(() => import('pages/LoginPage'));
-const MainPage = lazy(() => import('pages/MainPage'));
 const CalculatorPage = lazy(() =>
   import('pages/CalculatorPage/CalculatorPage')
 );
 // додати сторінку DiaryPage
 const MainPage = lazy(() => import('pages/MainPage/MainPage'));
-const CalculatorPage = lazy(() =>
-  import('pages/CalculatorPage/CalculatorPage')
-);
 const DiaryPage = lazy(() => import('pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
@@ -70,10 +66,6 @@ export const App = () => {
             path="/login"
             element={
               <RestrictedRoute
-                redirectTo="/diary/:date"
-                component={<LoginPage />}
-              />
-              <RestrictedRoute
                 redirectTo={`/diary/${initialDate}`}
                 component={<LoginPage />}
               />
@@ -82,10 +74,6 @@ export const App = () => {
           <Route
             path="/diary/:date"
             element={
-              <PrivateRoute
-                redirectTo="/login"
-                component={<CalculatorPage />}
-              />
               // замінити тут коспонент на сторінку DiaryPage
               <PrivateRoute redirectTo="/login" component={<DiaryPage />} />
             }
