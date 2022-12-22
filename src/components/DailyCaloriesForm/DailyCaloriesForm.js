@@ -47,7 +47,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
   const bloodTypeValue = watch('bloodType');
 
   const onSubmitForm = formData => {
-    dispatch(showLoading(data));
+    dispatch(showLoading(formData));
     const { height, age, currentWeight, desiredWeight } = formData;
     const countedCalories = String(
       10 * currentWeight +
