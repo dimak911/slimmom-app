@@ -25,7 +25,11 @@ export const Link = styled(NavLink)`
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
 
-  &:hover {
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
+  &.active {
     color: ${p => p.theme.colors.primary};
   }
 `;
