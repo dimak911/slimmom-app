@@ -1,8 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { calculateValue } from 'redux/calculate/slice';
-
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { Loader } from 'components/Loader/Loader';
 import {
   Form,
   Title,
@@ -20,7 +22,7 @@ import {
 
 export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
-
+  const isLoading = useSelector(selectIsLoading);
   const {
     register,
     handleSubmit,
@@ -45,6 +47,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
   const bloodTypeValue = watch('bloodType');
 
   const onSubmitForm = formData => {
+    dispatch(showLoading(data));
     const { height, age, currentWeight, desiredWeight } = formData;
     const countedCalories = String(
       10 * currentWeight +
@@ -61,50 +64,51 @@ export const DailyCaloriesForm = ({ openModal }) => {
 
   return (
     <div>
+      {isLoading ? <Loader /> : null}
       <Form onSubmit={handleSubmit(onSubmitForm)}>
-        <Title>Calculate your daily calorie intake right now</Title>
+        <Title>Розрахуйте свою денну норму калорій прямо зараз</Title>
         <ColumnWrap>
           <Column>
             <Label>
-              Height *
+              Зріст *
               <InputForm
                 value={heightValue}
                 type="number"
                 {...register('height', {
-                  required: 'Please enter your height',
+                  required: 'Будь ласка, введіть свій зріст',
                   minLength: {
                     value: 2,
-                    message: 'Please enter at least two digit number',
+                    message: 'Введіть принаймні двозначне число',
                   },
                 })}
               />
               {errors?.height && <Error>{errors?.height?.message}</Error>}
             </Label>
             <Label>
-              Age *
+              Вік *
               <InputForm
                 value={ageValue}
                 type="number"
                 {...register('age', {
-                  required: 'Please enter your age',
+                  required: 'Будь ласка, введіть свій вік',
                   minLength: {
                     value: 2,
-                    message: 'Please enter at least two digit number',
+                    message: 'Введіть принаймні двозначне число',
                   },
                 })}
               />
               {errors?.age && <Error>{errors?.age?.message}</Error>}
             </Label>
             <Label>
-              Current weight *
+              Нинішня вага *
               <InputForm
                 value={currentWeightValue}
                 type="number"
                 {...register('currentWeight', {
-                  required: 'Please enter your current weight',
+                  required: 'Введіть свою поточну вагу',
                   minLength: {
                     value: 2,
-                    message: 'Please enter at least two digit number',
+                    message: 'Введіть принаймні двозначне число',
                   },
                 })}
               />
@@ -116,15 +120,15 @@ export const DailyCaloriesForm = ({ openModal }) => {
 
           <Column>
             <Label>
-              Desired weight *
+              Бажана вага *
               <InputForm
                 value={desiredWeightValue}
                 type="number"
                 {...register('desiredWeight', {
-                  required: 'Please enter your weight',
+                  required: 'Будь ласка, введіть бажану вагу',
                   minLength: {
                     value: 2,
-                    message: 'Please enter at least two digit number',
+                    message: 'Введіть принаймні двозначне число',
                   },
                 })}
               />
@@ -132,13 +136,13 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 <Error>{errors?.desiredWeight?.message}</Error>
               )}
             </Label>
-            <Label>Blood type * </Label>
+            <Label>Група крові * </Label>
             <BloodTypeValue>{bloodTypeValue}</BloodTypeValue>
             <RadiobuttonWrapper>
               <RadiobuttonLabel>
                 <input
                   {...register('bloodType', {
-                    required: 'Please choose your blood type',
+                    required: 'Виберіть свою групу крові',
                   })}
                   type="radio"
                   value="1"
@@ -164,7 +168,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
           <ButtonSubmit type="submit" disabled={!isValid}>
-            Start losing weight
+            Почніть худнути
           </ButtonSubmit>
         </ButtonWrap>
       </Form>

@@ -35,7 +35,11 @@ export const Link = styled(NavLink)`
 &:not(:last-child){
   margin-bottom:28px
   }
-&:hover{
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
+  }
+&.active {
   color: ${p => p.theme.colors.white};
   }
 @media (min-width: 767px) {

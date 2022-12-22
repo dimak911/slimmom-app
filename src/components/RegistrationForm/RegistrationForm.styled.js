@@ -82,6 +82,12 @@ export const ButtonRegister = styled.button`
 
   cursor: pointer;
 
+  :hover,
+  :focus {
+  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
+  transform: translateY(-7px);
+  }
+
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;
     margin-bottom: ${p => p.theme.space[0]}px;
@@ -101,6 +107,12 @@ export const LinkLoggin = styled(NavLink)`
 
   color: ${p => p.theme.colors.accent};
   cursor: pointer;
+
+  :hover,
+  :focus {
+  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
+  transform: translateY(-7px); 
+  }
 `;
 
 export const Error = styled.p`
