@@ -1,14 +1,18 @@
 import { SideBarContainer, Box, Title, P, Span, TextBox, Ul, Li } from './SideBar.styled';
 import { sideBarInfoSelectors } from 'redux/products/selectors';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { fetchsideBarInfo } from 'redux/products/operations';
-import { useSelector } from 'react-redux';
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
 
 export const SideBar = () => {
     const dispatch = useDispatch();
+    const isLoading = useSelector(selectIsLoading);
 
     useEffect(() => {
+        dispatch(showLoading())
         dispatch(fetchsideBarInfo());
     },[]);
     
@@ -16,6 +20,7 @@ export const SideBar = () => {
     return (
         <Box>
             <SideBarContainer>
+                {isLoading? <Loader/> : null}
                 <Title>Summary for <span>20/06/2020</span></Title>
                 <TextBox>
                     <ul>

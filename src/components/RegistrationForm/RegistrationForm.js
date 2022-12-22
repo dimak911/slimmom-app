@@ -1,7 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { registration } from 'redux/auth/operations';
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { Loader } from 'components/Loader/Loader';
 import { Container } from 'components/Container.styled';
 import {
     RegisterForm,
@@ -16,7 +19,7 @@ import {
 
 export const RegistrationForm = () => {
     const dispatch = useDispatch();
-
+    const isLoading = useSelector(selectIsLoading)
     const {
         register,
         handleSubmit,
@@ -36,12 +39,14 @@ export const RegistrationForm = () => {
     const passwordValue = watch('password');
 
     const onSubmitForm = credentials => {
+        dispatch(showLoading());
         dispatch(registration(credentials));
         reset();
     };
 
     return (
         <Container>
+            {isLoading? <Loader/>:null}
             <RegisterForm onSubmit={handleSubmit(onSubmitForm)}>
                 <Title>Register</Title>
                 <Label>
