@@ -5,7 +5,7 @@ import {
 
 export function ButtonFilling(props) {
   return (
-    <ButtonFilledStyled type="submit">
+    <ButtonFilledStyled to={props.toRedirect}>
       <ButtonFilledTitleStyled>{props.children}</ButtonFilledTitleStyled>
     </ButtonFilledStyled>
   );
