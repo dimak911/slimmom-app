@@ -1,7 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { login } from 'redux/auth/operations';
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { Loader } from 'components/Loader/Loader';
 import { Container } from 'components/Container.styled';
 
 import {
@@ -17,7 +20,7 @@ import {
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
-
+  const isLoading = useSelector(selectIsLoading);
   const {
     register,
     handleSubmit,
@@ -35,12 +38,14 @@ export const LogInForm = () => {
   const passwordValue = watch('password');
 
   const onSubmitForm = credentials => {
+    dispatch(showLoading());
     dispatch(login(credentials));
     reset();
   };
 
   return (
     <Container>
+      {isLoading? <Loader/> : null}
       <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
         <Title>Авторизуватися</Title>
         <Label>
