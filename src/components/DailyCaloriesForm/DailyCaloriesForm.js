@@ -1,8 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { calculateValue } from 'redux/calculate/slice';
-
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { Loader } from 'components/Loader/Loader';
 import {
   Form,
   Title,
@@ -20,7 +22,7 @@ import {
 
 export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
-
+  const isLoading = useSelector(selectIsLoading)
   const {
     register,
     handleSubmit,
@@ -45,6 +47,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
   const bloodTypeValue = watch('bloodType');
 
   const onSubmitForm = data => {
+    dispatch(showLoading(data))
     dispatch(calculateValue(data));
     openModal(data);
     reset();
@@ -52,6 +55,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
 
   return (
     <div>
+      {isLoading ? <Loader/> : null}
       <Form onSubmit={handleSubmit(onSubmitForm)}>
         <Title>Розрахуйте свою денну норму калорій прямо зараз</Title>
         <ColumnWrap>
