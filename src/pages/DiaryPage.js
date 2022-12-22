@@ -25,7 +25,7 @@ const DiaryPage = () => {
         {!isShowAddForm && (
           <ButtonBox>
             <Button onClick={openModal}>
-              <img src={img} />
+              <img src={img} alt="button to add product" />
             </Button>
           </ButtonBox>
         )}

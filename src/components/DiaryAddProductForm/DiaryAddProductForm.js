@@ -7,10 +7,10 @@ import {
   Span,
   Error,
   LabelProduct,
-  Div
+  Div,
 } from './DiaryAddProductForm.styled';
 
-export const DiaryAddProductForm = ({img,openModal}) => {
+export const DiaryAddProductForm = ({ img, openModal }) => {
   // const dispatch = useDispatch();
   const {
     register,
@@ -28,19 +28,19 @@ export const DiaryAddProductForm = ({img,openModal}) => {
   const weigthValue = watch('weigth');
 
   const onSubmitForm = credentials => {
-    console.log(productValue,weigthValue)
-    openModal()
+    console.log(productValue, weigthValue);
+    openModal();
     // dispatch(login(credentials));
     // reset();
   };
 
   return (
     <Div>
-      <SigninForm  onSubmit={handleSubmit(onSubmitForm)}>
+      <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
         <LabelProduct>
           Введіть назву продукту
           <InputForm
-            value={ productValue}
+            value={productValue}
             type="text"
             {...register('product', {
               required: {
@@ -59,15 +59,19 @@ export const DiaryAddProductForm = ({img,openModal}) => {
             {...register('weigth', {
               required: {
                 value: true,
-              }
+              },
             })}
           />
           {errors.weigth && <Error>{errors.weigth?.message}</Error>}
         </LabelWeigt>
 
         <ButtonLogin type="submit">
-          {img !== "Add"? <img src={ img } />: "Add"}
-          </ButtonLogin>
+          {img !== 'Add' ? (
+            <img src={img} alt="button to add product" />
+          ) : (
+            'Add'
+          )}
+        </ButtonLogin>
       </SigninForm>
     </Div>
   );
