@@ -3,7 +3,7 @@ import { DailyCaloriesForm } from 'components/DailyCaloriesForm';
 import { ModalDailyCalorie } from 'components/ModalDailyCalorie';
 import { DailyCalorieIntake } from 'components/DailyCalorieIntake/DailyCalorieIntake';
 import { MainPageBg } from './MainPageStyled.styled';
-import { Box } from 'components/Box';
+import { Container } from 'components/Container.styled';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalopen] = useState(false);
@@ -21,7 +21,7 @@ const MainPage = () => {
   };
 
   return (
-    <>
+    <Container>
       <DailyCaloriesForm openModal={openModal} />
       {isModalOpen && (
         <ModalDailyCalorie closeModal={closeModal}>
@@ -29,7 +29,7 @@ const MainPage = () => {
         </ModalDailyCalorie>
       )}
       {/* <MainPageBg /> */}
-    </>
+    </Container>
   );
 };
 

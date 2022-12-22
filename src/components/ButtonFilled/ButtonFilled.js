@@ -1,12 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import {
   ButtonFilledStyled,
   ButtonFilledTitleStyled,
 } from './ButtonFilledStyled.styled';
 
-export function ButtonFilling(props) {
+export function ButtonFilling({ children }) {
+  const navigate = useNavigate();
   return (
-    <ButtonFilledStyled type="submit">
-      <ButtonFilledTitleStyled>{props.children}</ButtonFilledTitleStyled>
+    <ButtonFilledStyled type="button" onClick={() => navigate('/signup')}>
+      <ButtonFilledTitleStyled>{children}</ButtonFilledTitleStyled>
     </ButtonFilledStyled>
   );
 }
