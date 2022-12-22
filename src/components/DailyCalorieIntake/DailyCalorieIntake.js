@@ -8,15 +8,15 @@ import {
   FoodListStyled,
 } from './DailyCalorieIntake.styled';
 
-export const DailyCalorieIntake = ({ calculateData }) => {
-  const { height, age, currentWeight, desiredWeight } = calculateData;
+export const DailyCalorieIntake = ({ countedCalories }) => {
+  // const { height, age, currentWeight, desiredWeight } = calculateData;
 
-  const countedCalories =
-    10 * currentWeight +
-    6.25 * height -
-    5 * age -
-    161 -
-    10 * (currentWeight - desiredWeight);
+  // const countedCalories =
+  //   10 * currentWeight +
+  //   6.25 * height -
+  //   5 * age -
+  //   161 -
+  //   10 * (currentWeight - desiredWeight);
 
   return (
     <>
@@ -35,7 +35,7 @@ export const DailyCalorieIntake = ({ calculateData }) => {
           <li>4. Smoked meats</li>
         </FoodListStyled>
       </FoodListWrapperStyled>
-      <ButtonFilling>Start losing weight</ButtonFilling>
+      <ButtonFilling toRedirect="/signup">Start losing weight</ButtonFilling>
     </>
   );
 };
