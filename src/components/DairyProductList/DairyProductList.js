@@ -25,7 +25,7 @@ export const DairyProductList = () => {
           ))}
         </DiaryProductListStyled>
       ) : (
-        <p>Not found any product</p>
+        <p>Не знайдено жодного продукту</p>
       )}
     </div>
   );
