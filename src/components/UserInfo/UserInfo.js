@@ -20,7 +20,7 @@ export const UserInfo = () => {
       <UserInfoContainer>
         <UserName>{userName}</UserName>
         <Button type="button" onClick={isLogout}>
-          Exit
+          Вихід
         </Button>
       </UserInfoContainer>
     )

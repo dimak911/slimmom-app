@@ -16,27 +16,27 @@ export const SideBar = () => {
     return (
         <Box>
             <SideBarContainer>
-                <Title>Summary for <span>20/06/2020</span></Title>
+                <Title>Сумарно на <span>20/06/2020</span></Title>
                 <TextBox>
                     <ul>
                         <li>
                             <P>
-                                <Span>Left</Span>
+                                <Span>Залишилось</Span>
                             </P>
                         </li>
                         <li>
                             <P>
-                                <Span>Consumed</Span>
+                                <Span>Споживається</Span>
                             </P>
                         </li>
                         <li>
                             <P>
-                                <Span>Daily rate</Span>
+                                <Span>Добова норма</Span>
                             </P>
                         </li>
                         <li>
                             <P>
-                                <Span>n% of normal</Span>
+                                <Span>% від норми</Span>
                             </P>
                         </li>
                     </ul>
@@ -44,48 +44,48 @@ export const SideBar = () => {
                     <Ul>
                         <Li>
                             <P>
-                                <Span>000 kcal</Span>
+                                <Span>000 ккал</Span>
                             </P>
                         </Li>
                         <Li>
                             <P>
-                                <Span>000 kcal</Span>
+                                <Span>000 ккал</Span>
                             </P>
                         </Li>
                         <Li>
                             <P>
-                                <Span>000 kcal</Span>
+                                <Span>000 ккал</Span>
                             </P>
                         </Li>
                         <Li>
                             <P>
-                                <Span>000 kcal</Span>
+                                <Span>000 ккал</Span>
                             </P>
                         </Li>
                     </Ul>
                 </TextBox>
           </SideBarContainer>
           <SideBarContainer>
-            <Title>Food not recommended</Title>
+            <Title>Їжа не рекомендована</Title>
             <ul>
                 <li>
                     <P>
-                        <span>Flour products</span>
+                        <span>Борошняні вироби</span>
                     </P>
                 </li>
                 <li>
                     <P>
-                        <span>Milk</span>
+                        <span>Молоко</span>
                     </P>
                 </li>
                 <li>
                     <P>
-                        <span>Read meat</span>
+                        <span>Червоне м'ясо</span>
                     </P>
                 </li>
                 <li>
                     <P>
-                        <span>Smoked meats</span>
+                        <span>Копченості</span>
                     </P>
                 </li>
             </ul>
