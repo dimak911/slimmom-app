@@ -38,7 +38,7 @@ export const DiaryAddProductForm = ({img,openModal}) => {
     <Div>
       <SigninForm  onSubmit={handleSubmit(onSubmitForm)}>
         <LabelProduct>
-          Enter product name
+          Введіть назву продукту
           <InputForm
             value={ productValue}
             type="text"
@@ -52,7 +52,7 @@ export const DiaryAddProductForm = ({img,openModal}) => {
         </LabelProduct>
 
         <LabelWeigt>
-          <Span>Grams</Span>
+          <Span>Грами</Span>
           <InputForm
             value={weigthValue}
             type="number"
