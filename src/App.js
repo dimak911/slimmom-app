@@ -13,6 +13,7 @@ const MainPage = lazy(() => import('pages/MainPage/MainPage'));
 const CalculatorPage = lazy(() =>
   import('pages/CalculatorPage/CalculatorPage')
 );
+const DiaryPage = lazy(() => import('pages/DiaryPage'));
 // додати сторінку DiaryPage
 
 export const App = () => {

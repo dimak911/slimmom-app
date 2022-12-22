@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { calculateValue } from 'redux/calculate/slice';
-import { Container } from 'components/Container.styled';
+
 import {
   Form,
   Title,
@@ -51,7 +51,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
   };
 
   return (
-    <Container>
+    <div>
       <Form onSubmit={handleSubmit(onSubmitForm)}>
         <Title>Calculate your daily calorie intake right now</Title>
         <ColumnWrap>
@@ -159,6 +159,6 @@ export const DailyCaloriesForm = ({ openModal }) => {
           </ButtonSubmit>
         </ButtonWrap>
       </Form>
-    </Container>
+    </div>
   );
 };

@@ -1,6 +1,18 @@
 import { SideBarContainer, Box, Title, P, Span, TextBox, Ul, Li } from './SideBar.styled';
+import { sideBarInfoSelectors } from 'redux/products/selectors';
+import { useDispatch } from 'react-redux';
+import { fetchsideBarInfo } from 'redux/products/operations';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 export const SideBar = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchsideBarInfo());
+    },[]);
+    
+    const info = useSelector(sideBarInfoSelectors)
     return (
         <Box>
             <SideBarContainer>
@@ -32,22 +44,22 @@ export const SideBar = () => {
                     <Ul>
                         <Li>
                             <P>
-                                <Span>625 kcal</Span>
+                                <Span>000 kcal</Span>
                             </P>
                         </Li>
                         <Li>
                             <P>
-                                <Span>2175 kcal</Span>
+                                <Span>000 kcal</Span>
                             </P>
                         </Li>
                         <Li>
                             <P>
-                                <Span>2800 kcal</Span>
+                                <Span>000 kcal</Span>
                             </P>
                         </Li>
                         <Li>
                             <P>
-                                <Span>78 %</Span>
+                                <Span>000 kcal</Span>
                             </P>
                         </Li>
                     </Ul>

@@ -17,7 +17,7 @@ import tabletFone1x from '../../images/pictures/tablet-fone-1x.png';
 import tabletFone2x from '../../images/pictures/tablet-fone-2x.png';
 
 export const FoneImages = styled.div`
-z-index: 3;
+  z-index: 3;
 
   @media screen and (min-width: 768px) {
     position: absolute;
@@ -33,7 +33,6 @@ z-index: 3;
   @media (min-device-pixel-ratio: 2) and (min-width: 768px),
     (min-resolution: 192dpi) and (min-width: 768px),
     (min-resolution: 2dppx) and (min-width: 768px) {
-      
     background-image: url(${tabletStrawberry2x}), url(${tabletBanana2x}),
       url(${tabletFone2x}, url(${tabletLeafs2x}));
   }
