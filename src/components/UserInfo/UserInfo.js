@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 
 import { selectUserName } from 'redux/auth/selectors';
-import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useLocation } from 'react-router-dom';
@@ -23,7 +22,6 @@ export const UserInfo = () => {
   const navigate = useNavigate();
 
   const isLogout = () => {
-    dispatch(showLoading());
     dispatch(logOut());
     navigate('/');
   };

@@ -9,9 +9,8 @@ import {
   Li,
 } from './SideBar.styled';
 // import { sideBarInfoSelectors } from 'redux/products/selectors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { fetchsideBarInfo } from 'redux/products/operations';
-import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
@@ -21,7 +20,6 @@ export const SideBar = () => {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(showLoading());
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
