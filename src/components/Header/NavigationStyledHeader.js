@@ -4,7 +4,7 @@ import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
 export const HeaderNavigationWrapper = styled.div`
   display: ${p =>
-    p.isLoggedIn || p.location === '/diary/:date' || p.location === 'calculator'
+    p.location !== '/login' || p.location !== '/signup' || p.location !== '/'
       ? 'none'
       : 'flex'};
   justify-content: center;
@@ -13,7 +13,6 @@ export const HeaderNavigationWrapper = styled.div`
   padding-bottom: 9px;
 
   @media (min-width: 768px) {
-    /* display: flex; */
     gap: 24px;
     padding-top: 17px;
     padding-bottom: 10px;
@@ -42,11 +41,7 @@ export const Link = styled(NavLink)`
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
 
-  :hover,
-  :focus {
-    color: ${p => p.theme.colors.accent};
-  }
-  &.active {
+  &:hover {
     color: ${p => p.theme.colors.primary};
   }
 `;

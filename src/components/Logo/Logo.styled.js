@@ -24,9 +24,9 @@ export const LogoIcon = styled.img`
   }
 `;
 
-export const LogoText = styled.img`
+export const LogoText = styled.div`
   /* display: none; */
-  display: ${p => (p.isLoggedIn ? 'inline-block' : 'none')};
+  display: ${p => (!p.isLoggedIn ? 'inline-block' : 'none')};
   width: 105px;
   height: 16px;
 

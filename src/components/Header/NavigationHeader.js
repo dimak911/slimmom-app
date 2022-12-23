@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 export const NavigationHeader = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
+  console.log(location);
 
   return (
     <HeaderNavigationWrapper location={location.pathname}>

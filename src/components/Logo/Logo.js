@@ -16,7 +16,6 @@ import {
 export const Logo = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const path = isLoggedIn ? '/diary/:date' : '/';
-  const path = isLoggedIn ? '/diary/:date' : '/';
   return (
     <Link to={path}>
       <LogoContainer>
