@@ -13,18 +13,18 @@ import {
 
 export const DiaryProductListItem = ({
   id,
-  prodName,
-  prodWeight,
-  prodKcal,
+  productName,
+  productWeight,
+  productCalories,
 }) => {
   const dispatch = useDispatch();
 
   return (
     <>
-      <ProductName>{prodName}</ProductName>
-      <ProductWeight>{prodWeight} г</ProductWeight>
+      <ProductName>{productName}</ProductName>
+      <ProductWeight>{productWeight} г</ProductWeight>
       <ProductKcal>
-        {prodKcal} <SuffixKcal>ккал</SuffixKcal>
+        {productCalories} <SuffixKcal>ккал</SuffixKcal>
       </ProductKcal>
       <RemoveButton
         type="button"

@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+
 import {
   SigninForm,
   InputForm,
@@ -9,6 +10,10 @@ import {
   LabelProduct,
   Div,
 } from './DiaryAddProductForm.styled';
+
+import axios from 'axios';
+// axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 export const DiaryAddProductForm = ({ img, openModal }) => {
   // const dispatch = useDispatch();
@@ -27,10 +32,15 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
   const productValue = watch('product');
   const weigthValue = watch('weigth');
 
+  const onChangeHandler = async query => {
+    const response = await axios.get('/products');
+    console.log(response);
+  };
+
   const onSubmitForm = credentials => {
     console.log(productValue, weigthValue);
     openModal();
-    // dispatch(login(credentials));
+    // // dispatch(login(credentials));
     // reset();
   };
 
@@ -40,6 +50,7 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
         <LabelProduct>
           Введіть назву продукту
           <InputForm
+            onChange={onChangeHandler}
             value={productValue}
             type="text"
             {...register('product', {
