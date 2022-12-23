@@ -18,6 +18,7 @@ import {
   ColumnWrap,
   Error,
 } from './DailyCaloriesForm.styled';
+import { getCategoriesByBloodType } from 'helpers/getCategoriesByBloodType';
 
 export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
   const bloodTypeValue = watch('bloodType');
 
   const onSubmitForm = formData => {
-    const { height, age, currentWeight, desiredWeight } = formData;
+    const { height, age, currentWeight, desiredWeight, bloodType } = formData;
     const countedCalories = String(
       10 * currentWeight +
         6.25 * height -
@@ -53,9 +54,15 @@ export const DailyCaloriesForm = ({ openModal }) => {
         161 -
         10 * (currentWeight - desiredWeight)
     );
-    const dataForDispatch = { countedCalories, formData };
+    const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
+    const dataForDispatch = {
+      countedCalories,
+      notAllowedFoodCategories,
+      formData,
+    };
+    const dataForModal = { countedCalories, notAllowedFoodCategories };
     dispatch(calculateValue(dataForDispatch));
-    openModal(countedCalories);
+    openModal(dataForModal);
     reset();
   };
 
