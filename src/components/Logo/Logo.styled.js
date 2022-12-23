@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const LogoContainer = styled.div`
   display: flex;
+  align-items: center;
 
   @media screen and (min-width: 768px) {
-    align-items: center;
     width: 162px;
   }
 
@@ -25,7 +25,12 @@ export const LogoIcon = styled.img`
 `;
 
 export const LogoText = styled.div`
-  display: none;
+  display: ${p =>
+    p.location === '/login' || p.location === '/signup' || p.location === '/'
+      ? 'none'
+      : 'inline-block'};
+  width: 105px;
+  height: 16px;
 
   @media screen and (min-width: 768px) {
     display: flex;

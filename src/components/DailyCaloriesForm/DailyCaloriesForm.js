@@ -5,6 +5,8 @@ import { calculateValue } from 'redux/calculate/slice';
 import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
+import { useLocation } from 'react-router-dom';
+
 import {
   Form,
   Title,
@@ -69,10 +71,12 @@ export const DailyCaloriesForm = ({ openModal }) => {
     reset();
   };
 
+  const location = useLocation();
+
   return (
     <div>
       {isLoading ? <Loader /> : null}
-      <Form onSubmit={handleSubmit(onSubmitForm)}>
+      <Form onSubmit={handleSubmit(onSubmitForm)} location={location.pathname}>
         <Title>Розрахуйте свою денну норму калорій прямо зараз</Title>
         <ColumnWrap>
           <Column>
