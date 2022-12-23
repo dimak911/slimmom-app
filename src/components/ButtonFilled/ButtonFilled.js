@@ -3,7 +3,7 @@ import {
   ButtonFilledTitleStyled,
 } from './ButtonFilledStyled.styled';
 
-export function ButtonFilling({ props }) {
+export function ButtonFilling(props) {
   return (
     <ButtonFilledStyled to={props.toRedirect}>
       <ButtonFilledTitleStyled>{props.children}</ButtonFilledTitleStyled>

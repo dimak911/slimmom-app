@@ -4,8 +4,8 @@ import { ReactComponent as CloseIconCross } from '../../icons/close-cross.svg';
 export const ModalBackdropStyled = styled.div`
   position: absolute;
   top: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background: rgba(33, 33, 33, 0.12);
 
   @media (max-width: 320px) {
@@ -25,10 +25,10 @@ export const ModalDailyCalorieStyled = styled.div`
   background-color: ${props => props.theme.colors.white};
 
   @media (max-width: 672px) {
-    width: 100vw;
+    width: 100%;
   }
   @media (max-width: 320px) {
-    height: 100vh;
+    height: 100%;
     padding: 0;
     top: 370px;
   }
