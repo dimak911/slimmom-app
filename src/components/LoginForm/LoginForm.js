@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { login } from 'redux/auth/operations';
 import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { Container } from 'components/Container.styled';
-
 import {
   SigninForm,
   Title,
@@ -37,14 +37,17 @@ export const LogInForm = () => {
   const emailValue = watch('email');
   const passwordValue = watch('password');
 
-  const onSubmitForm = credentials => {
-    const { email, password } = credentials
+  const onSubmitForm = async credentials => {
+    const { email, password } = credentials;
     dispatch(showLoading());
-    dispatch(login(
-      {
+    const result = await dispatch(
+      login({
         email: email.toLowerCase(),
-        password
-      }));
+        password,
+      })
+    );
+    toast.error(result.payload.message);
+
     reset();
   };
 
@@ -70,11 +73,11 @@ export const LogInForm = () => {
               },
               minLength: {
                 value: 3,
-                message: 'Електронна пошта має бути не менше 3 символів'
+                message: 'Електронна пошта має бути не менше 3 символів',
               },
               maxLength: {
                 value: 254,
-                message: 'Електронна пошта має бути не більше 254 символів'
+                message: 'Електронна пошта має бути не більше 254 символів',
               },
             })}
           />
@@ -93,15 +96,14 @@ export const LogInForm = () => {
               },
               maxLength: {
                 value: 100,
-                message: 'Ваш пароль має містити не більше 100 символів'
+                message: 'Ваш пароль має містити не більше 100 символів',
               },
               required: {
                 value: true,
                 message: 'Будь ласка, введіть свій пароль',
               },
               pattern: {
-                value:
-                  /(?=.*[A-Za-z])(?=.*[0-9])/,
+                value: /(?=.*[A-Za-z])(?=.*[0-9])/,
                 message: 'Пароль має включати букви та цифри',
               },
             })}
