@@ -116,11 +116,17 @@ export const InputForm = styled.input`
 
 export const ButtonWrap = styled.div`
   display: flex;
+  margin-top: 60px;
   flex-direction: column;
   align-items: center;
-
-  @media screen and (min-width: 768px) {
-    margin-top: ${p => p.theme.space[5]}px;
+  @media screen and (min-width: 320px) {
+    margin-top: 40px;
+  }
+  @media (min-width: 768px) {
+    padding-left: 0px;
+  }
+  @media (min-width: 1280px) {
+    padding-left: 305px;
   }
 `;
 
@@ -145,19 +151,18 @@ export const ButtonSubmit = styled.button`
   cursor: pointer;
 
   :disabled {
-  opacity: 0.6;
+    opacity: 0.6;
   }
 
   :enabled {
     :hover,
     :focus,
     :active {
-    box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
-    transform: translateY(-7px);
+      box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+      transform: translateY(-7px);
     }
   }
   transition: opacity 200ms ease-in;
-
 
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;
