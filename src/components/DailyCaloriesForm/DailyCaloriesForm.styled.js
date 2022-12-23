@@ -152,27 +152,21 @@ export const ButtonSubmit = styled.button`
   color: ${p => p.theme.colors.white};
 
   cursor: pointer;
-  opacity: 0.6;
-  :enabled {
-    :hover,
-    :focus,
-    :active {
-      opacity: 1;
-    }
-  }
-  transition: opacity 200ms ease-in;
 
+  :disabled {
   opacity: 0.6;
+  }
 
   :enabled {
     :hover,
     :focus,
     :active {
-      opacity: 1;
+    box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
+    transform: translateY(-7px);
     }
   }
-
   transition: opacity 200ms ease-in;
+
 
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;

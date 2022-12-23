@@ -31,11 +31,17 @@ export const LogoText = styled.img`
   height: 16px;
 
   @media screen and (min-width: 768px) {
-    display: inline-block;
+    display: flex;
     margin-left: 10px;
   }
 
   @media screen and (min-width: 1280px) {
     margin-left: -10px;
   }
+`;
+
+export const LogoSlim = styled.img``;
+
+export const LogoMom = styled.img`
+  margin-left: 2px;
 `;

@@ -1,7 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registration } from 'redux/auth/operations';
+import { showLoading } from 'redux/loader/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { selectCalculateValue } from 'redux/calculate/selectors';
+import { Loader } from 'components/Loader/Loader';
 import { Container } from 'components/Container.styled';
 import {
     RegisterForm,
@@ -16,6 +20,8 @@ import {
 
 export const RegistrationForm = () => {
     const dispatch = useDispatch();
+    const calculateAndCallorieData = useSelector(selectCalculateValue);
+    const isLoading = useSelector(selectIsLoading);
 
     const {
         register,
@@ -35,13 +41,33 @@ export const RegistrationForm = () => {
     const emailValue = watch('email');
     const passwordValue = watch('password');
 
-    const onSubmitForm = credentials => {
-        dispatch(registration(credentials));
+    const onSubmitForm = registrationData => {
+        const { name, email, password } = registrationData;
+
+        dispatch(showLoading());
+        if (calculateAndCallorieData) {
+            const { countedCalories, formData } = calculateAndCallorieData;
+            const dataForDispatch = {
+                name,
+                email: email.toLowerCase(),
+                password,
+                callorie: countedCalories,
+                data: formData,
+            };
+            dispatch(registration(dataForDispatch));
+        } else {
+            dispatch(registration({
+                name,
+                email: email.toLowerCase(),
+                password,
+            }));
+        }
         reset();
     };
 
     return (
         <Container>
+            {isLoading ? <Loader /> : null}
             <RegisterForm onSubmit={handleSubmit(onSubmitForm)}>
                 <Title>Зареєструватися</Title>
                 <Label>
@@ -53,6 +79,14 @@ export const RegistrationForm = () => {
                             required: {
                                 value: true,
                                 message: `Будь ласка, введіть своє ім'я`,
+                            },
+                            minLength: {
+                                value: 3,
+                                message: `Ім'я має бути не менше 3 символів`
+                            },
+                            maxLength: {
+                                value: 254,
+                                message: `Ім'я має бути не більше 254 символів`
                             },
                         })}
                     />
@@ -71,8 +105,16 @@ export const RegistrationForm = () => {
                             },
                             pattern: {
                                 value:
-                                    /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+                                    /^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[A-Za-z]{2,6}$/,
                                 message: 'Неправильний формат електронної пошти',
+                            },
+                            minLength: {
+                                value: 3,
+                                message: 'Електронна пошта має бути не менше 3 символів'
+                            },
+                            maxLength: {
+                                value: 254,
+                                message: 'Електронна пошта має бути не більше 254 символів'
                             },
                         })}
                     />
@@ -89,9 +131,18 @@ export const RegistrationForm = () => {
                                 value: 8,
                                 message: 'Ваш пароль має містити не менше 8 символів',
                             },
+                            maxLength: {
+                                value: 100,
+                                message: 'Ваш пароль має містити не більше 100 символів'
+                            },
                             required: {
                                 value: true,
                                 message: 'Будь ласка, введіть свій пароль',
+                            },
+                            pattern: {
+                                value:
+                                    /(?=.*[A-Za-z])(?=.*[0-9])/,
+                                message: 'Пароль має включати букви та цифри',
                             },
                         })}
                     />

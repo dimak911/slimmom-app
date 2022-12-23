@@ -6,17 +6,17 @@ const loadingSlice = createSlice({
   initialState: {
     isLoading: false,
   },
-  extraReducers: {
-    [showLoading.pending]: (state) => {
+  extraReducers: builder => {
+    builder.addCase(showLoading.pending, (state, action) => {
       state.isLoading = true;
-     },
-    [showLoading.fulfilled]: (state) => {
+    });
+    builder.addCase(showLoading.fulfilled, (state, action) => {
       state.isLoading = false;
-     },
-    [showLoading.rejected]: (state) => {
+    });
+    builder.addCase(showLoading.rejected, (state, action) => {
       state.isLoading = false;
-     },
-  }
+    });
+  },
 });
 
-export const loadingReduser = loadingSlice.reducer;
+export const loadingReducer = loadingSlice.reducer;

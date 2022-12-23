@@ -22,8 +22,12 @@ export const Link = styled(NavLink)`
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
-&:hover{
+&.active{
   color: ${p => p.theme.colors.primary};
+  }
+  :hover,
+  :focus {
+    color: ${p => p.theme.colors.accent};
   }
 @media (min-width: 1279px){
   margin-top:131px;

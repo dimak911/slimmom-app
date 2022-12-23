@@ -95,12 +95,18 @@ export const ButtonLogin = styled.button`
   line-height: 1.21;
 
   border-radius: ${p => p.theme.radii.button};
-  border: none;
+  border: 2px solid ${p => p.theme.colors.accent};
 
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};
 
   cursor: pointer;
+
+  :hover,
+  :focus {
+  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
+  transform: translateY(-7px);
+  }
 
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;
@@ -127,6 +133,12 @@ export const LinkRegister = styled(NavLink)`
 
   color: ${p => p.theme.colors.accent};
   cursor: pointer;
+
+  :hover,
+  :focus {
+  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
+  transform: translateY(-7px);
+  }
 `;
 
 export const Error = styled.p`
