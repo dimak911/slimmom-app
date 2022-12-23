@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
+import google from './google.svg';
 
 export const SigninForm = styled.form`
   margin-top: ${p => p.theme.spaceForm[2]}px;
@@ -19,7 +20,7 @@ export const SigninForm = styled.form`
     padding-right: ${p => p.theme.space[0]}px;
   }
 
-  @media screen and (min-width: 1280px){
+  @media screen and (min-width: 1280px) {
     margin-bottom: 255px;
   }
 `;
@@ -104,8 +105,8 @@ export const ButtonLogin = styled.button`
 
   :hover,
   :focus {
-  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
-  transform: translateY(-7px);
+    box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+    transform: translateY(-7px);
   }
 
   @media screen and (min-width: 768px) {
@@ -136,8 +137,8 @@ export const LinkRegister = styled(NavLink)`
 
   :hover,
   :focus {
-  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
-  transform: translateY(-7px);
+    box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+    transform: translateY(-7px);
   }
 `;
 
@@ -156,3 +157,77 @@ export const Error = styled.p`
 
   color: ${p => p.theme.colors.error};
 `;
+
+export const Social = styled.div`
+  margin-top: 30px;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    margin-top: 60px;
+  }
+`;
+
+export const SocialTitle = styled.p`
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-family: ${VerdanaBold};
+  font-style: normal;
+  font-size: ${p => p.theme.fontSizes.xs};
+  letter-spacing: 0.04em;
+  line-height: 1.21;
+  text-decoration: none;
+  text-align: center;
+`;
+
+export const GoogleBtn = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px auto;
+  width: 182px;
+  height: 46px;
+  font-size: 16px;
+  font-weight: 700;
+  border: 2px solid #fc842d;
+  border-radius: 30px;
+  background-color: #ffffff;
+  color: #212121;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  cursor: pointer;
+  :hover,
+  :focus {
+    background-color: #fc842d;
+    color: #ffffff;
+    border: 2px solid #fc842d;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+`;
+
+export const Blue = styled.span`
+  color: #1e88e5;
+`;
+
+export const Red = styled.span`
+  color: #e53935;
+`;
+
+export const Yellow = styled.span`
+  color: #ffb300;
+`;
+
+export const Green = styled.span`
+  color: #43a047;
+`;
+
+export const GoogleSvg = styled.img`
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 0;
+  right: 40px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+GoogleSvg.defaultProps = { src: google, alt: 'google' };

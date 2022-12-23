@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/operations';
 import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
@@ -16,6 +16,14 @@ import {
   LinkRegister,
   ButtonWrap,
   Error,
+  GoogleBtn,
+  GoogleSvg,
+  Social,
+  SocialTitle,
+  Blue,
+  Red,
+  Yellow,
+  Green,
 } from './LoginForm.styled';
 
 export const LogInForm = () => {
@@ -45,7 +53,7 @@ export const LogInForm = () => {
 
   return (
     <Container>
-      {isLoading? <Loader/> : null}
+      {isLoading ? <Loader /> : null}
       <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
         <Title>Авторизуватися</Title>
         <Label>
@@ -91,6 +99,20 @@ export const LogInForm = () => {
           <ButtonLogin type="submit">Авторизуватися</ButtonLogin>
           <LinkRegister to="/signup"> Зареєструватися </LinkRegister>
         </ButtonWrap>
+        <Social>
+          <SocialTitle>Авторизуватись з:</SocialTitle>
+          <GoogleBtn href={`${process.env.BASE_URL}/users/google`}>
+            <GoogleSvg />
+            <div>
+              <Blue>G</Blue>
+              <Red>o</Red>
+              <Yellow>o</Yellow>
+              <Blue>g</Blue>
+              <Green>l</Green>
+              <Red>e</Red>
+            </div>
+          </GoogleBtn>
+        </Social>
       </SigninForm>
     </Container>
   );

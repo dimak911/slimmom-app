@@ -10,6 +10,15 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isRefreshing: false,
   },
+
+  reducers: {
+    google: (state, action) => {
+      state.user = action.payload.user;
+      state.token = action.payload.accessToken;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(registration.fulfilled, (state, action) => {
@@ -41,4 +50,4 @@ const authSlice = createSlice({
   },
 });
 
-export const authReducer = authSlice.reducer; 
+export const authReducer = authSlice.reducer;

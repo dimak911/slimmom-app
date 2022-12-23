@@ -17,6 +17,16 @@ import {
   ButtonWrap,
   Error,
 } from './RegistrationForm.styled';
+import {
+  Blue,
+  GoogleBtn,
+  GoogleSvg,
+  Green,
+  Red,
+  Social,
+  SocialTitle,
+  Yellow,
+} from 'components/LoginForm/LoginForm.styled';
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -120,6 +130,20 @@ export const RegistrationForm = () => {
           <ButtonRegister type="submit">Зареєструватися</ButtonRegister>
           <LinkLoggin to="/login"> Авторизуватися </LinkLoggin>
         </ButtonWrap>
+        <Social>
+          <SocialTitle>Авторизуватись з:</SocialTitle>
+          <GoogleBtn href={`${process.env.BASE_URL}/users/google`}>
+            <GoogleSvg />
+            <div>
+              <Blue>G</Blue>
+              <Red>o</Red>
+              <Yellow>o</Yellow>
+              <Blue>g</Blue>
+              <Green>l</Green>
+              <Red>e</Red>
+            </div>
+          </GoogleBtn>
+        </Social>
       </RegisterForm>
     </Container>
   );
