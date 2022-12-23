@@ -44,4 +44,8 @@ export const Link = styled(NavLink)`
   &:hover {
     color: ${p => p.theme.colors.primary};
   }
+
+  &.active {
+    color: ${p => p.theme.colors.primary};
+  }
 `;

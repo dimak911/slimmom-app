@@ -1,5 +1,6 @@
-import { Link, HeaderNavigationWrapper } from './NavigationStyledHeader';
+import moment from 'moment';
 import { useLocation } from 'react-router-dom';
+import { Link, HeaderNavigationWrapper } from './NavigationStyledHeader';
 
 export const NavigationHeader = ({ isLoggedIn }) => {
   // const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -12,7 +13,9 @@ export const NavigationHeader = ({ isLoggedIn }) => {
     >
       {isLoggedIn ? (
         <>
-          <Link to="/diary/:date">ЩОДЕННИК</Link>
+          <Link to={`/diary/${moment(new Date()).format('DD-MM-YYYY')}`}>
+            ЩОДЕННИК
+          </Link>
           <Link to="/calculate">КАЛЬКУЛЯТОР</Link>
         </>
       ) : (
