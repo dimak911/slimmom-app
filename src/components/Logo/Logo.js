@@ -7,12 +7,12 @@ import { LogoContainer, LogoIcon, LogoText } from './Logo.styled';
 
 export const Logo = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const path = isLoggedIn ? "/diary/:date" : "/";
+  const path = isLoggedIn ? '/diary/:date' : '/';
   return (
     <Link to={path}>
       <LogoContainer>
         <LogoIcon src={logoIcon} alt="Logo" />
-        <LogoText src={logoText} alt="Logo" />
+        <LogoText isLoggedIn={isLoggedIn} src={logoText} alt="Logo" />
       </LogoContainer>
     </Link>
   );

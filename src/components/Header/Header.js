@@ -1,5 +1,5 @@
 import { Logo } from 'components/Logo/Logo';
-import { HeaderStyled } from 'components/Header/HeaderStyled';
+import { BurgerIconStyled, HeaderStyled } from 'components/Header/HeaderStyled';
 import { NavigationHeader } from './NavigationHeader';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
@@ -11,7 +11,13 @@ export const Header = () => {
   return (
     <HeaderStyled>
       <Logo />
-      {!isLoggedIn ? <NavigationHeader /> : <UserInfo />}
+      {!isLoggedIn ? (
+        <NavigationHeader isLoggedIn={isLoggedIn} />
+      ) : (
+        <>
+          <NavigationHeader /> <UserInfo /> <BurgerIconStyled />
+        </>
+      )}
     </HeaderStyled>
   );
 };

@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
 export const Form = styled.form`
-  margin-top: 32px;
+  margin-top: ${p =>
+    p.location === '/diary/:date' || p.location === 'calculator'
+      ? '72px'
+      : '32px'};
   /* margin-top: ${p => p.theme.spaceForm[2]}px; */
   padding-left: ${p => p.theme.spaceForm[1]}px;
   padding-right: ${p => p.theme.spaceForm[1]}px;
@@ -21,7 +24,7 @@ export const Form = styled.form`
   }
 
   @media screen and (min-width: 1280px) {
-    margin-top: 140px;
+    margin-top: 147px;
   }
 `;
 

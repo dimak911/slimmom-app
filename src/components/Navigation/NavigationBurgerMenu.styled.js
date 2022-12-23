@@ -6,6 +6,7 @@ export const Section = styled.div`
   width: 100%;
   height: 100vh;
   padding-top: 60px;
+  
 @media (min-width: 767px) {
   padding-top: 100px;
   }
