@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const ButtonFilledStyled = styled.button`
+export const ButtonFilledStyled = styled(NavLink)`
   display: block;
   width: 210px;
   height: 43px;

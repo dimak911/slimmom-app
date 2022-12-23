@@ -7,11 +7,11 @@ import { Container } from 'components/Container.styled';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalopen] = useState(false);
-  const [calculateData, setCalculateData] = useState({});
+  const [countedCalories, setCountedCalories] = useState({});
 
   const openModal = data => {
     setIsModalopen(true);
-    setCalculateData(data);
+    setCountedCalories(data);
     window.document.body.style.overflow = 'hidden';
   };
 
@@ -23,12 +23,14 @@ const MainPage = () => {
   return (
     <Container>
       <Wrap>
-        <DailyCaloriesForm openModal={openModal} />
-        {isModalOpen && (
-          <ModalDailyCalorie closeModal={closeModal}>
-            <DailyCalorieIntake calculateData={calculateData} />
-          </ModalDailyCalorie>
-        )}
+        <Box display="flex">
+          <DailyCaloriesForm openModal={openModal} />
+          {isModalOpen && (
+            <ModalDailyCalorie closeModal={closeModal}>
+              <DailyCalorieIntake countedCalories={countedCalories} />
+            </ModalDailyCalorie>
+          )}
+        </Box>
       </Wrap>
     </Container>
   );
