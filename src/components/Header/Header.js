@@ -15,7 +15,8 @@ export const Header = () => {
         <NavigationHeader isLoggedIn={isLoggedIn} />
       ) : (
         <>
-          <NavigationHeader /> <UserInfo /> <BurgerIconStyled />
+          <NavigationHeader isLoggedIn={isLoggedIn} /> <UserInfo />{' '}
+          <BurgerIconStyled />
         </>
       )}
     </HeaderStyled>

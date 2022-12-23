@@ -25,8 +25,10 @@ export const LogoIcon = styled.img`
 `;
 
 export const LogoText = styled.div`
-  /* display: none; */
-  display: ${p => (!p.isLoggedIn ? 'inline-block' : 'none')};
+  display: ${p =>
+    p.location === '/login' || p.location === '/signup' || p.location === '/'
+      ? 'none'
+      : 'inline-block'};
   width: 105px;
   height: 16px;
 
