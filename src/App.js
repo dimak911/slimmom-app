@@ -25,10 +25,7 @@ export const App = () => {
   const calculateData = useSelector(selectCalculateValue);
   const { isRefreshing } = useSelector(selectIsRefreshing);
 
-  const initialDate = moment(new Date())
-    .format('DD.MM.YYYY')
-    .split('.')
-    .join('-');
+  const initialDate = moment(new Date()).format('DD-MM-YYYY');
 
   useEffect(() => {
     dispatch(refreshUser());
