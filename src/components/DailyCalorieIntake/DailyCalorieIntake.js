@@ -7,8 +7,11 @@ import {
   FoodListWrapperStyled,
   FoodListStyled,
 } from './DailyCalorieIntake.styled';
+import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 
-export const DailyCalorieIntake = ({ countedCalories }) => {
+export const DailyCalorieIntake = ({
+  dataForModal: { countedCalories, notAllowedFoodCategories },
+}) => {
   return (
     <>
       <ModalsHeadStyled>
@@ -22,10 +25,13 @@ export const DailyCalorieIntake = ({ countedCalories }) => {
           Продукти, які ви не повинні їсти
         </FoodListTitleStyled>
         <FoodListStyled>
-          <li>1. Борошняні вироби</li>
-          <li>2. Молоко</li>
-          <li>3. Червоне мясо</li>
-          <li>4. Копченості</li>
+          {notAllowedFoodCategories.slice(0, 5).map((categorie, index) => {
+            return (
+              <li key={categorie}>
+                {index + 1}. {capitalizeFirstLetter(categorie)}
+              </li>
+            );
+          })}
         </FoodListStyled>
       </FoodListWrapperStyled>
       <ButtonFilling toRedirect="/signup">Почніть худнути</ButtonFilling>
