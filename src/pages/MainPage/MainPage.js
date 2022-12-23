@@ -4,6 +4,7 @@ import { ModalDailyCalorie } from 'components/ModalDailyCalorie';
 import { DailyCalorieIntake } from 'components/DailyCalorieIntake/DailyCalorieIntake';
 import { Wrap } from './MainPage.styled';
 import { Container } from 'components/Container.styled';
+import { Box } from 'components/Box';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalopen] = useState(false);
