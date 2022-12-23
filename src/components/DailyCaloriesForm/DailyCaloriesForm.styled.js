@@ -116,13 +116,13 @@ export const InputForm = styled.input`
 
 export const ButtonWrap = styled.div`
   display: flex;
-  margin-top: 60px;
   flex-direction: column;
   align-items: center;
   @media screen and (min-width: 320px) {
     margin-top: 40px;
   }
   @media (min-width: 768px) {
+    margin-top: 60px;
     padding-left: 0px;
   }
   @media (min-width: 1280px) {
