@@ -17,6 +17,7 @@ import {
   ButtonWrap,
   Error,
 } from './RegistrationForm.styled';
+import { toast } from 'react-toastify';
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export const RegistrationForm = () => {
   const emailValue = watch('email');
   const passwordValue = watch('password');
 
-  const onSubmitForm = registrationData => {
+  const onSubmitForm = async registrationData => {
     const { name, email, password } = registrationData;
 
     dispatch(showLoading());
@@ -56,15 +57,19 @@ export const RegistrationForm = () => {
         data: formData,
         notRecommendedProduct: notAllowedFoodCategories,
       };
-      dispatch(registration(dataForDispatch));
+      const result = await dispatch(registration(dataForDispatch));
+
+      toast.error(result.payload.message);
     } else {
-      dispatch(
+      const result = await dispatch(
         registration({
           name,
           email: email.toLowerCase(),
           password,
         })
       );
+
+      toast.error(result.payload.message);
     }
     reset();
   };
