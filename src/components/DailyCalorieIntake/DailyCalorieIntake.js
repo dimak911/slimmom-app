@@ -25,12 +25,8 @@ export const DailyCalorieIntake = ({
           Продукти, які ви не повинні їсти
         </FoodListTitleStyled>
         <FoodListStyled>
-          {notAllowedFoodCategories.slice(0, 5).map((categorie, index) => {
-            return (
-              <li key={categorie}>
-                {index + 1}. {capitalizeFirstLetter(categorie)}
-              </li>
-            );
+          {notAllowedFoodCategories.slice(0, 5).map(categorie => {
+            return <li key={categorie}>{capitalizeFirstLetter(categorie)}</li>;
           })}
         </FoodListStyled>
       </FoodListWrapperStyled>

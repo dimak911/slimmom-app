@@ -53,7 +53,7 @@ export const FoodListTitleStyled = styled.p`
   }
 `;
 
-export const FoodListStyled = styled.ul`
+export const FoodListStyled = styled.ol`
   margin: 20px 0 0 0;
   font-weight: ${props => props.theme.fontWeights.normal};
   line-height: ${props => props.theme.lineHeights.heading};
