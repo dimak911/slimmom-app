@@ -16,7 +16,7 @@ const MainPage = lazy(() => import('pages/MainPage/MainPage'));
 const CalculatorPage = lazy(() =>
   import('pages/CalculatorPage/CalculatorPage')
 );
-const DiaryPage = lazy(() => import('pages/DiaryPage'));
+// const DiaryPage = lazy(() => import('pages/DiaryPage'));
 // додати сторінку DiaryPage
 
 export const App = () => {
@@ -34,10 +34,15 @@ export const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/"
+          <Route
+            path="/"
             element={
-              <RestrictedRoute redirectTo="/diary/:date" component={<MainPage />} />
-            } />
+              <RestrictedRoute
+                redirectTo="/diary/:date"
+                component={<MainPage />}
+              />
+            }
+          />
           <Route
             path="/signup"
             element={
