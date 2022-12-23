@@ -47,15 +47,16 @@ export const RegistrationForm = () => {
 
     dispatch(showLoading());
     if (calculateAndCallorieData) {
-      const { countedCalories, formData } = calculateAndCallorieData;
+      const { countedCalories, notAllowedFoodCategories, formData } =
+        calculateAndCallorieData;
       const dataForDispatch = {
         name,
         email: email.toLowerCase(),
         password,
         callorie: countedCalories,
         data: formData,
+        notRecommendedProduct: notAllowedFoodCategories,
       };
-
       const result = await dispatch(registration(dataForDispatch));
 
       toast.error(result.payload.message);
