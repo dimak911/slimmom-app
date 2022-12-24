@@ -1,11 +1,14 @@
-import { Link ,Section,Wrapper} from './NavigationBurgerMenu.styled';
+import { Link, Section, Wrapper } from './NavigationBurgerMenu.styled';
 
-
-export const NavigationBurgerMenu = () => (
-<Section> 
-  <Wrapper>
-    <Link to="">ЩОДЕННИК</Link>
-    <Link to="">КАЛЬКУЛЯТОР</Link>
-  </Wrapper>
-</Section>
+export const NavigationBurgerMenu = ({ burgerActive, setBurger }) => (
+  <Section burgerActive={burgerActive}>
+    <Wrapper>
+      <Link to="/diary/:date" onClick={() => setBurger(false)}>
+        ЩОДЕННИК
+      </Link>
+      <Link to="/calculate" onClick={() => setBurger(false)}>
+        КАЛЬКУЛЯТОР
+      </Link>
+    </Wrapper>
+  </Section>
 );

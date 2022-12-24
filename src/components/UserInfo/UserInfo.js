@@ -5,7 +5,6 @@ import { selectUserName } from 'redux/auth/selectors';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useLocation } from 'react-router-dom';
-
 import { useNavigate } from 'react-router-dom';
 import {
   UserInfoContainer,
@@ -13,8 +12,9 @@ import {
   Button,
   StyledSubdirectoryIcon,
 } from './UserInfo.styled';
+import subdirectoryIcon from '../../icons/back-arrow.png';
 
-export const UserInfo = () => {
+export const UserInfo = ({ burgerActive }) => {
   const dispatch = useDispatch();
 
   const userName = useSelector(selectUserName);
@@ -29,8 +29,8 @@ export const UserInfo = () => {
   const location = useLocation();
 
   return (
-    <UserInfoContainer location={location.pathname}>
-      <StyledSubdirectoryIcon />
+    <UserInfoContainer burger={burgerActive} location={location.pathname}>
+      <StyledSubdirectoryIcon src={subdirectoryIcon} alt="arrow-back" />
       {isLoading ? <Loader /> : null}
       <UserName>{userName}</UserName>
       <Button type="button" onClick={isLogout}>
