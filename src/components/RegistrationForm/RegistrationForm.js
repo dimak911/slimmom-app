@@ -132,7 +132,7 @@ export const RegistrationForm = () => {
         </ButtonWrap>
         <Social>
           <SocialTitle>Авторизуватись з:</SocialTitle>
-          <GoogleBtn href={`${process.env.BASE_URL}/users/google`}>
+          <GoogleBtn href="http://localhost:3001/api/auth/google">
             <GoogleSvg />
             <div>
               <Blue>G</Blue>
