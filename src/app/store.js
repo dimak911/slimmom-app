@@ -21,10 +21,16 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const calculatePersistConfig = {
+  key: 'calculate',
+  storage,
+  whitelist: ['formData'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    calculate: calculateSlice.reducer,
+    calculate: persistReducer(calculatePersistConfig, calculateSlice.reducer),
     productList: productListSlice.reducer,
     loading: loadingReducer,
   },
