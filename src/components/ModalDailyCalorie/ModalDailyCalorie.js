@@ -29,6 +29,7 @@ export function ModalDailyCalorie({ closeModal, children }) {
     <ModalBackdropStyled onClick={onBackdropClickHandler}>
       <ModalDailyCalorieStyled>
         <CloseIconStyled onClick={() => closeModal()} />
+
         {children}
       </ModalDailyCalorieStyled>
     </ModalBackdropStyled>,
