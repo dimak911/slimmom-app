@@ -15,7 +15,7 @@ const DiaryPage = () => {
   };
   return (
     <Container>
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" flexDirection="column">
         <Box marginTop="147px">
           <DiaryDateCalendar />
           {!isShowAddForm && (

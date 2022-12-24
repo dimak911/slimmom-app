@@ -5,18 +5,18 @@ import { selectUserName } from 'redux/auth/selectors';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useLocation } from 'react-router-dom';
-
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as BackArrowIcon } from '../../icons/back-arrow.svg';
 import {
   UserInfoContainer,
   UserName,
   Button,
-  StyledSubdirectoryIcon,
+  // StyledSubdirectoryIcon,
   BackLink,
 } from './UserInfo.styled';
+// import subdirectoryIcon from '../../icons/back-arrow.png';
 
-export const UserInfo = () => {
+export const UserInfo = ({ burgerActive }) => {
   const dispatch = useDispatch();
 
   const userName = useSelector(selectUserName);
@@ -31,12 +31,14 @@ export const UserInfo = () => {
   const location = useLocation();
 
   return (
-    <UserInfoContainer location={location.pathname}>
-      <StyledSubdirectoryIcon />
+    <UserInfoContainer burger={burgerActive} location={location.pathname}>
+      {/* <StyledSubdirectoryIcon src={subdirectoryIcon} alt="arrow-back" /> */}
       {isLoading ? <Loader /> : null}
-      {location.pathname === '/calculate'
-        ? null
-        : <BackLink to="/calculate"><BackArrowIcon /></BackLink>}
+      {location.pathname === '/calculate' ? null : (
+        <BackLink to="/calculate">
+          <BackArrowIcon />
+        </BackLink>
+      )}
       <UserName>{userName}</UserName>
       <Button type="button" onClick={isLogout}>
         Вихід
