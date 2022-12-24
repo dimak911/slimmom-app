@@ -2,12 +2,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 
 import { selectUserName } from 'redux/auth/selectors';
-import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
+import { useLocation } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
-import { UserInfoContainer, UserName, Button } from './UserInfo.styled';
+import {
+  UserInfoContainer,
+  UserName,
+  Button,
+  StyledSubdirectoryIcon,
+} from './UserInfo.styled';
 
 export const UserInfo = () => {
   const dispatch = useDispatch();
@@ -17,12 +22,15 @@ export const UserInfo = () => {
   const navigate = useNavigate();
 
   const isLogout = () => {
-    dispatch(showLoading());
     dispatch(logOut());
     navigate('/');
   };
+
+  const location = useLocation();
+
   return (
-    <UserInfoContainer>
+    <UserInfoContainer location={location.pathname}>
+      <StyledSubdirectoryIcon />
       {isLoading ? <Loader /> : null}
       <UserName>{userName}</UserName>
       <Button type="button" onClick={isLogout}>

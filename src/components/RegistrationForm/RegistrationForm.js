@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { registration } from 'redux/auth/operations';
-import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import { Loader } from 'components/Loader/Loader';
@@ -17,6 +16,7 @@ import {
   ButtonWrap,
   Error,
 } from './RegistrationForm.styled';
+import { toast } from 'react-toastify';
 import {
   Blue,
   GoogleBtn,
@@ -51,18 +51,33 @@ export const RegistrationForm = () => {
   const emailValue = watch('email');
   const passwordValue = watch('password');
 
-  const onSubmitForm = registrationData => {
-    dispatch(showLoading());
+  const onSubmitForm = async registrationData => {
+    const { name, email, password } = registrationData;
+
     if (calculateAndCallorieData) {
-      const { countedCalories, formData } = calculateAndCallorieData;
+      const { countedCalories, notAllowedFoodCategories, formData } =
+        calculateAndCallorieData;
       const dataForDispatch = {
-        ...registrationData,
+        name,
+        email: email.toLowerCase(),
+        password,
         callorie: countedCalories,
         data: formData,
+        notRecommendedProduct: notAllowedFoodCategories,
       };
-      dispatch(registration(dataForDispatch));
+      const result = await dispatch(registration(dataForDispatch));
+
+      toast.error(result.payload.message);
     } else {
-      dispatch(registration(registrationData));
+      const result = await dispatch(
+        registration({
+          name,
+          email: email.toLowerCase(),
+          password,
+        })
+      );
+
+      toast.error(result.payload.message);
     }
     reset();
   };
@@ -82,6 +97,14 @@ export const RegistrationForm = () => {
                 value: true,
                 message: `Будь ласка, введіть своє ім'я`,
               },
+              minLength: {
+                value: 3,
+                message: `Ім'я має бути не менше 3 символів`,
+              },
+              maxLength: {
+                value: 254,
+                message: `Ім'я має бути не більше 254 символів`,
+              },
             })}
           />
           {errors.name && <Error>{errors.name?.message}</Error>}
@@ -99,8 +122,16 @@ export const RegistrationForm = () => {
               },
               pattern: {
                 value:
-                  /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+                  /^([A-Za-z0-9_-]+\.)*[A-Za-z0-9_-]+@[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*\.[A-Za-z]{2,6}$/,
                 message: 'Неправильний формат електронної пошти',
+              },
+              minLength: {
+                value: 3,
+                message: 'Електронна пошта має бути не менше 3 символів',
+              },
+              maxLength: {
+                value: 254,
+                message: 'Електронна пошта має бути не більше 254 символів',
               },
             })}
           />
@@ -117,9 +148,17 @@ export const RegistrationForm = () => {
                 value: 8,
                 message: 'Ваш пароль має містити не менше 8 символів',
               },
+              maxLength: {
+                value: 100,
+                message: 'Ваш пароль має містити не більше 100 символів',
+              },
               required: {
                 value: true,
                 message: 'Будь ласка, введіть свій пароль',
+              },
+              pattern: {
+                value: /(?=.*[A-Za-z])(?=.*[0-9])/,
+                message: 'Пароль має включати букви та цифри',
               },
             })}
           />
