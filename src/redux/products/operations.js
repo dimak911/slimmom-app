@@ -41,3 +41,15 @@ export const removeDiaryListItem = createAsyncThunk(
     }
   }
 );
+
+export const addDiaryListItem = createAsyncThunk(
+  'products/addItem',
+  async (product, { rejectWithValue }) => {
+    try {
+      const result = await axios.post(`/diary/${product.date}`, { ...product });
+      return result.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
