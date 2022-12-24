@@ -1,10 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { calculateValue } from 'redux/calculate/slice';
 import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
+import { useLocation } from 'react-router-dom';
+
 import {
   Form,
   Title,
@@ -19,10 +21,11 @@ import {
   ColumnWrap,
   Error,
 } from './DailyCaloriesForm.styled';
+import { getCategoriesByBloodType } from 'helpers/getCategoriesByBloodType';
 
 export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading)
+  const isLoading = useSelector(selectIsLoading);
   const {
     register,
     handleSubmit,
@@ -46,17 +49,34 @@ export const DailyCaloriesForm = ({ openModal }) => {
   const desiredWeightValue = watch('desiredWeight');
   const bloodTypeValue = watch('bloodType');
 
-  const onSubmitForm = data => {
-    dispatch(showLoading(data))
-    dispatch(calculateValue(data));
-    openModal(data);
+  const onSubmitForm = formData => {
+    dispatch(showLoading(formData));
+    const { height, age, currentWeight, desiredWeight, bloodType } = formData;
+    const countedCalories = String(
+      10 * currentWeight +
+        6.25 * height -
+        5 * age -
+        161 -
+        10 * (currentWeight - desiredWeight)
+    );
+    const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
+    const dataForDispatch = {
+      countedCalories,
+      notAllowedFoodCategories,
+      formData,
+    };
+    const dataForModal = { countedCalories, notAllowedFoodCategories };
+    dispatch(calculateValue(dataForDispatch));
+    openModal(dataForModal);
     reset();
   };
 
+  const location = useLocation();
+
   return (
     <div>
-      {isLoading ? <Loader/> : null}
-      <Form onSubmit={handleSubmit(onSubmitForm)}>
+      {isLoading ? <Loader /> : null}
+      <Form onSubmit={handleSubmit(onSubmitForm)} location={location.pathname}>
         <Title>Розрахуйте свою денну норму калорій прямо зараз</Title>
         <ColumnWrap>
           <Column>

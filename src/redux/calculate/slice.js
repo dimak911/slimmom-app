@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const calculateSlice = createSlice({
   name: 'calculate',
-  initialState: '',
+  initialState: null,
   reducers: {
     calculateValue(state, action) {
       return (state = action.payload);

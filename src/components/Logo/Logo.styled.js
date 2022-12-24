@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const LogoContainer = styled.div`
   display: flex;
+  align-items: center;
 
   @media screen and (min-width: 768px) {
-    align-items: center;
     width: 162px;
   }
 
@@ -24,15 +24,26 @@ export const LogoIcon = styled.img`
   }
 `;
 
-export const LogoText = styled.img`
-  display: none;
+export const LogoText = styled.div`
+  display: ${p =>
+    p.location === '/login' || p.location === '/signup' || p.location === '/'
+      ? 'none'
+      : 'inline-block'};
+  width: 105px;
+  height: 16px;
 
   @media screen and (min-width: 768px) {
-    display: inline-block;
+    display: flex;
     margin-left: 10px;
   }
 
   @media screen and (min-width: 1280px) {
     margin-left: -10px;
   }
+`;
+
+export const LogoSlim = styled.img``;
+
+export const LogoMom = styled.img`
+  margin-left: 2px;
 `;
