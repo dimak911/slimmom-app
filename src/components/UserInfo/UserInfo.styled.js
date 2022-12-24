@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as SubdirectoryIcon } from '../../icons/subdirectory-left.svg';
+import { NavLink } from 'react-router-dom';
 
 export const UserInfoContainer = styled.div`
   /* max-width: 100%; */
@@ -76,6 +77,18 @@ export const StyledSubdirectoryIcon = styled(SubdirectoryIcon)`
     display: none;
   }
 `;
+
+export const BackLink = styled(NavLink)`
+  padding: 12px 20px ;
+  position: absolute;
+  right: 265px;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
+// export const ArrowIcon = styled(BackArrowIcon)`
+// `
 
 // export const UserInfoContainer = styled.div`
 //   max-width: 100%;

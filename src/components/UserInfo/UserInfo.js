@@ -7,11 +7,13 @@ import { Loader } from 'components/Loader/Loader';
 import { useLocation } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
+import { ReactComponent as BackArrowIcon } from '../../icons/back-arrow.svg';
 import {
   UserInfoContainer,
   UserName,
   Button,
   StyledSubdirectoryIcon,
+  BackLink,
 } from './UserInfo.styled';
 
 export const UserInfo = () => {
@@ -32,6 +34,9 @@ export const UserInfo = () => {
     <UserInfoContainer location={location.pathname}>
       <StyledSubdirectoryIcon />
       {isLoading ? <Loader /> : null}
+      {location.pathname === '/calculate'
+        ? null
+        : <BackLink to="/calculate"><BackArrowIcon /></BackLink>}
       <UserName>{userName}</UserName>
       <Button type="button" onClick={isLogout}>
         Вихід
