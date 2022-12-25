@@ -34,6 +34,7 @@ export const UserInfoContainer = styled.div`
   @media screen and (min-width: 1280px) {
     width: 1280px;
     padding-left: 16px;
+    margin-right: 0;
   }
 `;
 
