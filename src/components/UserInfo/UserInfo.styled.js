@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as SubdirectoryIcon } from '../../icons/subdirectory-left.svg';
+// import { ReactComponent as SubdirectoryIcon } from '../../icons/subdirectory-left.svg';
 import { NavLink } from 'react-router-dom';
 
 export const UserInfoContainer = styled.div`
@@ -30,6 +30,7 @@ export const UserInfoContainer = styled.div`
     top: 120px;
     width: 1280px;
     padding-left: 16px;
+    margin-right: 0;
   }
 `;
 

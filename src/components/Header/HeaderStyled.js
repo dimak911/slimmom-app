@@ -35,9 +35,7 @@ export const HeaderUnderline = styled.div`
   width: 320px;
   background-color: #e0e0e0;
 
-  @media (min-width: 768px) {
-    width: 768px;
-  }
+  width: 100%;
   @media (min-width: 1280px) {
     display: none;
   }
