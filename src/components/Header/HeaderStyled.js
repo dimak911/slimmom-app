@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as BurgerIcon } from '../../icons/burger-icon.svg';
+import { ReactComponent as CrossIcon } from '../../icons/close-cross.svg';
 
 export const HeaderStyled = styled.section`
   position: relative;
@@ -41,7 +42,7 @@ export const HeaderUnderline = styled.div`
 `;
 
 export const BurgerIconStyled = styled(BurgerIcon)`
-  padding-right: 3px;
+  /* padding-right: 3px; */
   width: 18px;
   height: 12px;
   cursor: pointer;
@@ -51,6 +52,14 @@ export const BurgerIconStyled = styled(BurgerIcon)`
   :focus {
     fill: ${props => props.theme.colors.accent};
   }
+
+  @media (min-width: 1280px) {
+    display: none;
+  }
+`;
+
+export const CrossIconStyled = styled(CrossIcon)`
+  height: 14px;
 
   @media (min-width: 1280px) {
     display: none;
