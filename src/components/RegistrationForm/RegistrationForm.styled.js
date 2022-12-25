@@ -32,7 +32,7 @@ export const RegisterForm = styled.form`
 export const Title = styled.h2`
   margin-bottom: ${p => p.theme.spaceForm[3]}px;
 
-  font-family: Verdana-Bold;
+  font-family: Verdana;
   font-size: ${p => p.theme.fontSizes.xs};
   text-transform: uppercase;
   text-align: center;
@@ -41,6 +41,7 @@ export const Title = styled.h2`
 `;
 
 export const Label = styled.label`
+  font-family: Verdana;
   position: relative;
   display: flex;
   flex-direction: column;

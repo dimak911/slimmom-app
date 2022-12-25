@@ -28,7 +28,7 @@ export const Title = styled.h2`
   margin-bottom: ${p => p.theme.spaceForm[3]}px;
 
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
+  font-family: Verdana;
   font-style: normal;
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
@@ -46,7 +46,7 @@ export const Label = styled.label`
   margin-bottom: ${p => p.theme.spaceForm[2]}px;
 
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
+  font-family: Verdana;
   font-style: normal;
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
@@ -107,7 +107,9 @@ export const ButtonLogin = styled.button`
   :hover,
   :focus {
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+
     /* transform: translateY(-7px); */
+
   }
 
   @media screen and (min-width: 768px) {
@@ -140,7 +142,9 @@ export const LinkRegister = styled(NavLink)`
   :hover,
   :focus {
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+
     /* transform: translateY(-7px); */
+
   }
 `;
 
