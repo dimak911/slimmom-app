@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import {
   SigninForm,
   InputForm,
+  ProductItem,
   LabelWeigt,
   ButtonLogin,
   Span,
@@ -19,16 +20,17 @@ import { useParams } from 'react-router-dom';
 // axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
 // axios.defaults.baseURL = 'http://localhost:3001/api/';
 
-export const DiaryAddProductForm = ({ img, openModal }) => {
+export const DiaryAddProductForm = ({ img }) => {
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
     setValue,
     reset,
   } = useForm({
+    mode: 'onChange',
     defaultValues: {
       product: '',
       weigth: '',
@@ -66,7 +68,6 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
       productCalories: calloriesCounted,
       date: date,
     };
-    // openModal();
     dispatch(addDiaryListItem(product));
     reset();
   };
@@ -79,12 +80,14 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
           <InputForm
             type="text"
             {...register('product', {
-              required: {
-                value: true,
-              },
+              required: 'Введіть назву продукту/страви',
+              // pattern: {
+              //   value: /^А-Яа-яґҐЁёІіЇїЄє'’ʼ\s-$/i,
+              //   message: 'Введіть українською',
+              // },
             })}
           />
-          {errors.product && <Error>{errors.product?.message}</Error>}
+          {errors?.product && <Error>{errors?.product?.message}</Error>}
         </LabelProduct>
         <LabelWeigt>
           <Span>Грами</Span>
@@ -92,33 +95,36 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
             value={weigthValue}
             type="number"
             {...register('weigth', {
-              required: {
-                value: true,
+              required: 'Введіть вагу продукту',
+              min: {
+                value: 1,
+                message: 'Введіть від 1г',
               },
             })}
           />
-          {errors.weigth && <Error>{errors.weigth?.message}</Error>}
+          {errors?.weigth && <Error>{errors?.weigth?.message}</Error>}
         </LabelWeigt>
-        <ButtonLogin type="submit">
+        <ButtonLogin type="submit" disabled={!isValid}>
           {img !== 'Add' ? (
             <img src={img} alt="button to add product" />
           ) : (
             'Додати'
           )}
-        </ButtonLogin>{' '}
+        </ButtonLogin>
       </SigninForm>
       <ul>
         {products.map(product => {
           return (
-            <li
+            <ProductItem
               onClick={event => {
                 setProductInput(event.target.innerText);
                 setCallories(product.calories);
+                setProducts([]);
               }}
               key={product.title}
             >
               {product.title}
-            </li>
+            </ProductItem>
           );
         })}
       </ul>
