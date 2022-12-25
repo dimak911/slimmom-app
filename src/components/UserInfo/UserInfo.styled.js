@@ -49,7 +49,7 @@ export const Button = styled.button`
   padding-bottom: 8px;
   padding-right: 20px;
   color: #9b9faa;
-  transition: all 250ms easy;
+  transition: color 300ms ease-in;
   cursor: pointer;
   :hover,
   :focus {
@@ -60,9 +60,9 @@ export const Button = styled.button`
 export const StyledSubdirectoryIcon = styled.img`
   display: ${p =>
     p.location === '/login' ||
-      p.location === '/signup' ||
-      p.location === '/' ||
-      p.location === '/calculator'
+    p.location === '/signup' ||
+    p.location === '/' ||
+    p.location === '/calculator'
       ? 'none'
       : 'inline-block'};
   width: 12px;
