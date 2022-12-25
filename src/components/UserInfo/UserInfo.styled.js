@@ -30,6 +30,7 @@ export const UserInfoContainer = styled.div`
     top: 120px;
     width: 1280px;
     padding-left: 16px;
+    margin-right: 0;
   }
 `;
 

@@ -50,8 +50,6 @@ export const DailyCaloriesForm = ({ openModal }) => {
       },
   });
 
-  console.log(formData)
-
   const heightValue = watch('height');
   const ageValue = watch('age');
   const currentWeightValue = watch('currentWeight');

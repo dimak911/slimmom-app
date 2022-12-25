@@ -16,7 +16,8 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: flex-start;
     margin-top: 100px;
-    padding-left: ${p => p.theme.space[0]}px;
+    /* margin-top: ${p => p.theme.spaceForm[4]}px; */
+    padding-left: ${p => p.theme.space[5]}px;
     padding-right: ${p => p.theme.space[0]}px;
     max-width: 608px;
   }
