@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
 export const Form = styled.form`
-  margin-top: ${p => p.theme.spaceForm[2]}px;
+  margin-top: ${p =>
+    p.location === '/login' || p.location === '/signup' || p.location === '/'
+      ? '32px'
+      : '72px'};
   padding-left: ${p => p.theme.spaceForm[1]}px;
   padding-right: ${p => p.theme.spaceForm[1]}px;
 
@@ -12,10 +15,14 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: ${p => p.theme.spaceForm[4]}px;
+    margin-top: 100px;
     padding-left: ${p => p.theme.space[0]}px;
     padding-right: ${p => p.theme.space[0]}px;
     max-width: 608px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 147px;
   }
 `;
 
@@ -118,9 +125,15 @@ export const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media screen and (min-width: 768px) {
-    margin-top: ${p => p.theme.space[5]}px;
+  @media screen and (min-width: 320px) {
+    margin-top: 40px;
+  }
+  @media (min-width: 768px) {
+    margin-top: 60px;
+    padding-left: 0px;
+  }
+  @media (min-width: 1280px) {
+    padding-left: 305px;
   }
 `;
 
@@ -145,19 +158,18 @@ export const ButtonSubmit = styled.button`
   cursor: pointer;
 
   :disabled {
-  opacity: 0.6;
+    opacity: 0.6;
   }
 
   :enabled {
     :hover,
     :focus,
     :active {
-    box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
-    transform: translateY(-7px);
+      box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+      transform: translateY(-7px);
     }
   }
   transition: opacity 200ms ease-in;
-
 
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;

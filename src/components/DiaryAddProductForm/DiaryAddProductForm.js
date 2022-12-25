@@ -105,7 +105,7 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
           {img !== 'Add' ? (
             <img src={img} alt="button to add product" />
           ) : (
-            'Add'
+            'Додати'
           )}
         </ButtonLogin>{' '}
       </SigninForm>

@@ -2,9 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateValue } from 'redux/calculate/slice';
-import { showLoading } from 'redux/loader/operations';
-import { selectIsLoading } from 'redux/loader/selectors';
-import { Loader } from 'components/Loader/Loader';
+import { selectCalculateValue } from 'redux/calculate/selectors'
+import { useLocation } from 'react-router-dom';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+
 import {
   Form,
   Title,
@@ -19,10 +20,12 @@ import {
   ColumnWrap,
   Error,
 } from './DailyCaloriesForm.styled';
+import { getCategoriesByBloodType } from 'helpers/getCategoriesByBloodType';
 
 export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
+  const { formData } = useSelector(selectCalculateValue);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const {
     register,
     handleSubmit,
@@ -31,14 +34,23 @@ export const DailyCaloriesForm = ({ openModal }) => {
     formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
-    defaultValues: {
-      height: '',
-      age: '',
-      currentWeight: '',
-      desiredWeight: '',
-      bloodType: '',
-    },
+    defaultValues: isLoggedIn ? {
+      height: formData.height,
+      age: formData.age,
+      currentWeight: formData.currentWeight,
+      desiredWeight: formData.desiredWeight,
+      bloodType: formData.bloodType,
+    } :
+      {
+        height: '',
+        age: '',
+        currentWeight: '',
+        desiredWeight: '',
+        bloodType: '',
+      },
   });
+
+  console.log(formData)
 
   const heightValue = watch('height');
   const ageValue = watch('age');
@@ -47,25 +59,31 @@ export const DailyCaloriesForm = ({ openModal }) => {
   const bloodTypeValue = watch('bloodType');
 
   const onSubmitForm = formData => {
-    dispatch(showLoading(formData));
-    const { height, age, currentWeight, desiredWeight } = formData;
+    const { height, age, currentWeight, desiredWeight, bloodType } = formData;
     const countedCalories = String(
       10 * currentWeight +
-        6.25 * height -
-        5 * age -
-        161 -
-        10 * (currentWeight - desiredWeight)
+      6.25 * height -
+      5 * age -
+      161 -
+      10 * (currentWeight - desiredWeight)
     );
-    const dataForDispatch = { countedCalories, formData };
+    const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
+    const dataForDispatch = {
+      countedCalories,
+      notAllowedFoodCategories,
+      formData,
+    };
+    const dataForModal = { countedCalories, notAllowedFoodCategories };
     dispatch(calculateValue(dataForDispatch));
-    openModal(countedCalories);
+    !isLoggedIn && openModal(dataForModal);
     reset();
   };
 
+  const location = useLocation();
+
   return (
     <div>
-      {isLoading ? <Loader /> : null}
-      <Form onSubmit={handleSubmit(onSubmitForm)}>
+      <Form onSubmit={handleSubmit(onSubmitForm)} location={location.pathname}>
         <Title>Розрахуйте свою денну норму калорій прямо зараз</Title>
         <ColumnWrap>
           <Column>

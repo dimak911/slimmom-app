@@ -30,7 +30,7 @@ export const ModalDailyCalorieStyled = styled.div`
   @media (max-width: 320px) {
     height: 100%;
     padding: 0;
-    top: 370px;
+    /* top: 370px; */
   }
 `;
 
