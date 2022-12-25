@@ -17,7 +17,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 // axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
-axios.defaults.baseURL = 'http://localhost:3001/api/';
+// axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 export const DiaryAddProductForm = ({ img, openModal }) => {
   const dispatch = useDispatch();
