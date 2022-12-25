@@ -20,7 +20,7 @@ export const HeaderNavigationWrapper = styled.div`
 
   @media (min-width: 1280px) {
     display: ${p =>
-    p.location === '/login' || p.location === '/signup' ? 'none' : 'flex'};
+      p.location === '/login' || p.location === '/signup' ? 'none' : 'flex'};
     gap: 18px;
     height: 32px;
     border-left: 2px solid #e0e0e0;
@@ -41,6 +41,7 @@ export const Link = styled(NavLink)`
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
   z-index: 3;
+  transition: color 300ms ease-in;
 
   &:hover {
     color: ${p => p.theme.colors.primary};

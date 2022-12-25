@@ -155,22 +155,22 @@ export const ButtonSubmit = styled.button`
 
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
 
   cursor: pointer;
+  transition: box-shadow 300ms ease-in;
+
+  :enabled {
+    :hover,
+    :focus {
+      box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+      /* transform: translateY(-7px); */
+    }
+  }
 
   :disabled {
     opacity: 0.6;
   }
-
-  :enabled {
-    :hover,
-    :focus,
-    :active {
-      box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
-      transform: translateY(-7px);
-    }
-  }
-  transition: opacity 200ms ease-in;
 
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;

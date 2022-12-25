@@ -96,6 +96,7 @@ export const ButtonLogin = styled.button`
 
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};
+  transition: box-shadow 300ms ease-in;
 
   cursor: pointer;
   :hover,

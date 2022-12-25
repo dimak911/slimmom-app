@@ -13,13 +13,15 @@ export const ButtonFilledStyled = styled(NavLink)`
   border-radius: 30px;
   border-color: transparent;
   text-decoration: none;
+  transition: box-shadow 300ms ease-in;
   cursor: pointer;
+
   :hover,
   :focus {
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
-    transform: translateY(-7px);
+    /* transform: translateY(-7px); */
   }
-  transition: opacity 200ms ease-in;
+  /* transition: opacity 200ms ease-in; */
 `;
 
 export const ButtonFilledTitleStyled = styled.span`
