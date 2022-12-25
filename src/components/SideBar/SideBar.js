@@ -11,27 +11,41 @@ import {
 // import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchsideBarInfo } from 'redux/products/operations';
-import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
-import { useEffect } from 'react';
+import {
+  useEffect,
+  // useState
+} from 'react';
+// import { useParams } from 'react-router-dom';
 
 export const SideBar = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(showLoading());
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
-  // const info = useSelector(sideBarInfoSelectors)
+  // let { date } = useParams();
+  // const diaryDate = useState(() => {
+  //   if (date) return date.split('-').join('.');
+
+  //   const initialDate = new Date().format('DD.MM.YYYY');
+  //   return initialDate;
+  // });
+
+  // const info = useSelector(sideBarInfoSelectors);
+
+  // console.log(date)
+
   return (
     <Box>
       <SideBarContainer>
         {isLoading ? <Loader /> : null}
         <Title>
-          Сумарно на <span>20/06/2020</span>
+          {/* Сумарно на <span>{diaryDate}</span> */}
+          Сумарно на <span>{'25.12.2022'}</span>
         </Title>
         <TextBox>
           <ul>

@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { login } from 'redux/auth/operations';
-import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { Container } from 'components/Container.styled';
@@ -39,7 +38,6 @@ export const LogInForm = () => {
 
   const onSubmitForm = async credentials => {
     const { email, password } = credentials;
-    dispatch(showLoading());
     const result = await dispatch(
       login({
         email: email.toLowerCase(),

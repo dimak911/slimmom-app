@@ -1,18 +1,16 @@
- import styled from 'styled-components';
+import styled from 'styled-components';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
 export const SigninForm = styled.form`
-  
   align-items: center;
   color: ${p => p.theme.colors.secondary};
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 768px) {
-   flex-direction: row;
+    flex-direction: row;
   }
-   @media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     padding: 80px 15px;
-    
   }
 `;
 
@@ -44,7 +42,7 @@ export const LabelProduct = styled.label`
   width: 285px;
   @media screen and (min-width: 768px) {
     width: 240px;
-    margin-right: ${p => p.theme.space[3]*6}px;
+    margin-right: ${p => p.theme.space[3] * 6}px;
   }
   @media screen and (max-width: 767px) {
     margin-bottom: 32px;
@@ -84,7 +82,7 @@ export const InputForm = styled.input`
 
 export const ButtonLogin = styled.button`
   padding: ${p => p.theme.space[3]}px;
-  width: ${p => p.theme.space[3]*6}px;
+  width: ${p => p.theme.space[3] * 6}px;
   height: ${p => p.theme.space[3] * 6}px;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   font-weight: ${p => p.theme.fontWeights.bold};
@@ -102,7 +100,7 @@ export const ButtonLogin = styled.button`
   cursor: pointer;
   :hover,
   :focus {
-  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
+    box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
   }
   @media screen and (max-width: 767px) {
     margin-top: 60px;
@@ -113,7 +111,6 @@ export const ButtonLogin = styled.button`
     margin-right: ${p => p.theme.space[5]}px;
   }
 `;
-
 
 export const Error = styled.p`
   position: relative;
@@ -133,12 +130,12 @@ export const Error = styled.p`
 
 export const Span = styled.span`
   @media screen and (min-width: 768px) {
-   margin-left: auto;
+    margin-left: auto;
   }
 `;
 
 export const Div = styled.div`
   @media screen and (min-width: 768px) {
-   margin-bottom: 60px;
+    margin-bottom: 60px;
   }
 `;

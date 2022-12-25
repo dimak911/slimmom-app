@@ -10,7 +10,7 @@ export const Navigation = () => {
     <Container>
       <Wrapper>
         {isLoggedIn ? (
-          <Link to="/">ЩОДЕННИК</Link>
+          <Link to="/dairy/:date">ЩОДЕННИК</Link>
         ) : (
           <Link to="/login">УВІЙТИ</Link>
         )}
