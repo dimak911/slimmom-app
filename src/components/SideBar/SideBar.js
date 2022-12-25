@@ -13,9 +13,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchsideBarInfo } from 'redux/products/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { sideBarInfoSelectors } from 'redux/products/selectors';
+import { productsList } from 'redux/products/selectors';
+import { fetchDiaryProducts } from 'redux/products/operations';
 import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 
 export const SideBar = () => {
@@ -23,19 +25,33 @@ export const SideBar = () => {
   const diaryDate = date.split('-').join('.');
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-  const sideBarInfo = useSelector(sideBarInfoSelectors);
+  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
+  const products = useSelector(productsList);
 
   useEffect(() => {
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
-  console.log('lalala', sideBarInfo);
-
-  const [notRecommended, setNotRecommended] = useState([]);
-
   useEffect(() => {
-    setNotRecommended(sideBarInfo.notRecommendedProduct);
-  }, [sideBarInfo.notRecommendedProduct]);
+    dispatch(fetchDiaryProducts(date));
+  }, [dispatch, date]);
+
+  // const [notRecommended, setNotRecommended] = useState([]);
+
+  // useEffect(() => {
+  //   setNotRecommended(notRecommendedProduct);
+  // }, []);
+
+  console.log(notRecommendedProduct);
+
+  const totalCallories = products.reduce(
+    (accumulator, currentValue) =>
+      accumulator + Number(currentValue.productCalories),
+    0
+  );
+
+  const diffСallories = Number(callorie) - totalCallories;
+  const percentage = ((totalCallories / Number(callorie)) * 100).toFixed(2);
 
   return (
     <Box>
@@ -72,22 +88,22 @@ export const SideBar = () => {
           <Ul>
             <Li>
               <P>
-                <Span>000 ккал</Span>
+                <Span> {diffСallories} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>000 ккал</Span>
+                <Span>{totalCallories} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>{sideBarInfo.callorie} ккал</Span>
+                <Span>{callorie} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>000 ккал</Span>
+                <Span>{percentage} %</Span>
               </P>
             </Li>
           </Ul>
@@ -96,15 +112,16 @@ export const SideBar = () => {
       <SideBarContainer>
         <Title>Їжа не рекомендована</Title>
         <ul>
-          {notRecommended.slice(0, 4).map(product => {
-            return (
-              <li key={product}>
-                <P>
-                  <span>{capitalizeFirstLetter(product)}</span>
-                </P>
-              </li>
-            );
-          })}
+          {notRecommendedProduct &&
+            notRecommendedProduct.slice(0, 4).map(product => {
+              return (
+                <li key={product}>
+                  <P>
+                    <span>{capitalizeFirstLetter(product)}</span>
+                  </P>
+                </li>
+              );
+            })}
           {/* <li>
             <P>
               <span>Борошняні вироби</span>
