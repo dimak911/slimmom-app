@@ -16,37 +16,34 @@ import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { sideBarInfoSelectors } from 'redux/products/selectors';
+import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 
 export const SideBar = () => {
+  let { date } = useParams();
+  const diaryDate = date.split('-').join('.');
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
-
-  // console.log('info', sideBarInfo);
+  const sideBarInfo = useSelector(sideBarInfoSelectors);
 
   useEffect(() => {
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
-  // let { date } = useParams();
-  // const diaryDate = useState(() => {
-  //   if (date) return date.split('-').join('.');
+  console.log('lalala', sideBarInfo);
 
-  //   const initialDate = new Date().format('DD.MM.YYYY');
-  //   return initialDate;
-  // });
+  const [notRecommended, setNotRecommended] = useState([]);
 
-  // const info = useSelector(sideBarInfoSelectors);
-
-  // console.log(date)
+  useEffect(() => {
+    setNotRecommended(sideBarInfo.notRecommendedProduct);
+  }, [sideBarInfo.notRecommendedProduct]);
 
   return (
     <Box>
       <SideBarContainer>
         {isLoading ? <Loader /> : null}
         <Title>
-          {/* Сумарно на <span>{diaryDate}</span> */}
-          Сумарно на <span>{'25.12.2022'}</span>
+          Сумарно на <span>{diaryDate}</span>
+          {/* Сумарно на <span>{'25.12.2022'}</span> */}
         </Title>
         <TextBox>
           <ul>
@@ -85,7 +82,7 @@ export const SideBar = () => {
             </Li>
             <Li>
               <P>
-                <Span>{callorie} ккал</Span>
+                <Span>{sideBarInfo.callorie} ккал</Span>
               </P>
             </Li>
             <Li>
@@ -99,7 +96,16 @@ export const SideBar = () => {
       <SideBarContainer>
         <Title>Їжа не рекомендована</Title>
         <ul>
-          <li>
+          {notRecommended.slice(0, 4).map(product => {
+            return (
+              <li key={product}>
+                <P>
+                  <span>{capitalizeFirstLetter(product)}</span>
+                </P>
+              </li>
+            );
+          })}
+          {/* <li>
             <P>
               <span>Борошняні вироби</span>
             </P>
@@ -118,7 +124,7 @@ export const SideBar = () => {
             <P>
               <span>Копченості</span>
             </P>
-          </li>
+          </li> */}
         </ul>
       </SideBarContainer>
     </Box>
