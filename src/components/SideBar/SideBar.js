@@ -14,42 +14,38 @@ import { fetchsideBarInfo } from 'redux/products/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { productsList } from 'redux/products/selectors';
 import { fetchDiaryProducts } from 'redux/products/operations';
 import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
+import { initialDate } from 'App';
 
 export const SideBar = () => {
-  let { date } = useParams();
-  const diaryDate = date.split('-').join('.');
+  const diaryDate = initialDate.split('-').join('.');
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
-  const products = useSelector(productsList);
 
   useEffect(() => {
     dispatch(fetchsideBarInfo());
+    dispatch(fetchDiaryProducts(initialDate));
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchDiaryProducts(date));
-  }, [dispatch, date]);
+    console.log('Mounting phase: same when componentDidMount runs');
 
-  // const [notRecommended, setNotRecommended] = useState([]);
+    return () => {
+      console.log('Unmounting phase: same when componentWillUnmount runs');
+    };
+  }, []);
 
-  // useEffect(() => {
-  //   setNotRecommended(notRecommendedProduct);
-  // }, []);
-
-  console.log(notRecommendedProduct);
+  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
+  const products = useSelector(productsList);
 
   const totalCallories = products.reduce(
     (accumulator, currentValue) =>
       accumulator + Number(currentValue.productCalories),
     0
   );
-
   const diffСallories = Number(callorie) - totalCallories;
   const percentage = ((totalCallories / Number(callorie)) * 100).toFixed(2);
 
@@ -59,7 +55,6 @@ export const SideBar = () => {
         {isLoading ? <Loader /> : null}
         <Title>
           Сумарно на <span>{diaryDate}</span>
-          {/* Сумарно на <span>{'25.12.2022'}</span> */}
         </Title>
         <TextBox>
           <ul>
@@ -122,26 +117,6 @@ export const SideBar = () => {
                 </li>
               );
             })}
-          {/* <li>
-            <P>
-              <span>Борошняні вироби</span>
-            </P>
-          </li>
-          <li>
-            <P>
-              <span>Молоко</span>
-            </P>
-          </li>
-          <li>
-            <P>
-              <span>Червоне м'ясо</span>
-            </P>
-          </li>
-          <li>
-            <P>
-              <span>Копченості</span>
-            </P>
-          </li> */}
         </ul>
       </SideBarContainer>
     </Box>
