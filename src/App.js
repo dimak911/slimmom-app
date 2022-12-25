@@ -9,6 +9,7 @@ import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import moment from 'moment';
+export const initialDate = moment(new Date()).format('DD-MM-YYYY');
 
 const RegistrationPage = lazy(() =>
   import('pages/RegistrationPage/RegistrationPage')
@@ -25,8 +26,6 @@ export const App = () => {
   const calculateData = useSelector(selectCalculateValue);
   const { isRefreshing } = useSelector(selectIsRefreshing);
 
-  const initialDate = moment(new Date()).format('DD-MM-YYYY');
-
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -42,7 +41,7 @@ export const App = () => {
             path="/"
             element={
               <RestrictedRoute
-                redirectTo="/diary/:date"
+                redirectTo={`/diary/${initialDate}`}
                 component={<MainPage />}
               />
             }
