@@ -9,6 +9,7 @@ import {
   SuffixKcal,
   RemoveButton,
   Cross,
+  DiaryProductListItemStyled,
 } from './DiaryProducListItem.styled';
 
 export const DiaryProductListItem = ({
@@ -20,7 +21,7 @@ export const DiaryProductListItem = ({
   const dispatch = useDispatch();
 
   return (
-    <>
+    <DiaryProductListItemStyled>
       <ProductName>{productName}</ProductName>
       <ProductWeight>{productWeight} г</ProductWeight>
       <ProductKcal>
@@ -35,6 +36,6 @@ export const DiaryProductListItem = ({
       >
         <Cross />
       </RemoveButton>
-    </>
+    </DiaryProductListItemStyled>
   );
 };

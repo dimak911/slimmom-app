@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import cross from './cross.svg';
 
+export const DiaryProductListItemStyled = styled.li`
+  display: flex;
+  margin-bottom: 16px;
+`;
+
 export const ProductName = styled.p`
   width: 130px;
   text-align: left;
