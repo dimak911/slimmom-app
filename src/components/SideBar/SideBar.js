@@ -28,22 +28,25 @@ export const SideBar = () => {
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
-  let { date } = useParams();
-  const diaryDate = useState(() => {
-    if (date) return date.split('-').join('.');
+  // let { date } = useParams();
+  // const diaryDate = useState(() => {
+  //   if (date) return date.split('-').join('.');
 
-    const initialDate = new Date().format('DD.MM.YYYY');
-    return initialDate;
-  });
+  //   const initialDate = new Date().format('DD.MM.YYYY');
+  //   return initialDate;
+  // });
 
   // const info = useSelector(sideBarInfoSelectors);
+
+  // console.log(date)
 
   return (
     <Box>
       <SideBarContainer>
         {isLoading ? <Loader /> : null}
         <Title>
-          Сумарно на <span>{diaryDate}</span>
+          {/* Сумарно на <span>{diaryDate}</span> */}
+          Сумарно на <span>{'25.12.2022'}</span>
         </Title>
         <TextBox>
           <ul>
