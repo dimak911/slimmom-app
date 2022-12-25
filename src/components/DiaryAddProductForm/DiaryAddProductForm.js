@@ -27,6 +27,7 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
     watch,
     formState: { errors },
     setValue,
+    reset,
   } = useForm({
     defaultValues: {
       product: '',
@@ -44,7 +45,6 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
   useEffect(() => {
     if (productValue.length > 1) {
       axios.get(`products?productTitle=${productValue}`).then(response => {
-        console.log(response);
         const fetchedProducts = response.data.map(obj => {
           return { title: obj.title.ua, calories: obj.calories };
         });
@@ -66,11 +66,9 @@ export const DiaryAddProductForm = ({ img, openModal }) => {
       productCalories: calloriesCounted,
       date: date,
     };
-
-    console.log(product);
     // openModal();
     dispatch(addDiaryListItem(product));
-    // reset();
+    reset();
   };
 
   return (

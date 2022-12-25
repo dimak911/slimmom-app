@@ -13,19 +13,20 @@ export const DairyProductList = () => {
   const { date } = useParams();
   const dispatch = useDispatch();
   const products = useSelector(productsList);
+  console.log('productsItem:', products);
   useEffect(() => {
     dispatch(fetchDiaryProducts(date));
   }, [dispatch, date]);
-  console.log(products);
+
   return (
     <div>
       {products.length > 0 ? (
         <DiaryProductListStyled>
           {products.map(
-            ({ id, productName, productWeight, productCalories }) => (
-              <DiaryProductListItemStyled key={id}>
+            ({ _id, productName, productWeight, productCalories }) => (
+              <DiaryProductListItemStyled key={_id}>
                 <DiaryProductListItem
-                  id={id}
+                  _id={_id}
                   productName={productName}
                   productWeight={productWeight}
                   productCalories={productCalories}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeItem } from 'redux/products/slice';
+import { removeDiaryListItem } from 'redux/products/operations';
 
 import {
   ProductName,
@@ -12,7 +12,7 @@ import {
 } from './DiaryProducListItem.styled';
 
 export const DiaryProductListItem = ({
-  id,
+  _id,
   productName,
   productWeight,
   productCalories,
@@ -28,10 +28,12 @@ export const DiaryProductListItem = ({
       </ProductKcal>
       <RemoveButton
         type="button"
-        onClick={() => {
+        id={_id}
+        onClick={event => {
           // console.log('TODO: remove item --> ', id);
           // console.log(DuseDispatch.dispatch(getList(id)));
-          dispatch(removeItem(id));
+          dispatch(removeDiaryListItem(event.currentTarget.id));
+          console.log(event.currentTarget.id);
         }}
       >
         <Cross />
