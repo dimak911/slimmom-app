@@ -92,10 +92,14 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 type="number"
                 {...register('height', {
                   required: 'Будь ласка, введіть свій зріст',
-                  minLength: {
-                    value: 2,
-                    message: 'Введіть принаймні двозначне число',
+                  min: {
+                    value: 100,
+                    message: 'Мінімальний зріст 100 см'
                   },
+                  max: {
+                    value: 250,
+                    message:'Максимальний зріст 250 см'
+                  }
                 })}
               />
               {errors?.height && <Error>{errors?.height?.message}</Error>}
@@ -107,10 +111,14 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 type="number"
                 {...register('age', {
                   required: 'Будь ласка, введіть свій вік',
-                  minLength: {
-                    value: 2,
-                    message: 'Введіть принаймні двозначне число',
+                  min: {
+                    value: 18,
+                    message: 'Мінімальний вік 18 років',
                   },
+                  max: {
+                    value: 100,
+                    message:'Максимальний вік 100 років'
+                  }
                 })}
               />
               {errors?.age && <Error>{errors?.age?.message}</Error>}
@@ -122,10 +130,14 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 type="number"
                 {...register('currentWeight', {
                   required: 'Введіть свою поточну вагу',
-                  minLength: {
-                    value: 2,
-                    message: 'Введіть принаймні двозначне число',
+                  min: {
+                    value: 20,
+                    message: 'Мінімальниа вага 20 кг',
                   },
+                  max: {
+                    value: 500,
+                    message:'Максимальниа вага 500 кг'
+                  }
                 })}
               />
               {errors?.currentWeight && (
@@ -142,10 +154,14 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 type="number"
                 {...register('desiredWeight', {
                   required: 'Будь ласка, введіть бажану вагу',
-                  minLength: {
-                    value: 2,
-                    message: 'Введіть принаймні двозначне число',
+                  min: {
+                    value: 20,
+                    message: 'Мінімальниа вага 20 кг',
                   },
+                  max: {
+                    value: 500,
+                    message:'Максимальниа вага 500 кг'
+                  }
                 })}
               />
               {errors?.desiredWeight && (
