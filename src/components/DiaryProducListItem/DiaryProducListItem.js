@@ -30,10 +30,7 @@ export const DiaryProductListItem = ({
         type="button"
         id={_id}
         onClick={event => {
-          // console.log('TODO: remove item --> ', id);
-          // console.log(DuseDispatch.dispatch(getList(id)));
           dispatch(removeDiaryListItem(event.currentTarget.id));
-          console.log(event.currentTarget.id);
         }}
       >
         <Cross />

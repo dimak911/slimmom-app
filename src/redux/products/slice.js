@@ -67,12 +67,9 @@ export const productListSlice = createSlice({
       state.sideBarInfo = action.payload.result;
     });
     builder.addCase(removeDiaryListItem.fulfilled, (state, action) => {
-      console.log('delete-action:', action.payload);
       const idx = state.productsDiary.findIndex(product => {
-        console.log('state', state);
-        return product.id === action.payload.id;
+        return product._id === action.payload.id;
       });
-      console.log(idx);
 
       state.productsDiary.splice(idx, 1);
     });
