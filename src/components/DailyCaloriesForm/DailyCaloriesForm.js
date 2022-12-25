@@ -95,11 +95,11 @@ export const DailyCaloriesForm = ({ openModal }) => {
                   required: 'Будь ласка, введіть свій зріст',
                   min: {
                     value: 100,
-                    message: 'Введіть зріст від 100 до 250 років',
+                    message: 'Мінімальний зріст 100 см',
                   },
                   max: {
                     value: 250,
-                    message: 'Введіть зріст від 100 до 250 років',
+                    message: 'Максимальний зріст 250 см',
                   },
                 })}
               />
@@ -114,11 +114,11 @@ export const DailyCaloriesForm = ({ openModal }) => {
                   required: 'Будь ласка, введіть свій вік',
                   min: {
                     value: 18,
-                    message: 'Введіть вік від 18 до 100 років',
+                    message: 'Мінімальний вік 18 років',
                   },
                   max: {
                     value: 100,
-                    message: 'Введіть вік від 18 до 100 років',
+                    message: 'Максимальний вік 100 років',
                   },
                 })}
               />
@@ -133,11 +133,11 @@ export const DailyCaloriesForm = ({ openModal }) => {
                   required: 'Введіть свою поточну вагу',
                   min: {
                     value: 20,
-                    message: 'Введіть вагу від 20 до 500 кг',
+                    message: 'Мінімальниа вага 20 кг',
                   },
                   max: {
                     value: 500,
-                    message: 'Введіть вагу від 20 до 500 кг',
+                    message: 'Максимальниа вага 500 кг',
                   },
                 })}
               />
@@ -157,11 +157,11 @@ export const DailyCaloriesForm = ({ openModal }) => {
                   required: 'Будь ласка, введіть бажану вагу',
                   min: {
                     value: 20,
-                    message: 'Введіть вагу від 20 до 500 кг',
+                    message: 'Мінімальниа вага 20 кг',
                   },
                   max: {
                     value: 500,
-                    message: 'Введіть вагу від 20 до 500 кг',
+                    message: 'Максимальниа вага 500 кг',
                   },
                 })}
               />
