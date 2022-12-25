@@ -6,9 +6,9 @@ import { removeDiaryListItem } from './operations';
 
 export const productListSlice = createSlice({
   name: 'productList',
-  sideBarInfo: [],
   initialState: {
     productsDiary: [],
+    sideBarInfo: [],
   },
   reducers: {
     getList: state => {
@@ -22,8 +22,8 @@ export const productListSlice = createSlice({
     builder.addCase(fetchDiaryProducts.rejected, (state, action) => {
       // state.productsDiary = [];
     });
-    builder.addCase(fetchsideBarInfo, (state, action) => {
-      state.sideBarInfo = action.payload.result;
+    builder.addCase(fetchsideBarInfo.fulfilled, (state, action) => {
+      state.sideBarInfo = action.payload;
     });
     builder.addCase(removeDiaryListItem.fulfilled, (state, action) => {
       const idx = state.productsDiary.findIndex(product => {
