@@ -30,6 +30,24 @@ export const FoneImages = styled.div`
     background-position: right 0px top 461px, right 0px bottom 0px,
       right 12px top 0px, right -12px bottom -137px;
     background-repeat: no-repeat;
+
+    animation-name: tablet-animation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+
+    @keyframes tablet-animation {
+    0%{
+    background-size: 261px, 498px, 543px, 540px;
+    background-position: right 0px top 461px, right -150px bottom 0px,
+      right -12px top 0px, right -12px bottom -137px;
+    }
+    100%{
+    background-size: 291px, 498px, 553px, 740px;
+    background-position: right 0px top 461px, right 0px bottom 0px,
+      right 12px top 0px, right -12px bottom -137px;
+    }
+  }
   }
 
   @media (min-device-pixel-ratio: 2) and (min-width: 768px),
@@ -45,6 +63,24 @@ export const FoneImages = styled.div`
     background-size: 746px, 498px, 286px, 602px;
     background-position: right 195px top 0px, right 0px top 0px,
       right 36px top 506px, right 0px bottom 0px;
+
+  animation-name: desctop-animation;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+
+  @keyframes desctop-animation {
+    0%{
+    background-size: 146px, 398px, 100px, 102px;
+    background-position: right 195px top 0px, right -300px top 0px,
+      right -136px top 700px , right 0px bottom 0px;
+    }
+    100%{
+    background-size: 746px, 498px, 286px, 602px;
+    background-position: right 195px top 0px, right 0px top 0px,
+      right 36px top 506px, right 0px bottom 0px;
+    }
+  }
   }
   @media (min-device-pixel-ratio: 2) and (min-width: 1280px),
     (min-resolution: 192dpi) and (min-width: 1280px),
