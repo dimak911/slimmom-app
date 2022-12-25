@@ -22,6 +22,7 @@ export const fetchsideBarInfo = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const result = await axios.get('/diary/dayinfo');
+      console.log('result', result.data);
       return result.data;
     } catch (error) {
       return rejectWithValue(error);

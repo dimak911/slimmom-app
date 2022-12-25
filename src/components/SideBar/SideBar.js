@@ -9,16 +9,20 @@ import {
   Li,
 } from './SideBar.styled';
 // import { sideBarInfoSelectors } from 'redux/products/selectors';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchsideBarInfo } from 'redux/products/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { sideBarInfoSelectors } from 'redux/products/selectors';
 
 export const SideBar = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
+
+  // console.log('info', sideBarInfo);
 
   useEffect(() => {
     dispatch(fetchsideBarInfo());
@@ -78,7 +82,7 @@ export const SideBar = () => {
             </Li>
             <Li>
               <P>
-                <Span>000 ккал</Span>
+                <Span>{callorie} ккал</Span>
               </P>
             </Li>
             <Li>
