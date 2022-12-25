@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateValue } from 'redux/calculate/slice';
+import { postSideBarInfo } from 'redux/products/operations';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import { useLocation } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
@@ -34,21 +35,22 @@ export const DailyCaloriesForm = ({ openModal }) => {
     formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
-    defaultValues: isLoggedIn
-      ? {
-          height: formData.height,
-          age: formData.age,
-          currentWeight: formData.currentWeight,
-          desiredWeight: formData.desiredWeight,
-          bloodType: formData.bloodType,
-        }
-      : {
-          height: '',
-          age: '',
-          currentWeight: '',
-          desiredWeight: '',
-          bloodType: '',
-        },
+    defaultValues:
+      isLoggedIn && formData.height
+        ? {
+            height: formData.height,
+            age: formData.age,
+            currentWeight: formData.currentWeight,
+            desiredWeight: formData.desiredWeight,
+            bloodType: formData.bloodType,
+          }
+        : {
+            height: '',
+            age: '',
+            currentWeight: '',
+            desiredWeight: '',
+            bloodType: '',
+          },
   });
 
   const heightValue = watch('height');
@@ -74,6 +76,13 @@ export const DailyCaloriesForm = ({ openModal }) => {
     };
     const dataForModal = { countedCalories, notAllowedFoodCategories };
     dispatch(calculateValue(dataForDispatch));
+    isLoggedIn &&
+      dispatch(
+        postSideBarInfo({
+          callorie: countedCalories,
+          notRecommendedProduct: notAllowedFoodCategories,
+        })
+      );
     !isLoggedIn && openModal(dataForModal);
     reset();
   };

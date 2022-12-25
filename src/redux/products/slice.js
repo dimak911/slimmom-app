@@ -1,8 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { addDiaryListItem, fetchsideBarInfo } from './operations';
-import { fetchDiaryProducts } from './operations';
-import { removeDiaryListItem } from './operations';
+import {
+  addDiaryListItem,
+  fetchsideBarInfo,
+  fetchDiaryProducts,
+  removeDiaryListItem,
+  postSideBarInfo,
+} from './operations';
 
 export const productListSlice = createSlice({
   name: 'productList',
@@ -25,6 +29,15 @@ export const productListSlice = createSlice({
     builder.addCase(fetchsideBarInfo.fulfilled, (state, action) => {
       state.sideBarInfo = action.payload;
     });
+    builder.addCase(fetchsideBarInfo.rejected, (state, action) => {
+      // state.sideBarInfo = action.payload;
+    });
+    builder.addCase(postSideBarInfo.fulfilled, (state, action) => {
+      state.sideBarInfo = action.payload;
+    });
+    builder.addCase(postSideBarInfo.rejected, (state, action) => {
+      // state.sideBarInfo = action.payload;
+    });
     builder.addCase(removeDiaryListItem.fulfilled, (state, action) => {
       const idx = state.productsDiary.findIndex(product => {
         return product._id === action.payload.id;
@@ -41,4 +54,4 @@ export const productListSlice = createSlice({
   },
 });
 
-export const { removeItem, getList } = productListSlice.actions;
+export const { removeItem, getList, postInfo } = productListSlice.actions;
