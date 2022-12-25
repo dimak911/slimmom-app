@@ -13,7 +13,6 @@ export const DairyProductList = () => {
   const { date } = useParams();
   const dispatch = useDispatch();
   const products = useSelector(productsList);
-  console.log('productsItem:', products);
   useEffect(() => {
     dispatch(fetchDiaryProducts(date));
   }, [dispatch, date]);

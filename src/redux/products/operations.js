@@ -1,9 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
-axios.defaults.baseURL = 'http://localhost:3001/api/';
-
 export const fetchDiaryProducts = createAsyncThunk(
   'products/fetchAll',
   async (date, { rejectWithValue }) => {
