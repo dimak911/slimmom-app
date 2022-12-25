@@ -6,51 +6,9 @@ import { removeDiaryListItem } from './operations';
 
 export const productListSlice = createSlice({
   name: 'productList',
-  // sideBarInfo: [],
   initialState: {
+    productsDiary: [],
     sideBarInfo: [],
-    productsDiary: [
-      {
-        id: '63a6f7e4365affd6a44aa0b6',
-        owner: '63a5e4a69414cd40a2f95880',
-        prodName: 'Eggplant',
-        prodWeight: '100',
-        prodKcal: '320',
-        date: '24-12-2022',
-      },
-      {
-        id: '2',
-        owner: '2',
-        prodName: 'Bread',
-        prodWeight: '100',
-        prodKcal: '210',
-        date: '2',
-      },
-      {
-        id: '3',
-        owner: '2',
-        prodName: 'Bread',
-        prodWeight: '100',
-        prodKcal: '210',
-        date: '2',
-      },
-      {
-        id: '4',
-        owner: '2',
-        prodName: 'Bread',
-        prodWeight: '100',
-        prodKcal: '210',
-        date: '2',
-      },
-      {
-        id: '5',
-        owner: '2',
-        prodName: 'Bread',
-        prodWeight: '100',
-        prodKcal: '210',
-        date: '2',
-      },
-    ],
   },
   reducers: {
     getList: state => {
@@ -62,7 +20,7 @@ export const productListSlice = createSlice({
       state.productsDiary = action.payload;
     });
     builder.addCase(fetchDiaryProducts.rejected, (state, action) => {
-      state.productsDiary = [];
+      // state.productsDiary = [];
     });
     builder.addCase(fetchsideBarInfo.fulfilled, (state, action) => {
       state.sideBarInfo = action.payload;

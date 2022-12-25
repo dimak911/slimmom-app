@@ -6,7 +6,6 @@ export const fetchDiaryProducts = createAsyncThunk(
   async (date, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/diary/${date}`);
-
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
