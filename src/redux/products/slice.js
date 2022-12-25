@@ -20,7 +20,7 @@ export const productListSlice = createSlice({
       state.productsDiary = action.payload;
     });
     builder.addCase(fetchDiaryProducts.rejected, (state, action) => {
-      state.productsDiary = [];
+      // state.productsDiary = [];
     });
     builder.addCase(fetchsideBarInfo, (state, action) => {
       state.sideBarInfo = action.payload.result;
