@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { ReactComponent as SubdirectoryIcon } from '../../icons/subdirectory-left.svg';
 import { NavLink } from 'react-router-dom';
 
 export const UserInfoContainer = styled.div`
@@ -61,9 +60,9 @@ export const Button = styled.button`
 export const StyledSubdirectoryIcon = styled.img`
   display: ${p =>
     p.location === '/login' ||
-    p.location === '/signup' ||
-    p.location === '/' ||
-    p.location === '/calculator'
+      p.location === '/signup' ||
+      p.location === '/' ||
+      p.location === '/calculator'
       ? 'none'
       : 'inline-block'};
   width: 12px;
