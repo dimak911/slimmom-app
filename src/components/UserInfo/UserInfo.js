@@ -4,15 +4,13 @@ import { logOut } from 'redux/auth/operations';
 import { selectUserName } from 'redux/auth/selectors';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as BackArrowIcon } from '../../icons/back-arrow.svg';
+import { ReactComponent as BackArrowIcon } from '../../images/icons/back-arrow.svg';
 import {
   UserInfoContainer,
   UserName,
   Button,
-  // StyledSubdirectoryIcon,
   BackLink,
 } from './UserInfo.styled';
-// import subdirectoryIcon from '../../icons/back-arrow.png';
 
 export const UserInfo = ({ burgerActive }) => {
   const dispatch = useDispatch();
@@ -29,7 +27,6 @@ export const UserInfo = ({ burgerActive }) => {
 
   return (
     <UserInfoContainer burger={burgerActive} location={location.pathname}>
-      {/* <StyledSubdirectoryIcon src={subdirectoryIcon} alt="arrow-back" /> */}
       {location.pathname === '/calculate' ? null : (
         <BackLink to="/calculate">
           <BackArrowIcon />

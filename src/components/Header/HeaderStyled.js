@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as BurgerIcon } from '../../icons/burger-icon.svg';
-import { ReactComponent as CrossIcon } from '../../icons/close-cross.svg';
+import { ReactComponent as BurgerIcon } from '../../images/icons/burger-icon.svg';
+import { ReactComponent as CrossIcon } from '../../images/icons/close-cross.svg';
 
 export const HeaderStyled = styled.section`
   position: relative;
