@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculateValue } from 'redux/calculate/slice';
+import { calculation } from 'redux/calculate/operations';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import { useLocation } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
@@ -24,31 +24,32 @@ import { getCategoriesByBloodType } from 'helpers/getCategoriesByBloodType';
 
 export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
+
   const { formData } = useSelector(selectCalculateValue);
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const {
     register,
     handleSubmit,
-    reset,
     watch,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
-    defaultValues: isLoggedIn
+    defaultValues: isLoggedIn && formData
       ? {
-          height: formData.height,
-          age: formData.age,
-          currentWeight: formData.currentWeight,
-          desiredWeight: formData.desiredWeight,
-          bloodType: formData.bloodType,
-        }
+        height: formData.height,
+        age: formData.age,
+        currentWeight: formData.currentWeight,
+        desiredWeight: formData.desiredWeight,
+        bloodType: formData.bloodType,
+      }
       : {
-          height: '',
-          age: '',
-          currentWeight: '',
-          desiredWeight: '',
-          bloodType: '',
-        },
+        height: '',
+        age: '',
+        currentWeight: '',
+        desiredWeight: '',
+        bloodType: '',
+      },
   });
 
   const heightValue = watch('height');
@@ -61,21 +62,20 @@ export const DailyCaloriesForm = ({ openModal }) => {
     const { height, age, currentWeight, desiredWeight, bloodType } = formData;
     const countedCalories = String(
       10 * currentWeight +
-        6.25 * height -
-        5 * age -
-        161 -
-        10 * (currentWeight - desiredWeight)
+      6.25 * height -
+      5 * age -
+      161 -
+      10 * (currentWeight - desiredWeight)
     );
     const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
     const dataForDispatch = {
-      countedCalories,
-      notAllowedFoodCategories,
-      formData,
+      callorie: countedCalories,
+      notRecommendedProduct: notAllowedFoodCategories,
+      data: formData,
     };
     const dataForModal = { countedCalories, notAllowedFoodCategories };
-    dispatch(calculateValue(dataForDispatch));
+    dispatch(calculation(dataForDispatch));
     !isLoggedIn && openModal(dataForModal);
-    reset();
   };
 
   const location = useLocation();
