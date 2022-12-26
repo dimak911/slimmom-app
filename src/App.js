@@ -9,6 +9,8 @@ import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import moment from 'moment';
+import { refreshCalories } from 'redux/calculate/operations';
+
 export const initialDate = moment(new Date()).format('DD-MM-YYYY');
 
 const RegistrationPage = lazy(() =>
@@ -31,6 +33,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(refreshCalories());
   }, [dispatch]);
 
   return isRefreshing ? (

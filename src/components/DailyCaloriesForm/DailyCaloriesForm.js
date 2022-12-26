@@ -39,19 +39,19 @@ export const DailyCaloriesForm = ({ openModal }) => {
     defaultValues:
       isLoggedIn && formData
         ? {
-            height: formData.height,
-            age: formData.age,
-            currentWeight: formData.currentWeight,
-            desiredWeight: formData.desiredWeight,
-            bloodType: formData.bloodType,
-          }
+          height: formData.height,
+          age: formData.age,
+          currentWeight: formData.currentWeight,
+          desiredWeight: formData.desiredWeight,
+          bloodType: formData.bloodType,
+        }
         : {
-            height: '',
-            age: '',
-            currentWeight: '',
-            desiredWeight: '',
-            bloodType: '',
-          },
+          height: '',
+          age: '',
+          currentWeight: '',
+          desiredWeight: '',
+          bloodType: '',
+        },
   });
 
   const heightValue = watch('height');
@@ -64,10 +64,10 @@ export const DailyCaloriesForm = ({ openModal }) => {
     const { height, age, currentWeight, desiredWeight, bloodType } = formData;
     const countedCalories = String(
       10 * currentWeight +
-        6.25 * height -
-        5 * age -
-        161 -
-        10 * (currentWeight - desiredWeight)
+      6.25 * height -
+      5 * age -
+      161 -
+      10 * (currentWeight - desiredWeight)
     );
     const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
     const dataForDispatch = {

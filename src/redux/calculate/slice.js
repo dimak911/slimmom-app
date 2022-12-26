@@ -11,17 +11,20 @@ export const calculateSlice = createSlice({
       desiredWeight: '',
       bloodType: '',
     },
-    countedCalories: null
+    countedCalories: null,
+    notAllowedFoodCategories: null
   },
   extraReducers: builder => {
     builder
       .addCase(calculation.fulfilled, (state, action) => {
         state.formData = action.payload.data;
         state.countedCalories = action.payload.callorie;
+        state.notRecommendedProduct = action.payload.notAllowedFoodCategories;
       })
       .addCase(refreshCalories.fulfilled, (state, action) => {
         state.formData = action.payload.data;
         state.countedCalories = action.payload.callorie;
+        state.notRecommendedProduct = action.payload.notAllowedFoodCategories;
       });
   }
 });
