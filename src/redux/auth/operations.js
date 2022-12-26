@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
+// axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3001/api';
+axios.defaults.withCredentials = true;
 
 const token = {
   set(token) {
@@ -21,6 +23,7 @@ export const registration = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -30,7 +33,7 @@ export const logOut = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.get('/auth/logout');
+      await axios.post('/auth/logout');
       token.unset();
     } catch (error) {
       console.log(error);
@@ -64,6 +67,19 @@ export const refreshUser = createAsyncThunk(
     try {
       token.set(state.auth.token);
       const res = await axios.get('/auth/current');
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const refreshToken = createAsyncThunk(
+  'auth/refreshToken',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const res = await axios.post('/auth/refreshToken', credentials);
+      token.set(res.data.result.token);
       return res.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
