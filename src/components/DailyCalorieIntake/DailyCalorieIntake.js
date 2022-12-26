@@ -1,4 +1,3 @@
-import { ButtonFilling } from 'components/ButtonFilled/ButtonFilled';
 import {
   ModalsHeadStyled,
   FoodListTitleStyled,
@@ -6,11 +5,14 @@ import {
   LineStyled,
   FoodListWrapperStyled,
   FoodListStyled,
+  LinkStyled,
+  ButtonStyled,
 } from './DailyCalorieIntake.styled';
 import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 
 export const DailyCalorieIntake = ({
   dataForModal: { countedCalories, notAllowedFoodCategories },
+  closeModal,
 }) => {
   return (
     <>
@@ -30,7 +32,11 @@ export const DailyCalorieIntake = ({
           })}
         </FoodListStyled>
       </FoodListWrapperStyled>
-      <ButtonFilling toRedirect="/signup">Почніть худнути</ButtonFilling>
+      <LinkStyled to="/signup">
+        <ButtonStyled onClick={() => closeModal()}>
+          Почніть худнути
+        </ButtonStyled>
+      </LinkStyled>
     </>
   );
 };
