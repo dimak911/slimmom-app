@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculation } from 'redux/calculate/operations';
+import { calculation, refreshCalories } from 'redux/calculate/operations';
 import { postSideBarInfo } from 'redux/products/operations';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import { useLocation } from 'react-router-dom';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
+import { addCalories } from 'redux/calculate/slice';
 
 import {
   Form,
@@ -27,8 +28,16 @@ export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
 
   const { formData } = useSelector(selectCalculateValue);
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+
+  useEffect(() => {
+    isLoggedIn && dispatch(refreshCalories());
+    !isRefreshing && dispatch(refreshCalories());
+  }, [dispatch, isLoggedIn, isRefreshing]);
+
+
   const {
     register,
     handleSubmit,
@@ -37,21 +46,13 @@ export const DailyCaloriesForm = ({ openModal }) => {
   } = useForm({
     mode: 'onBlur',
     defaultValues:
-      isLoggedIn && formData
-        ? {
-          height: formData.height,
-          age: formData.age,
-          currentWeight: formData.currentWeight,
-          desiredWeight: formData.desiredWeight,
-          bloodType: formData.bloodType,
-        }
-        : {
-          height: '',
-          age: '',
-          currentWeight: '',
-          desiredWeight: '',
-          bloodType: '',
-        },
+    {
+      height: formData.height,
+      age: formData.age,
+      currentWeight: formData.currentWeight,
+      desiredWeight: formData.desiredWeight,
+      bloodType: formData.bloodType,
+    },
   });
 
   const heightValue = watch('height');
@@ -77,13 +78,15 @@ export const DailyCaloriesForm = ({ openModal }) => {
     };
     const dataForModal = { countedCalories, notAllowedFoodCategories };
     dispatch(calculation(dataForDispatch));
-    isLoggedIn &&
+    isLoggedIn ?
       dispatch(
         postSideBarInfo({
           callorie: countedCalories,
           notRecommendedProduct: notAllowedFoodCategories,
         })
-      );
+      )
+      : dispatch(addCalories(dataForDispatch));
+
     !isLoggedIn && openModal(dataForModal);
   };
 
