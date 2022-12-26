@@ -8,7 +8,6 @@ import {
   Ul,
   Li,
 } from './SideBar.styled';
-// import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchsideBarInfo } from 'redux/products/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
@@ -16,9 +15,10 @@ import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
 import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { productsList } from 'redux/products/selectors';
-import { fetchDiaryProducts } from 'redux/products/operations';
+// import { fetchDiaryProducts } from 'redux/products/operations';
 import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 import { initialDate } from 'App';
+import axios from 'axios';
 
 export const SideBar = () => {
   const diaryDate = initialDate.split('-').join('.');
@@ -26,17 +26,11 @@ export const SideBar = () => {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
+    if (!axios.defaults.headers.common.Authorization) return;
+
     dispatch(fetchsideBarInfo());
-    dispatch(fetchDiaryProducts(initialDate));
+    // dispatch(fetchDiaryProducts(initialDate));
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log('Mounting phase: same when componentDidMount runs');
-
-    return () => {
-      console.log('Unmounting phase: same when componentWillUnmount runs');
-    };
-  }, []);
 
   const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
   const products = useSelector(productsList);
@@ -46,7 +40,7 @@ export const SideBar = () => {
       accumulator + Number(currentValue.productCalories),
     0
   );
-  const diffСallories = Number(callorie) - totalCallories;
+  const diffСallories = (Number(callorie) - totalCallories).toFixed(2);
   const percentage = ((totalCallories / Number(callorie)) * 100).toFixed(2);
 
   return (
