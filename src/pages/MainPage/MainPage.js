@@ -26,7 +26,10 @@ const MainPage = () => {
         <DailyCaloriesForm openModal={openModal} />
         {isModalOpen && (
           <ModalDailyCalorie closeModal={closeModal}>
-            <DailyCalorieIntake dataForModal={dataForModal} />
+            <DailyCalorieIntake
+              dataForModal={dataForModal}
+              closeModal={closeModal}
+            />
           </ModalDailyCalorie>
         )}
       </Wrap>
