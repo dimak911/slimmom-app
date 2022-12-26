@@ -10,11 +10,12 @@ import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { UserInfo } from '../../components/UserInfo/UserInfo';
 import { useState } from 'react';
 import { NavigationBurgerMenu } from '../../components/Navigation/NavigationBurgerMenu';
-// import { HeaderUnderline } from 'components/Header/HeaderStyled';
+import { selectCalculateValue } from 'redux/calculate/selectors';
 
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [burgerActive, setBurgerActive] = useState(false);
+  const { formData } = useSelector(selectCalculateValue);
 
   const burgerAction = () => {
     setBurgerActive(!burgerActive);
@@ -27,13 +28,14 @@ export const Header = () => {
           <NavigationHeader isLoggedIn={isLoggedIn} />
         ) : (
           <>
-            <NavigationHeader isLoggedIn={isLoggedIn} />{' '}
+            <NavigationHeader isLoggedIn={isLoggedIn} />
             <UserInfo burger={burgerActive} setBurger={setBurgerActive} />
-            {burgerActive ? (
-              <CrossIconStyled onClick={burgerAction} />
-            ) : (
-              <BurgerIconStyled onClick={burgerAction} />
-            )}
+            {formData?.height &&
+              (burgerActive ? (
+                <CrossIconStyled onClick={burgerAction} />
+              ) : (
+                <BurgerIconStyled onClick={burgerAction} />
+              ))}
           </>
         )}
       </HeaderStyled>

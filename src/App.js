@@ -9,6 +9,9 @@ import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import moment from 'moment';
+import { refreshCalories } from 'redux/calculate/operations';
+
+export const initialDate = moment(new Date()).format('DD-MM-YYYY');
 
 const RegistrationPage = lazy(() =>
   import('pages/RegistrationPage/RegistrationPage')
@@ -25,11 +28,13 @@ export const App = () => {
   const dispatch = useDispatch();
   const calculateData = useSelector(selectCalculateValue);
   const { isRefreshing } = useSelector(selectIsRefreshing);
-
-  const initialDate = moment(new Date()).format('DD-MM-YYYY');
+  const noFormDataDirect = !calculateData.countedCalories
+    ? '/calculate'
+    : `/diary/${initialDate}`;
 
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(refreshCalories());
   }, [dispatch]);
 
   return isRefreshing ? (
@@ -43,7 +48,7 @@ export const App = () => {
             path="/"
             element={
               <RestrictedRoute
-                redirectTo="/diary/:date"
+                redirectTo={noFormDataDirect}
                 component={<MainPage />}
               />
             }
@@ -52,9 +57,7 @@ export const App = () => {
             path="/signup"
             element={
               <RestrictedRoute
-                redirectTo={
-                  calculateData ? `/diary/${initialDate}` : '/calculate'
-                }
+                redirectTo={noFormDataDirect}
                 component={<RegistrationPage />}
               />
             }
@@ -63,7 +66,7 @@ export const App = () => {
             path="/login"
             element={
               <RestrictedRoute
-                redirectTo={`/diary/${initialDate}`}
+                redirectTo={noFormDataDirect}
                 component={<LoginPage />}
               />
             }
@@ -71,15 +74,17 @@ export const App = () => {
           <Route
             path="/diary/:date"
             element={
-              // замінити тут коспонент на сторінку DiaryPage
-              <PrivateRoute redirectTo="/login" component={<DiaryPage />} />
+              <PrivateRoute
+                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
+                component={<DiaryPage />}
+              />
             }
           />
           <Route
             path="/calculate"
             element={
               <PrivateRoute
-                redirectTo="/login"
+                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
                 component={<CalculatorPage />}
               />
             }

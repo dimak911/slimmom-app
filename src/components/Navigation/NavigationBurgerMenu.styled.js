@@ -39,6 +39,8 @@ export const Link = styled(NavLink)`
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.s};
   letter-spacing: 0.04em;
+  transition: color 300ms ease-in;
+
   &:not(:last-child) {
     margin-bottom: 28px;
   }
