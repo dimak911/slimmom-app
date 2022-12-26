@@ -25,6 +25,9 @@ export const App = () => {
   const dispatch = useDispatch();
   const calculateData = useSelector(selectCalculateValue);
   const { isRefreshing } = useSelector(selectIsRefreshing);
+  const noFormDataDirect = !calculateData.countedCalories
+    ? '/calculate'
+    : `/diary/${initialDate}`;
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -41,7 +44,7 @@ export const App = () => {
             path="/"
             element={
               <RestrictedRoute
-                redirectTo={`/diary/${initialDate}`}
+                redirectTo={noFormDataDirect}
                 component={<MainPage />}
               />
             }
@@ -50,9 +53,7 @@ export const App = () => {
             path="/signup"
             element={
               <RestrictedRoute
-                redirectTo={
-                  calculateData ? `/diary/${initialDate}` : '/calculate'
-                }
+                redirectTo={noFormDataDirect}
                 component={<RegistrationPage />}
               />
             }
@@ -61,7 +62,7 @@ export const App = () => {
             path="/login"
             element={
               <RestrictedRoute
-                redirectTo={`/diary/${initialDate}`}
+                redirectTo={noFormDataDirect}
                 component={<LoginPage />}
               />
             }
@@ -69,14 +70,17 @@ export const App = () => {
           <Route
             path="/diary/:date"
             element={
-              <PrivateRoute redirectTo="/login" component={<DiaryPage />} />
+              <PrivateRoute
+                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
+                component={<DiaryPage />}
+              />
             }
           />
           <Route
             path="/calculate"
             element={
               <PrivateRoute
-                redirectTo="/login"
+                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
                 component={<CalculatorPage />}
               />
             }
