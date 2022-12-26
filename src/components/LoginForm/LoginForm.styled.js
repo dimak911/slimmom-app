@@ -19,7 +19,7 @@ export const SigninForm = styled.form`
     padding-right: ${p => p.theme.space[0]}px;
   }
 
-  @media screen and (min-width: 1280px){
+  @media screen and (min-width: 1280px) {
     margin-bottom: 255px;
   }
 `;
@@ -28,7 +28,7 @@ export const Title = styled.h2`
   margin-bottom: ${p => p.theme.spaceForm[3]}px;
 
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
+  font-family: Verdana;
   font-style: normal;
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
@@ -46,7 +46,7 @@ export const Label = styled.label`
   margin-bottom: ${p => p.theme.spaceForm[2]}px;
 
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
+  font-family: Verdana;
   font-style: normal;
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
@@ -98,14 +98,18 @@ export const ButtonLogin = styled.button`
   border: 2px solid ${p => p.theme.colors.accent};
 
   background-color: ${p => p.theme.colors.accent};
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   color: ${p => p.theme.colors.white};
+  transition: box-shadow 300ms ease-in;
 
   cursor: pointer;
 
   :hover,
   :focus {
-  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
-  transform: translateY(-7px);
+    box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+
+    /* transform: translateY(-7px); */
+
   }
 
   @media screen and (min-width: 768px) {
@@ -133,11 +137,14 @@ export const LinkRegister = styled(NavLink)`
 
   color: ${p => p.theme.colors.accent};
   cursor: pointer;
+  transition: box-shadow 300ms ease-in;
 
   :hover,
   :focus {
-  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
-  transform: translateY(-7px);
+    box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+
+    /* transform: translateY(-7px); */
+
   }
 `;
 

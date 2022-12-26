@@ -7,7 +7,7 @@ import {
   CloseIconArrowStyled,
   CloseRectMobileStyled,
 } from './ModalDailyCalorieStyled.styled';
-import closeIconArrow from '../../icons/back-arrow.png';
+import closeIconArrow from '../../images/icons/back-arrow.png';
 
 const modalContainer = document.getElementById('modal-root');
 

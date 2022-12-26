@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { registration } from 'redux/auth/operations';
-import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import { Loader } from 'components/Loader/Loader';
@@ -45,8 +44,7 @@ export const RegistrationForm = () => {
   const onSubmitForm = async registrationData => {
     const { name, email, password } = registrationData;
 
-    dispatch(showLoading());
-    if (calculateAndCallorieData) {
+    if (calculateAndCallorieData?.countedCalories) {
       const { countedCalories, notAllowedFoodCategories, formData } =
         calculateAndCallorieData;
       const dataForDispatch = {

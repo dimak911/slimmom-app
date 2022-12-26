@@ -8,30 +8,49 @@ import {
   Ul,
   Li,
 } from './SideBar.styled';
-// import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchsideBarInfo } from 'redux/products/operations';
-import { showLoading } from 'redux/loader/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
+import { sideBarInfoSelectors } from 'redux/products/selectors';
+import { productsList } from 'redux/products/selectors';
+import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
+import axios from 'axios';
+import { getSelectedDate } from 'redux/date/selectors';
+import { initialDate } from 'App';
 
 export const SideBar = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const selectedDate = useSelector(getSelectedDate);
 
   useEffect(() => {
-    dispatch(showLoading());
+    if (!axios.defaults.headers.common.Authorization) return;
+
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
-  // const info = useSelector(sideBarInfoSelectors)
+  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
+  const products = useSelector(productsList);
+
+  const totalCalories = products.reduce(
+    (accumulator, currentValue) =>
+      accumulator + Number(currentValue.productCalories),
+    0
+  );
+  const diffCalories = (Number(callorie) - totalCalories).toFixed(2);
+  const percentage = ((totalCalories / Number(callorie)) * 100).toFixed(2);
+
   return (
     <Box>
       <SideBarContainer>
         {isLoading ? <Loader /> : null}
         <Title>
-          Сумарно на <span>20/06/2020</span>
+          Сумарно на{' '}
+          <span>
+            {selectedDate ? selectedDate : initialDate.split('-').join('.')}
+          </span>
         </Title>
         <TextBox>
           <ul>
@@ -60,22 +79,22 @@ export const SideBar = () => {
           <Ul>
             <Li>
               <P>
-                <Span>000 ккал</Span>
+                <Span> {diffCalories} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>000 ккал</Span>
+                <Span>{totalCalories} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>000 ккал</Span>
+                <Span>{callorie ?? 0} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>000 ккал</Span>
+                <Span>{isNaN(percentage) ? 0 : percentage} %</Span>
               </P>
             </Li>
           </Ul>
@@ -84,26 +103,16 @@ export const SideBar = () => {
       <SideBarContainer>
         <Title>Їжа не рекомендована</Title>
         <ul>
-          <li>
-            <P>
-              <span>Борошняні вироби</span>
-            </P>
-          </li>
-          <li>
-            <P>
-              <span>Молоко</span>
-            </P>
-          </li>
-          <li>
-            <P>
-              <span>Червоне м'ясо</span>
-            </P>
-          </li>
-          <li>
-            <P>
-              <span>Копченості</span>
-            </P>
-          </li>
+          {notRecommendedProduct &&
+            notRecommendedProduct.slice(0, 4).map(product => {
+              return (
+                <li key={product}>
+                  <P>
+                    <span>{capitalizeFirstLetter(product)}</span>
+                  </P>
+                </li>
+              );
+            })}
         </ul>
       </SideBarContainer>
     </Box>

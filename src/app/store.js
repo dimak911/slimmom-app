@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { productListSlice } from 'redux/products/slice';
 import { authReducer } from 'redux/auth/slice';
-import { calculateSlice } from 'redux/calculate/slice';
+import { calculateReducer } from 'redux/calculate/slice';
 import { loadingReducer } from 'redux/loader/slice';
+import { dateReducer } from 'redux/date/slice';
 import {
   persistStore,
   persistReducer,
@@ -24,9 +25,10 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    calculate: calculateSlice.reducer,
+    calculate: calculateReducer,
     productList: productListSlice.reducer,
     loading: loadingReducer,
+    date: dateReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -1,18 +1,16 @@
- import styled from 'styled-components';
+import styled from 'styled-components';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
 export const SigninForm = styled.form`
-  
   align-items: center;
   color: ${p => p.theme.colors.secondary};
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 768px) {
-   flex-direction: row;
+    flex-direction: row;
   }
-   @media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     padding: 80px 15px;
-    
   }
 `;
 
@@ -44,7 +42,7 @@ export const LabelProduct = styled.label`
   width: 285px;
   @media screen and (min-width: 768px) {
     width: 240px;
-    margin-right: ${p => p.theme.space[3]*6}px;
+    margin-right: ${p => p.theme.space[3] * 6}px;
   }
   @media screen and (max-width: 767px) {
     margin-bottom: 32px;
@@ -75,16 +73,25 @@ export const InputForm = styled.input`
   border-bottom: 1px solid ${p => p.theme.colors.input};
 
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
   font-style: normal;
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
   line-height: 1.21;
 `;
 
+export const ProductItem = styled.li`
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-style: normal;
+  font-size: ${p => p.theme.fontSizes.xs};
+  letter-spacing: 0.04em;
+  line-height: 1.21;
+
+  cursor: pointer;
+`;
+
 export const ButtonLogin = styled.button`
   padding: ${p => p.theme.space[3]}px;
-  width: ${p => p.theme.space[3]*6}px;
+  width: ${p => p.theme.space[3] * 6}px;
   height: ${p => p.theme.space[3] * 6}px;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   font-weight: ${p => p.theme.fontWeights.bold};
@@ -99,11 +106,23 @@ export const ButtonLogin = styled.button`
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};
 
+  transition: box-shadow 300ms ease-in;
   cursor: pointer;
-  :hover,
-  :focus {
-  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
+
+  :disabled {
+    opacity: 0.6;
   }
+
+  :enabled {
+    :hover,
+    :focus,
+    :active {
+      box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+      transform: translateY(-7px);
+    }
+  }
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+
   @media screen and (max-width: 767px) {
     margin-top: 60px;
     padding: 12px 46px;
@@ -114,11 +133,8 @@ export const ButtonLogin = styled.button`
   }
 `;
 
-
 export const Error = styled.p`
-  position: relative;
   max-width: 100%;
-  top: 10%;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-family: ${VerdanaBold};
   font-style: italic;
@@ -133,12 +149,12 @@ export const Error = styled.p`
 
 export const Span = styled.span`
   @media screen and (min-width: 768px) {
-   margin-left: auto;
+    margin-left: auto;
   }
 `;
 
 export const Div = styled.div`
   @media screen and (min-width: 768px) {
-   margin-bottom: 60px;
+    margin-bottom: 60px;
   }
 `;

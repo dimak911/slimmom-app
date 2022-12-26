@@ -40,6 +40,8 @@ export const Link = styled(NavLink)`
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
+  z-index: 3;
+  transition: color 300ms ease-in;
 
   &:hover {
     color: ${p => p.theme.colors.primary};
