@@ -4,7 +4,6 @@ import { ModalDailyCalorie } from 'components/ModalDailyCalorie';
 import { DailyCalorieIntake } from 'components/DailyCalorieIntake/DailyCalorieIntake';
 import { Wrap } from './MainPage.styled';
 import { Container } from 'components/Container.styled';
-import Footer from 'components/Footer/Footer';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalopen] = useState(false);
@@ -34,7 +33,6 @@ const MainPage = () => {
           </ModalDailyCalorie>
         )}
       </Wrap>
-      <Footer />
     </Container>
   );
 };

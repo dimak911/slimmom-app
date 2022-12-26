@@ -2,13 +2,14 @@ import { FooterContainer, FooterData, FooterSpan } from './Footer.styled';
 
 import FooterTeamBtn from './FooterTeamBtn';
 
-export default function Footer() {
+export default function Footer({ openModal }) {
+  console.log(openModal);
   return (
     <FooterContainer>
       <FooterData>
         <FooterSpan>
           © 2022 | All Rights Reserved | Developed by
-          <FooterTeamBtn />
+          <FooterTeamBtn openModal={openModal} />
         </FooterSpan>
       </FooterData>
     </FooterContainer>

@@ -10,6 +10,10 @@ export const FooterContainer = styled.footer`
   font-weight: 400;
   line-height: 1.14;
   display: flex;
+  bottom: 0;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
 
   @media screen and (min-width: 768px) {
     margin: 0;

@@ -7,7 +7,10 @@ import Serhey from './team/Serhey.jpg';
 import Lana from './team/LanaTrotsenko.jpg';
 import VictorKarnydal from './team/VictorKarnydal.jpg';
 import KonstantinLigus from './team/KonstantinLigus.jpg';
-export const team = [
+import Galina from './team/Galina.jpg';
+import Mykola from './team/Mykola.jpg';
+
+export const teams = [
   {
     id: 1,
     username: 'Dmytro Kniahnytskyi',
@@ -84,9 +87,9 @@ export const team = [
     id: 9,
     username: 'Mykola Kondratiuk',
     role: 'Developer',
-    avatar: Lana,
-    linkedin: 'https://www.linkedin.com/in/svetlana-trotsenko',
-    github: 'https://github.com/LanaLem',
+    avatar: Mykola,
+    linkedin: 'https://www.linkedin.com/in/mykola-kondratiuk-a85991228/',
+    github: 'https://github.com/Mykola28112002',
   },
 
   {
@@ -103,8 +106,8 @@ export const team = [
     id: 11,
     username: 'Galina Stepanovich',
     role: 'Developer',
-    avatar: Lana,
-    linkedin: 'https://www.linkedin.com/in/svetlana-trotsenko',
-    github: 'https://github.com/LanaLem',
+    avatar: Galina,
+    linkedin: 'https://www.linkedin.com/company/goit-start-your-career-in-it/',
+    github: 'https://github.com/HalynaStep',
   },
 ];
