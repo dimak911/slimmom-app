@@ -15,15 +15,15 @@ import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
 import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { productsList } from 'redux/products/selectors';
-// import { fetchDiaryProducts } from 'redux/products/operations';
 import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
-import { initialDate } from 'App';
 import axios from 'axios';
+import { getSelectedDate } from 'redux/date/selectors';
+import { initialDate } from 'App';
 
 export const SideBar = () => {
-  const diaryDate = initialDate.split('-').join('.');
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const selectedDate = useSelector(getSelectedDate);
 
   useEffect(() => {
     if (!axios.defaults.headers.common.Authorization) return;
@@ -33,20 +33,23 @@ export const SideBar = () => {
   const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
   const products = useSelector(productsList);
 
-  const totalCallories = products.reduce(
+  const totalCalories = products.reduce(
     (accumulator, currentValue) =>
       accumulator + Number(currentValue.productCalories),
     0
   );
-  const diffСallories = (Number(callorie) - totalCallories).toFixed(2);
-  const percentage = ((totalCallories / Number(callorie)) * 100).toFixed(2);
+  const diffCalories = (Number(callorie) - totalCalories).toFixed(2);
+  const percentage = ((totalCalories / Number(callorie)) * 100).toFixed(2);
 
   return (
     <Box>
       <SideBarContainer>
         {isLoading ? <Loader /> : null}
         <Title>
-          Сумарно на <span>{diaryDate}</span>
+          Сумарно на{' '}
+          <span>
+            {selectedDate ? selectedDate : initialDate.split('-').join('.')}
+          </span>
         </Title>
         <TextBox>
           <ul>
@@ -75,22 +78,22 @@ export const SideBar = () => {
           <Ul>
             <Li>
               <P>
-                <Span> {diffСallories} ккал</Span>
+                <Span> {diffCalories} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>{totalCallories} ккал</Span>
+                <Span>{totalCalories} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>{callorie} ккал</Span>
+                <Span>{callorie ?? 0} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>{percentage} %</Span>
+                <Span>{isNaN(percentage) ? 0 : percentage} %</Span>
               </P>
             </Li>
           </Ul>

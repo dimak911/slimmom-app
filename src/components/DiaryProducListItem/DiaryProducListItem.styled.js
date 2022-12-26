@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as cross } from '../../icons/close-cross.svg';
+import { ReactComponent as cross } from '../../images/icons/close-cross.svg';
 
 export const DiaryProductListItemStyled = styled.li`
   display: flex;

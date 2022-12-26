@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as CloseIconCross } from '../../icons/close-cross.svg';
+import { ReactComponent as CloseIconCross } from '../../images/icons/close-cross.svg';
 
 export const ModalBackdropStyled = styled.div`
   position: fixed;

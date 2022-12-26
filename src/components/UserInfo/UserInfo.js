@@ -6,7 +6,7 @@ import { calculateValue } from 'redux/calculate/slice';
 import { initialState } from 'redux/calculate/slice';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as BackArrowIcon } from '../../icons/back-arrow.svg';
+import { ReactComponent as BackArrowIcon } from '../../images/icons/back-arrow.svg';
 import {
   UserInfoContainer,
   UserName,
