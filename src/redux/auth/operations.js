@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
-axios.defaults.baseURL = 'http://localhost:3001/api/';
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
 const token = {
   set(token) {
