@@ -1,22 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { calculation, refreshCalories } from './operations';
 
 export const calculateSlice = createSlice({
   name: 'calculate',
   initialState: {
     formData: {
-      height: null,
-      age: null,
-      currentWeight: null,
-      desiredWeight: null,
-      bloodType: null,
+      height: '',
+      age: '',
+      currentWeight: '',
+      desiredWeight: '',
+      bloodType: '',
     },
     countedCalories: null
   },
-  reducers: {
-    calculateValue(state, action) {
-      return (state = action.payload);
-    },
-  },
+  extraReducers: builder => {
+    builder
+      .addCase(calculation.fulfilled, (state, action) => {
+        state.formData = action.payload.data;
+        state.countedCalories = action.payload.callorie;
+      })
+      .addCase(refreshCalories.fulfilled, (state, action) => {
+        state.formData = action.payload.data;
+        state.countedCalories = action.payload.callorie;
+      });
+  }
 });
 
-export const { calculateValue } = calculateSlice.actions;
+export const calculateReducer = calculateSlice.reducer;

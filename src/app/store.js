@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { productListSlice } from 'redux/products/slice';
 import { authReducer } from 'redux/auth/slice';
-import { calculateSlice } from 'redux/calculate/slice';
+import { calculateReducer } from 'redux/calculate/slice';
 import { loadingReducer } from 'redux/loader/slice';
 import {
   persistStore,
@@ -21,16 +21,10 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const calculatePersistConfig = {
-  key: 'calculate',
-  storage,
-  whitelist: ['formData'],
-};
-
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    calculate: persistReducer(calculatePersistConfig, calculateSlice.reducer),
+    calculate: calculateReducer,
     productList: productListSlice.reducer,
     loading: loadingReducer,
   },

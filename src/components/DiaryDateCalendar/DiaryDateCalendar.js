@@ -8,6 +8,7 @@ import { DiaryDate } from './DiaryDateCalendar.styled';
 import { useDispatch } from 'react-redux';
 import { fetchDiaryProducts } from 'redux/products/operations';
 import { useNavigate, useParams } from 'react-router-dom';
+import 'moment/locale/uk';
 
 const formatDate = date => date.split('.').join('-');
 
