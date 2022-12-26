@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import cross from './cross.svg';
+import { ReactComponent as cross } from '../../icons/close-cross.svg';
 
 export const DiaryProductListItemStyled = styled.li`
   display: flex;
@@ -56,20 +56,23 @@ export const SuffixKcal = styled.span`
   }
 `;
 
-export const Cross = styled.img`
+export const Cross = styled(cross)`
+  display: block;
   width: 10px;
   height: 10px;
   opacity: 0.6;
   cursor: pointer;
 
-  :hover {
-    opacity: 1;
-  }
+  fill: ${props => props.theme.colors.black};
+
+  :hover,
+  :focus,
   :active {
+    fill: ${props => props.theme.colors.accent};
     opacity: 1;
   }
 
-  transition: opacity 200ms ease-in;
+  transition: opacity 200ms ease-in, fill 200ms ease-in;
 
   @media (min-width: 768px) {
     width: 12px;

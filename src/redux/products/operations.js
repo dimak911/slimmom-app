@@ -25,6 +25,18 @@ export const fetchsideBarInfo = createAsyncThunk(
   }
 );
 
+export const postSideBarInfo = createAsyncThunk(
+  'diary/postInfo',
+  async (data, { rejectWithValue }) => {
+    try {
+      const result = await axios.post('/diary/dayinfo', data);
+      return result.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const removeDiaryListItem = createAsyncThunk(
   'products/removeItem',
   async (id, { rejectWithValue }) => {
