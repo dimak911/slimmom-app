@@ -10,7 +10,7 @@ import { fetchDiaryProducts } from 'redux/products/operations';
 import { useNavigate, useParams } from 'react-router-dom';
 import 'moment/locale/uk';
 import axios from 'axios';
-
+import { setSelectedDate } from 'redux/date/slice';
 
 const formatDate = date => date.split('.').join('-');
 
@@ -31,6 +31,7 @@ export const DiaryDateCalendar = () => {
     if (!axios.defaults.headers.common.Authorization) return;
 
     const formattedDate = diaryDate.split('.').join('-');
+    dispatch(setSelectedDate(diaryDate));
     dispatch(fetchDiaryProducts(formattedDate));
   }, [dispatch, diaryDate, navigate]);
 
