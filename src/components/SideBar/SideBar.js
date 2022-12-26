@@ -18,6 +18,7 @@ import { productsList } from 'redux/products/selectors';
 import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 import axios from 'axios';
 import { getSelectedDate } from 'redux/date/selectors';
+import { initialDate } from 'App';
 
 export const SideBar = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ export const SideBar = () => {
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
-  const { calorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
+  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
   const products = useSelector(productsList);
 
   const totalCalories = products.reduce(
@@ -38,15 +39,18 @@ export const SideBar = () => {
       accumulator + Number(currentValue.productCalories),
     0
   );
-  const diffCalories = (Number(calorie) - totalCalories).toFixed(2);
-  const percentage = ((totalCalories / Number(calorie)) * 100).toFixed(2);
+  const diffCalories = (Number(callorie) - totalCalories).toFixed(2);
+  const percentage = ((totalCalories / Number(callorie)) * 100).toFixed(2);
 
   return (
     <Box>
       <SideBarContainer>
         {isLoading ? <Loader /> : null}
         <Title>
-          Сумарно на <span>{selectedDate}</span>
+          Сумарно на{' '}
+          <span>
+            {selectedDate ? selectedDate : initialDate.split('-').join('.')}
+          </span>
         </Title>
         <TextBox>
           <ul>
@@ -85,12 +89,12 @@ export const SideBar = () => {
             </Li>
             <Li>
               <P>
-                <Span>{calorie} ккал</Span>
+                <Span>{callorie ?? 0} ккал</Span>
               </P>
             </Li>
             <Li>
               <P>
-                <Span>{percentage} %</Span>
+                <Span>{isNaN(percentage) ? 0 : percentage} %</Span>
               </P>
             </Li>
           </Ul>
