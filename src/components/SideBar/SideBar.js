@@ -27,9 +27,7 @@ export const SideBar = () => {
 
   useEffect(() => {
     if (!axios.defaults.headers.common.Authorization) return;
-
     dispatch(fetchsideBarInfo());
-    // dispatch(fetchDiaryProducts(initialDate));
   }, [dispatch]);
 
   const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);

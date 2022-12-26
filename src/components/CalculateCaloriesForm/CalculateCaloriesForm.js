@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { calculateValue } from 'redux/calculate/slice';
-import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { calculation } from 'redux/calculate/operations';
+import { postSideBarInfo } from 'redux/products/operations';
+import { selectCalculateValue } from 'redux/calculate/selectors';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 
 import {
   Form,
@@ -17,27 +20,46 @@ import {
   Column,
   ColumnWrap,
   Error,
-} from './DailyCaloriesForm.styled';
+} from './CalculateCaloriesForm.styled';
 import { getCategoriesByBloodType } from 'helpers/getCategoriesByBloodType';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { initialDate } from 'App';
+import { selectUser } from 'redux/auth/selectors';
 
-export const DailyCaloriesForm = ({ openModal }) => {
+export const CalculateCaloriesForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const { data } = useSelector(selectUser);
+  const {
+    data: { height, age, currentWeight, desiredWeight, bloodType },
+  } = useSelector(selectCalculateValue);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+  // console.log(isLoading, isLoggedIn, data);
 
   const {
     register,
     handleSubmit,
     watch,
-    reset,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
-    defaultValues: {
-      height: '',
-      age: '',
-      currentWeight: '',
-      desiredWeight: '',
-      bloodType: '',
-    },
+    defaultValues:
+      isLoggedIn && height
+        ? {
+            height: height,
+            age: age,
+            currentWeight: currentWeight,
+            desiredWeight: desiredWeight,
+            bloodType: bloodType,
+          }
+        : {
+            height: data.height,
+            age: data.age,
+            currentWeight: data.currentWeight,
+            desiredWeight: data.desiredWeight,
+            bloodType: data.bloodType,
+          },
   });
 
   const heightValue = watch('height');
@@ -61,10 +83,15 @@ export const DailyCaloriesForm = ({ openModal }) => {
       notRecommendedProduct: notAllowedFoodCategories,
       data: formData,
     };
-    const dataForModal = { countedCalories, notAllowedFoodCategories };
-    dispatch(calculateValue(dataForDispatch));
-    openModal(dataForModal);
-    reset();
+    dispatch(calculation(dataForDispatch));
+
+    dispatch(
+      postSideBarInfo({
+        callorie: countedCalories,
+        notRecommendedProduct: notAllowedFoodCategories,
+      })
+    );
+    navigate(`/diary/${initialDate}`);
   };
 
   const location = useLocation();

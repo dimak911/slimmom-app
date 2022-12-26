@@ -57,6 +57,8 @@ export const DiaryAddProductForm = ({ img }) => {
   }, [productValue]);
 
   useEffect(() => {
+    // if (!axios.defaults.headers.common.Authorization) return;
+
     setValue('product', productInput);
   }, [setValue, productInput]);
 

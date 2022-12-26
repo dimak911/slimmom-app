@@ -15,7 +15,7 @@ import { selectCalculateValue } from 'redux/calculate/selectors';
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [burgerActive, setBurgerActive] = useState(false);
-  const { formData } = useSelector(selectCalculateValue);
+  const { data } = useSelector(selectCalculateValue);
 
   const burgerAction = () => {
     setBurgerActive(!burgerActive);
@@ -30,7 +30,7 @@ export const Header = () => {
           <>
             <NavigationHeader isLoggedIn={isLoggedIn} />
             <UserInfo burger={burgerActive} setBurger={setBurgerActive} />
-            {formData?.height &&
+            {data?.height &&
               (burgerActive ? (
                 <CrossIconStyled onClick={burgerAction} />
               ) : (

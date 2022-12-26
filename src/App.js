@@ -9,6 +9,8 @@ import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import moment from 'moment';
+import { refreshCalories } from 'redux/calculate/operations';
+import axios from 'axios';
 export const initialDate = moment(new Date()).format('DD-MM-YYYY');
 
 const RegistrationPage = lazy(() =>
@@ -31,6 +33,10 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
+
+    if (!axios.defaults.headers.common.Authorization) return;
+
+    dispatch(refreshCalories());
   }, [dispatch]);
 
   return isRefreshing ? (

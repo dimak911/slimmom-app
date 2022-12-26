@@ -1,46 +1,56 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { registration, login, logOut } from '../auth/operations';
 import { fetchsideBarInfo } from 'redux/products/operations';
+import { refreshCalories } from 'redux/calculate/operations';
 const loadingSlice = createSlice({
   name: 'loading',
   initialState: {
     isLoading: false,
   },
   extraReducers: builder => {
-    builder.addCase(registration.pending, (state) => {
+    builder.addCase(registration.pending, state => {
       state.isLoading = true;
     });
-    builder.addCase(registration.fulfilled, (state) => {
+    builder.addCase(registration.fulfilled, state => {
       state.isLoading = false;
     });
-    builder.addCase(registration.rejected, (state) => {
+    builder.addCase(registration.rejected, state => {
       state.isLoading = false;
     });
-    builder.addCase(login.pending, (state) => {
+    builder.addCase(login.pending, state => {
       state.isLoading = true;
     });
-    builder.addCase(login.fulfilled, (state) => {
+    builder.addCase(login.fulfilled, state => {
       state.isLoading = false;
     });
-    builder.addCase(login.rejected, (state) => {
+    builder.addCase(login.rejected, state => {
       state.isLoading = false;
     });
-        builder.addCase(logOut.pending, (state) => {
+    builder.addCase(logOut.pending, state => {
       state.isLoading = true;
     });
-    builder.addCase(logOut.fulfilled, (state) => {
+    builder.addCase(logOut.fulfilled, state => {
       state.isLoading = false;
     });
-    builder.addCase(logOut.rejected, (state) => {
+    builder.addCase(logOut.rejected, state => {
       state.isLoading = false;
     });
-    builder.addCase(fetchsideBarInfo.pending, (state) => {
+    builder.addCase(fetchsideBarInfo.pending, state => {
       state.isLoading = true;
     });
-    builder.addCase(fetchsideBarInfo.fulfilled, (state) => {
+    builder.addCase(fetchsideBarInfo.fulfilled, state => {
       state.isLoading = false;
     });
-    builder.addCase(fetchsideBarInfo.rejected, (state) => {
+    builder.addCase(fetchsideBarInfo.rejected, state => {
+      state.isLoading = false;
+    });
+    builder.addCase(refreshCalories.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(refreshCalories.fulfilled, state => {
+      state.isLoading = false;
+    });
+    builder.addCase(refreshCalories.rejected, state => {
       state.isLoading = false;
     });
   },

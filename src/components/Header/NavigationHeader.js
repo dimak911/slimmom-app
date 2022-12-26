@@ -6,7 +6,7 @@ import { Link, HeaderNavigationWrapper } from './NavigationStyledHeader';
 
 export const NavigationHeader = ({ isLoggedIn }) => {
   const location = useLocation();
-  const { formData } = useSelector(selectCalculateValue);
+  const { data } = useSelector(selectCalculateValue);
 
   return (
     <HeaderNavigationWrapper
@@ -14,7 +14,7 @@ export const NavigationHeader = ({ isLoggedIn }) => {
       location={location.pathname}
     >
       {isLoggedIn ? (
-        formData?.height && (
+        data?.height && (
           <>
             <Link to={`/diary/${moment(new Date()).format('DD-MM-YYYY')}`}>
               ЩОДЕННИК
