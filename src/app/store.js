@@ -3,6 +3,7 @@ import { productListSlice } from 'redux/products/slice';
 import { authReducer } from 'redux/auth/slice';
 import { calculateReducer } from 'redux/calculate/slice';
 import { loadingReducer } from 'redux/loader/slice';
+import { dateReducer } from 'redux/date/slice';
 import {
   persistStore,
   persistReducer,
@@ -27,6 +28,7 @@ export const store = configureStore({
     calculate: calculateReducer,
     productList: productListSlice.reducer,
     loading: loadingReducer,
+    date: dateReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
