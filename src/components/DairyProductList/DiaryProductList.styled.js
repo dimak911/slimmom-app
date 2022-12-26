@@ -23,9 +23,3 @@ export const DiaryProductListStyled = styled.ul`
     background-color: ${p => p.theme.colors.count};
   }
 `;
-
-export const DiaryProductListItemStyled = styled.li`
-  display: flex;
-  margin-bottom: 16px;
-`;
-

@@ -1,11 +1,26 @@
-import { Link ,Section,Wrapper} from './NavigationBurgerMenu.styled';
+import { getSelectedDate } from 'redux/date/selectors';
+import { Link, Section, Wrapper } from './NavigationBurgerMenu.styled';
+import { initialDate } from 'App';
+import { useSelector } from 'react-redux';
 
+export const NavigationBurgerMenu = ({ burgerActive, setBurger }) => {
+  const selectedDate = useSelector(getSelectedDate);
 
-export const NavigationBurgerMenu = () => (
-<Section> 
-  <Wrapper>
-    <Link to="">ЩОДЕННИК</Link>
-    <Link to="">КАЛЬКУЛЯТОР</Link>
-  </Wrapper>
-</Section>
-);
+  return (
+    <Section burgerActive={burgerActive}>
+      <Wrapper>
+        <Link
+          to={`/diary/${
+            selectedDate ? selectedDate.split('.').join('-') : initialDate
+          }`}
+          onClick={() => setBurger(false)}
+        >
+          ЩОДЕННИК
+        </Link>
+        <Link to="/calculate" onClick={() => setBurger(false)}>
+          КАЛЬКУЛЯТОР
+        </Link>
+      </Wrapper>
+    </Section>
+  );
+};

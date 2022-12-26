@@ -1,36 +1,34 @@
 import styled from 'styled-components';
-import { ReactComponent as CloseIconCross } from '../../icons/close-cross.svg';
+import { ReactComponent as CloseIconCross } from '../../images/icons/close-cross.svg';
 
 export const ModalBackdropStyled = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(33, 33, 33, 0.12);
-
-  @media (max-width: 320px) {
-    top: 80px;
-  }
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(33, 33, 33, 0.12);
+  z-index: 1200;
 `;
 
 export const ModalDailyCalorieStyled = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 672px;
-  height: 574px;
-  margin: 0 auto 0;
-  padding: ${props => props.theme.space[6]}px 0 0 0;
   background-color: ${props => props.theme.colors.white};
+  height: 100%;
+  width: 100%;
+  margin: 0 auto 0;
+  z-index: 999;
+  padding: ${props => props.theme.space[6]}px 0 0 0;
 
-  @media (max-width: 672px) {
-    width: 100%;
-  }
-  @media (max-width: 320px) {
-    height: 100%;
-    padding: 0;
-    top: 370px;
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 672px;
+    height: 574px;
   }
 `;
 

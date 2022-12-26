@@ -13,10 +13,11 @@ import {
   LogoSlim,
   LogoMom,
 } from './Logo.styled';
+import { initialDate } from 'App';
 
 export const Logo = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const path = isLoggedIn ? '/diary/:date' : '/';
+  const path = isLoggedIn ? `/diary/${initialDate}` : '/';
   const location = useLocation();
 
   return (
