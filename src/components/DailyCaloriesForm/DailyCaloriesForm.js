@@ -1,8 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculateValue } from 'redux/calculate/slice';
-import { selectCalculateValue } from 'redux/calculate/selectors'
+import { calculation } from 'redux/calculate/operations';
+import { postSideBarInfo } from 'redux/products/operations';
+import { selectCalculateValue } from 'redux/calculate/selectors';
 import { useLocation } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 
@@ -24,33 +25,34 @@ import { getCategoriesByBloodType } from 'helpers/getCategoriesByBloodType';
 
 export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
+
   const { formData } = useSelector(selectCalculateValue);
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const {
     register,
     handleSubmit,
-    reset,
     watch,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
-    defaultValues: isLoggedIn ? {
-      height: formData.height,
-      age: formData.age,
-      currentWeight: formData.currentWeight,
-      desiredWeight: formData.desiredWeight,
-      bloodType: formData.bloodType,
-    } :
-      {
-        height: '',
-        age: '',
-        currentWeight: '',
-        desiredWeight: '',
-        bloodType: '',
-      },
+    defaultValues:
+      isLoggedIn && formData
+        ? {
+          height: formData.height,
+          age: formData.age,
+          currentWeight: formData.currentWeight,
+          desiredWeight: formData.desiredWeight,
+          bloodType: formData.bloodType,
+        }
+        : {
+          height: '',
+          age: '',
+          currentWeight: '',
+          desiredWeight: '',
+          bloodType: '',
+        },
   });
-
-  console.log(formData)
 
   const heightValue = watch('height');
   const ageValue = watch('age');
@@ -69,14 +71,20 @@ export const DailyCaloriesForm = ({ openModal }) => {
     );
     const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
     const dataForDispatch = {
-      countedCalories,
-      notAllowedFoodCategories,
-      formData,
+      callorie: countedCalories,
+      notRecommendedProduct: notAllowedFoodCategories,
+      data: formData,
     };
     const dataForModal = { countedCalories, notAllowedFoodCategories };
-    dispatch(calculateValue(dataForDispatch));
+    dispatch(calculation(dataForDispatch));
+    isLoggedIn &&
+      dispatch(
+        postSideBarInfo({
+          callorie: countedCalories,
+          notRecommendedProduct: notAllowedFoodCategories,
+        })
+      );
     !isLoggedIn && openModal(dataForModal);
-    reset();
   };
 
   const location = useLocation();
@@ -94,9 +102,13 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 type="number"
                 {...register('height', {
                   required: 'Будь ласка, введіть свій зріст',
-                  minLength: {
-                    value: 2,
-                    message: 'Введіть принаймні двозначне число',
+                  min: {
+                    value: 100,
+                    message: 'Мінімальний зріст 100 см',
+                  },
+                  max: {
+                    value: 250,
+                    message: 'Максимальний зріст 250 см',
                   },
                 })}
               />
@@ -109,9 +121,13 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 type="number"
                 {...register('age', {
                   required: 'Будь ласка, введіть свій вік',
-                  minLength: {
-                    value: 2,
-                    message: 'Введіть принаймні двозначне число',
+                  min: {
+                    value: 18,
+                    message: 'Мінімальний вік 18 років',
+                  },
+                  max: {
+                    value: 100,
+                    message: 'Максимальний вік 100 років',
                   },
                 })}
               />
@@ -124,9 +140,13 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 type="number"
                 {...register('currentWeight', {
                   required: 'Введіть свою поточну вагу',
-                  minLength: {
-                    value: 2,
-                    message: 'Введіть принаймні двозначне число',
+                  min: {
+                    value: 20,
+                    message: 'Мінімальниа вага 20 кг',
+                  },
+                  max: {
+                    value: 500,
+                    message: 'Максимальниа вага 500 кг',
                   },
                 })}
               />
@@ -144,9 +164,13 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 type="number"
                 {...register('desiredWeight', {
                   required: 'Будь ласка, введіть бажану вагу',
-                  minLength: {
-                    value: 2,
-                    message: 'Введіть принаймні двозначне число',
+                  min: {
+                    value: 20,
+                    message: 'Мінімальниа вага 20 кг',
+                  },
+                  max: {
+                    value: 500,
+                    message: 'Максимальниа вага 500 кг',
                   },
                 })}
               />
@@ -158,26 +182,40 @@ export const DailyCaloriesForm = ({ openModal }) => {
             <BloodTypeValue>{bloodTypeValue}</BloodTypeValue>
             <RadiobuttonWrapper>
               <RadiobuttonLabel>
+                <input {...register('bloodType')} type="radio" value="1" />1
+              </RadiobuttonLabel>
+
+              <RadiobuttonLabel>
                 <input
                   {...register('bloodType', {
-                    required: 'Виберіть свою групу крові',
+                    required: 'Оберіть свою групу крові',
                   })}
                   type="radio"
-                  value="1"
+                  value="2"
                 />
-                1
+                2
               </RadiobuttonLabel>
 
               <RadiobuttonLabel>
-                <input {...register('bloodType')} type="radio" value="2" />2
+                <input
+                  {...register('bloodType', {
+                    required: 'Оберіть свою групу крові',
+                  })}
+                  type="radio"
+                  value="3"
+                />
+                3
               </RadiobuttonLabel>
 
               <RadiobuttonLabel>
-                <input {...register('bloodType')} type="radio" value="3" />3
-              </RadiobuttonLabel>
-
-              <RadiobuttonLabel>
-                <input {...register('bloodType')} type="radio" value="4" />4
+                <input
+                  {...register('bloodType', {
+                    required: 'Оберіть свою групу крові',
+                  })}
+                  type="radio"
+                  value="4"
+                />
+                4
               </RadiobuttonLabel>
             </RadiobuttonWrapper>
             {errors?.bloodType && <Error>{errors?.bloodType?.message}</Error>}

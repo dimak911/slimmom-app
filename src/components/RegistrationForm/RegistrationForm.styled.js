@@ -24,7 +24,7 @@ export const RegisterForm = styled.form`
     padding-right: ${p => p.theme.space[0]}px;
   }
 
-  @media screen and (min-width: 1280px){
+  @media screen and (min-width: 1280px) {
     margin-bottom: 180px;
   }
 `;
@@ -32,7 +32,7 @@ export const RegisterForm = styled.form`
 export const Title = styled.h2`
   margin-bottom: ${p => p.theme.spaceForm[3]}px;
 
-  font-family: Verdana-Bold;
+  font-family: Verdana;
   font-size: ${p => p.theme.fontSizes.xs};
   text-transform: uppercase;
   text-align: center;
@@ -41,6 +41,7 @@ export const Title = styled.h2`
 `;
 
 export const Label = styled.label`
+  font-family: Verdana;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -79,13 +80,15 @@ export const ButtonRegister = styled.button`
 
   background-color: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.white};
-
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   cursor: pointer;
+
+  transition: box-shadow 300ms ease-in;
 
   :hover,
   :focus {
-  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
-  transform: translateY(-7px);
+    box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+    /* transform: translateY(-7px); */
   }
 
   @media screen and (min-width: 768px) {
@@ -107,11 +110,12 @@ export const LinkLoggin = styled(NavLink)`
 
   color: ${p => p.theme.colors.accent};
   cursor: pointer;
+  transition: box-shadow 300ms ease-in;
 
   :hover,
   :focus {
-  box-shadow: 0px 15px 20px rgba(252,132,45, 0.4);
-  transform: translateY(-7px); 
+    box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+    /* transform: translateY(-7px);  */
   }
 `;
 

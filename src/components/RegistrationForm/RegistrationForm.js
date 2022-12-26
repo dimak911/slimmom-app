@@ -44,7 +44,7 @@ export const RegistrationForm = () => {
   const onSubmitForm = async registrationData => {
     const { name, email, password } = registrationData;
 
-    if (calculateAndCallorieData) {
+    if (calculateAndCallorieData?.countedCalories) {
       const { countedCalories, notAllowedFoodCategories, formData } =
         calculateAndCallorieData;
       const dataForDispatch = {
