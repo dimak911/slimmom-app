@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculation, refreshCalories } from 'redux/calculate/operations';
+import { calculation } from 'redux/calculate/operations';
 import { postSideBarInfo } from 'redux/products/operations';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import { useLocation } from 'react-router-dom';
-import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { addCalories } from 'redux/calculate/slice';
 
 import {
@@ -29,14 +29,6 @@ export const DailyCaloriesForm = ({ openModal }) => {
 
   const { formData } = useSelector(selectCalculateValue);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isRefreshing = useSelector(selectIsRefreshing);
-
-
-  useEffect(() => {
-    isLoggedIn && dispatch(refreshCalories());
-    !isRefreshing && dispatch(refreshCalories());
-  }, [dispatch, isLoggedIn, isRefreshing]);
-
 
   const {
     register,
