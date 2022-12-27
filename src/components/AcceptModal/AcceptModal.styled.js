@@ -20,7 +20,7 @@ export const ModalDailyCalorieStyled = styled.div`
   width: 100%;
   margin: 0 auto 0;
   z-index: 999;
-  padding: ${props => props.theme.space[6]}px 0 0 0;
+  padding: 74px 20px 40px 20px;
 
   @media (min-width: 768px) {
     position: absolute;
@@ -28,7 +28,7 @@ export const ModalDailyCalorieStyled = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     width: 450px;
-    height: 240px;
+    max-height: 250px;
     border-radius: 20px;
   }
 `;
