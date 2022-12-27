@@ -10,12 +10,12 @@ import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { UserInfo } from '../../components/UserInfo/UserInfo';
 import { useState } from 'react';
 import { NavigationBurgerMenu } from '../../components/Navigation/NavigationBurgerMenu';
-import { selectCalculateValue } from 'redux/calculate/selectors';
+import { selectUserData } from 'redux/auth/selectors';
 
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [burgerActive, setBurgerActive] = useState(false);
-  const { data } = useSelector(selectCalculateValue);
+  const { data } = useSelector(selectUserData);
 
   const burgerAction = () => {
     setBurgerActive(!burgerActive);

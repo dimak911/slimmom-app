@@ -1,6 +1,6 @@
+import React, { useEffect } from 'react';
 import { Header } from 'components/Header/Header';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { Suspense } from 'react';
 import { FoneImages, Gradient } from './Layout.styled';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
@@ -8,6 +8,7 @@ import { Container } from 'components/Container.styled';
 import { HeaderUnderline } from 'components/Header/HeaderStyled';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
 
 export const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -20,7 +21,7 @@ export const Layout = () => {
             <Header />
           </Container>
           <HeaderUnderline />
-          <Suspense >
+          <Suspense>
             <Outlet />
           </Suspense>
         </FoneImages>
@@ -30,7 +31,7 @@ export const Layout = () => {
             <Header />
           </Container>
           <HeaderUnderline />
-          <Suspense >
+          <Suspense>
             <Outlet />
           </Suspense>
         </Gradient>

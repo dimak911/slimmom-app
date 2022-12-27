@@ -19,18 +19,19 @@ import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 import axios from 'axios';
 import { getSelectedDate } from 'redux/date/selectors';
 import { initialDate } from 'App';
+import { selectUserData } from 'redux/auth/selectors';
 
 export const SideBar = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const selectedDate = useSelector(getSelectedDate);
 
-  useEffect(() => {
-    if (!axios.defaults.headers.common.Authorization) return;
-    dispatch(fetchsideBarInfo());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (!axios.defaults.headers.common.Authorization) return;
+  //   dispatch(fetchsideBarInfo());
+  // }, [dispatch]);
 
-  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
+  const { calorie, notRecommendedProduct } = useSelector(selectUserData);
   const products = useSelector(productsList);
 
   const totalCalories = products.reduce(
@@ -38,8 +39,8 @@ export const SideBar = () => {
       accumulator + Number(currentValue.productCalories),
     0
   );
-  const diffCalories = (Number(callorie) - totalCalories).toFixed(2);
-  const percentage = ((totalCalories / Number(callorie)) * 100).toFixed(2);
+  const diffCalories = (Number(calorie) - totalCalories).toFixed(2);
+  const percentage = ((totalCalories / Number(calorie)) * 100).toFixed(2);
 
   return (
     <Box>
@@ -88,7 +89,7 @@ export const SideBar = () => {
             </Li>
             <Li>
               <P>
-                <Span>{callorie ?? 0} ккал</Span>
+                <Span>{calorie ?? 0} ккал</Span>
               </P>
             </Li>
             <Li>

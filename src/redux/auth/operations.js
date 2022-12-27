@@ -69,3 +69,16 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const addData = createAsyncThunk(
+  'auth/addData',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/auth/adddata', credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

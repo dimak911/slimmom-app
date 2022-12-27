@@ -43,7 +43,7 @@ export const DiaryAddProductForm = ({ img }) => {
 
   const [products, setProducts] = useState([]);
   const [productInput, setProductInput] = useState('');
-  const [callories, setCallories] = useState('');
+  const [calories, setCallories] = useState('');
   useEffect(() => {
     if (productValue.length > 1) {
       axios.get(`products?productTitle=${productValue}`).then(response => {
@@ -63,11 +63,11 @@ export const DiaryAddProductForm = ({ img }) => {
   }, [setValue, productInput]);
 
   const onSubmitForm = () => {
-    const calloriesCounted = ((callories * weigthValue) / 100).toString();
+    const caloriesCounted = ((calories * weigthValue) / 100).toString();
     const product = {
       productName: productValue,
       productWeight: weigthValue,
-      productCalories: calloriesCounted,
+      productCalories: caloriesCounted,
       date: date,
     };
     dispatch(addDiaryListItem(product));

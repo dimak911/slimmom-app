@@ -17,11 +17,12 @@ import {
   Error,
 } from './RegistrationForm.styled';
 import { toast } from 'react-toastify';
+import { selectUserData } from 'redux/auth/selectors';
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
-  const calculateAndCallorieData = useSelector(selectCalculateValue);
   const isLoading = useSelector(selectIsLoading);
+  const userData = useSelector(selectUserData);
 
   const {
     register,
@@ -44,17 +45,18 @@ export const RegistrationForm = () => {
   const onSubmitForm = async registrationData => {
     const { name, email, password } = registrationData;
 
-    if (calculateAndCallorieData?.countedCalories) {
-      const { countedCalories, notAllowedFoodCategories, formData } =
-        calculateAndCallorieData;
+    if (userData?.calorie) {
+      const { calorie, notRecommendedProduct, data } = userData;
+
       const dataForDispatch = {
         name,
         email: email.toLowerCase(),
         password,
-        callorie: countedCalories,
-        data: formData,
-        notRecommendedProduct: notAllowedFoodCategories,
+        calorie,
+        data,
+        notRecommendedProduct,
       };
+
       const result = await dispatch(registration(dataForDispatch));
 
       toast.error(result.payload.message);

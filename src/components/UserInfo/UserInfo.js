@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 
 import { selectUserName } from 'redux/auth/selectors';
-import { calculateValue } from 'redux/calculate/slice';
-import { initialState } from 'redux/calculate/slice';
+import { addUserFormdata } from 'redux/auth/slice';
+import { initialState } from 'redux/auth/slice';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as BackArrowIcon } from '../../images/icons/back-arrow.svg';
@@ -21,7 +21,7 @@ export const UserInfo = ({ burgerActive }) => {
   const navigate = useNavigate();
 
   const isLogout = () => {
-    dispatch(calculateValue(initialState));
+    dispatch(addUserFormdata(initialState));
     dispatch(logOut());
     navigate('/');
   };

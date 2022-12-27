@@ -16,6 +16,7 @@ import {
   ButtonWrap,
   Error,
 } from './LoginForm.styled';
+import { refreshUser } from 'redux/auth/operations';
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,8 @@ export const LogInForm = () => {
         password,
       })
     );
+    await dispatch(refreshUser());
+
     toast.error(result.payload.message);
 
     reset();

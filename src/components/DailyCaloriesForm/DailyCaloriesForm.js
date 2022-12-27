@@ -20,6 +20,8 @@ import {
 } from './DailyCaloriesForm.styled';
 import { getCategoriesByBloodType } from 'helpers/getCategoriesByBloodType';
 
+import { addUserFormdata } from 'redux/auth/slice';
+
 export const DailyCaloriesForm = ({ openModal }) => {
   const dispatch = useDispatch();
 
@@ -57,12 +59,13 @@ export const DailyCaloriesForm = ({ openModal }) => {
     );
     const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
     const dataForDispatch = {
-      callorie: countedCalories,
+      calorie: countedCalories,
       notRecommendedProduct: notAllowedFoodCategories,
       data: formData,
     };
     const dataForModal = { countedCalories, notAllowedFoodCategories };
-    dispatch(calculateValue(dataForDispatch));
+    // dispatch(calculateValue(dataForDispatch));
+    dispatch(addUserFormdata(dataForDispatch));
     openModal(dataForModal);
     reset();
   };
