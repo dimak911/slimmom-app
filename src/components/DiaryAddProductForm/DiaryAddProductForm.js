@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { addDiaryListItem } from '../../redux/products/operations';
-import { useDispatch } from 'react-redux';
 
 import {
   SigninForm,
@@ -14,9 +17,6 @@ import {
   Div,
 } from './DiaryAddProductForm.styled';
 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 // axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
 // axios.defaults.baseURL = 'http://localhost:3001/api/';
 
@@ -81,10 +81,6 @@ export const DiaryAddProductForm = ({ img }) => {
             type="text"
             {...register('product', {
               required: 'Введіть назву продукту/страви',
-              // pattern: {
-              //   value: /^А-Яа-яґҐЁёІіЇїЄє'’ʼ\s-$/i,
-              //   message: 'Введіть українською',
-              // },
             })}
           />
           {errors?.product && <Error>{errors?.product?.message}</Error>}

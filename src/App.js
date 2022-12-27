@@ -1,17 +1,15 @@
-import React, { lazy, useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/operations';
+import { refreshCalories } from 'redux/calculate/operations';
+import { selectCalculateValue } from 'redux/calculate/selectors';
 import { selectIsRefreshing, selectIsLoggedIn } from 'redux/auth/selectors';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
-import { Route, Routes, Navigate } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
-import { selectCalculateValue } from 'redux/calculate/selectors';
-import moment from 'moment';
-import { refreshCalories } from 'redux/calculate/operations';
-
-export const initialDate = moment(new Date()).format('DD-MM-YYYY');
+import { routes } from 'helpers/constants';
 
 const RegistrationPage = lazy(() =>
   import('pages/RegistrationPage/RegistrationPage')
@@ -29,8 +27,8 @@ export const App = () => {
   const { isRefreshing } = useSelector(selectIsRefreshing);
   const { isLoggedIn } = useSelector(selectIsLoggedIn);
   const noFormDataDirect = !calculateData.countedCalories
-    ? '/calculate'
-    : `/diary/${initialDate}`;
+    ? routes.calculate
+    : routes.diaryToday;
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -44,9 +42,9 @@ export const App = () => {
     <>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path={routes.main} element={<Layout />}>
           <Route
-            path="/"
+            path={routes.main}
             element={
               <RestrictedRoute
                 redirectTo={noFormDataDirect}
@@ -55,7 +53,7 @@ export const App = () => {
             }
           />
           <Route
-            path="/signup"
+            path={routes.signup}
             element={
               <RestrictedRoute
                 redirectTo={noFormDataDirect}
@@ -64,7 +62,7 @@ export const App = () => {
             }
           />
           <Route
-            path="/login"
+            path={routes.login}
             element={
               <RestrictedRoute
                 redirectTo={noFormDataDirect}
@@ -73,26 +71,30 @@ export const App = () => {
             }
           />
           <Route
-            path="/diary/:date"
+            path={routes.diaryPath}
             element={
               <PrivateRoute
-                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
+                redirectTo={
+                  !calculateData.countedCalories ? routes.main : routes.login
+                }
                 component={<DiaryPage />}
               />
             }
           />
           <Route
-            path="/calculate"
+            path={routes.calculate}
             element={
               <PrivateRoute
-                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
+                redirectTo={
+                  !calculateData.countedCalories ? routes.main : routes.login
+                }
                 component={<CalculatorPage />}
               />
             }
           />
         </Route>
 
-        <Route path="*" element={<Navigate to="/" replace />}></Route>
+        <Route path="*" element={<Navigate to={routes.main} replace />}></Route>
       </Routes>
     </>
   );
