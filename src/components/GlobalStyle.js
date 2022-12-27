@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    /* position: relative; */
     margin: 0;
     font-family: "Verdana";
     -webkit-font-smoothing: antialiased;

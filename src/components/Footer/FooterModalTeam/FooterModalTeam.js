@@ -6,12 +6,12 @@ import {
   CloseIconCrossStyled,
   CloseIconArrowStyled,
   CloseRectMobileStyled,
-} from './ModalDailyCalorieStyled.styled';
-import closeIconArrow from '../../images/icons/back-arrow.png';
+} from './FooterModalTeam.styled';
+import closeIconArrow from '../../../images/icons/back-arrow.png';
 
 const modalContainer = document.getElementById('modal-root');
 
-export function ModalDailyCalorie({ closeModal, children, calculateData }) {
+export function FooterModalTeam({ closeModal, children }) {
   useEffect(() => {
     const keydownHandler = event => {
       if (event.code === 'Escape') {
@@ -35,7 +35,6 @@ export function ModalDailyCalorie({ closeModal, children, calculateData }) {
         <CloseRectMobileStyled onClick={() => closeModal()}>
           <CloseIconArrowStyled src={closeIconArrow} alt="back arrow" />
         </CloseRectMobileStyled>
-
         {children}
       </ModalDailyCalorieStyled>
     </ModalBackdropStyled>,
