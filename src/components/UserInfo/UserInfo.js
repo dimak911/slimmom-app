@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
-
+import { removeCalories } from 'redux/calculate/slice';
 import { selectUserName } from 'redux/auth/selectors';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +21,7 @@ export const UserInfo = ({ burgerActive }) => {
   const isLogout = () => {
     dispatch(logOut());
     navigate('/');
+    dispatch(removeCalories())
   };
 
   const location = useLocation();

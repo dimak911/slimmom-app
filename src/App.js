@@ -1,7 +1,7 @@
 import React, { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
-import { selectIsRefreshing } from 'redux/auth/selectors';
+import { selectIsRefreshing, selectIsLoggedIn } from 'redux/auth/selectors';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { Route, Routes, Navigate } from 'react-router-dom';
@@ -27,14 +27,16 @@ export const App = () => {
   const dispatch = useDispatch();
   const calculateData = useSelector(selectCalculateValue);
   const { isRefreshing } = useSelector(selectIsRefreshing);
+  const { isLoggedIn } = useSelector(selectIsLoggedIn);
   const noFormDataDirect = !calculateData.countedCalories
     ? '/calculate'
     : `/diary/${initialDate}`;
 
   useEffect(() => {
     dispatch(refreshUser());
-    dispatch(refreshCalories());
-  }, [dispatch]);
+    isLoggedIn && dispatch(refreshCalories());
+    !isRefreshing && dispatch(refreshCalories());
+  }, [dispatch, isLoggedIn, isRefreshing]);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>

@@ -13,12 +13,12 @@ import { fetchsideBarInfo } from 'redux/products/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
-import { sideBarInfoSelectors } from 'redux/products/selectors';
 import { productsList } from 'redux/products/selectors';
 import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 import axios from 'axios';
 import { getSelectedDate } from 'redux/date/selectors';
 import { initialDate } from 'App';
+import { selectCalculateValue } from 'redux/calculate/selectors';
 
 export const SideBar = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export const SideBar = () => {
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
-  const { callorie, notRecommendedProduct } = useSelector(sideBarInfoSelectors);
+  const { countedCalories, notAllowedFoodCategories } = useSelector(selectCalculateValue);
   const products = useSelector(productsList);
 
   const totalCalories = products.reduce(
@@ -39,8 +39,8 @@ export const SideBar = () => {
       accumulator + Number(currentValue.productCalories),
     0
   );
-  const diffCalories = (Number(callorie) - totalCalories).toFixed(2);
-  const percentage = ((totalCalories / Number(callorie)) * 100).toFixed(2);
+  const diffCalories = (Number(countedCalories) - totalCalories).toFixed(2);
+  const percentage = ((totalCalories / Number(countedCalories)) * 100).toFixed(2);
 
   return (
     <Box>
@@ -89,7 +89,7 @@ export const SideBar = () => {
             </Li>
             <Li>
               <P>
-                <Span>{callorie ?? 0} ккал</Span>
+                <Span>{countedCalories ?? 0} ккал</Span>
               </P>
             </Li>
             <Li>
@@ -103,8 +103,8 @@ export const SideBar = () => {
       <SideBarContainer>
         <Title>Їжа не рекомендована</Title>
         <ul>
-          {notRecommendedProduct &&
-            notRecommendedProduct.slice(0, 4).map(product => {
+          {notAllowedFoodCategories &&
+            notAllowedFoodCategories.slice(0, 4).map(product => {
               return (
                 <li key={product}>
                   <P>
