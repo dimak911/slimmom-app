@@ -38,6 +38,8 @@ export const CloseIconCrossStyled = styled(CloseIconCross)`
   top: 25px;
   right: 25px;
   cursor: pointer;
+  transition: fill 200ms ease-in;
+
   fill: ${props => props.theme.colors.black};
   :hover,
   :focus {

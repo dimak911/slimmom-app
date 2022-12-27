@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/operations';
 import { refreshCalories } from 'redux/calculate/operations';
-import { selectCalculateValue } from 'redux/calculate/selectors';
-import { selectIsRefreshing, selectIsLoggedIn } from 'redux/auth/selectors';
+import {
+  selectIsRefreshing,
+  selectIsLoggedIn,
+  selectUser,
+} from 'redux/auth/selectors';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { GlobalStyle } from 'components/GlobalStyle';
@@ -23,12 +26,10 @@ const DiaryPage = lazy(() => import('pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const calculateData = useSelector(selectCalculateValue);
+  const { callorie } = useSelector(selectUser);
   const { isRefreshing } = useSelector(selectIsRefreshing);
   const { isLoggedIn } = useSelector(selectIsLoggedIn);
-  const noFormDataDirect = !calculateData.countedCalories
-    ? routes.calculate
-    : routes.diaryToday;
+  const noFormDataDirect = !callorie ? routes.calculate : routes.diaryToday;
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -74,9 +75,7 @@ export const App = () => {
             path={routes.diaryPath}
             element={
               <PrivateRoute
-                redirectTo={
-                  !calculateData.countedCalories ? routes.main : routes.login
-                }
+                redirectTo={!callorie ? routes.main : routes.login}
                 component={<DiaryPage />}
               />
             }
@@ -85,9 +84,7 @@ export const App = () => {
             path={routes.calculate}
             element={
               <PrivateRoute
-                redirectTo={
-                  !calculateData.countedCalories ? routes.main : routes.login
-                }
+                redirectTo={!callorie ? routes.main : routes.login}
                 component={<CalculatorPage />}
               />
             }

@@ -137,11 +137,11 @@ export const DailyCaloriesForm = ({ openModal }) => {
                   required: 'Введіть свою поточну вагу',
                   min: {
                     value: 20,
-                    message: 'Мінімальниа вага 20 кг',
+                    message: 'Мінімальна вага 20 кг',
                   },
                   max: {
                     value: 500,
-                    message: 'Максимальниа вага 500 кг',
+                    message: 'Максимальна вага 500 кг',
                   },
                 })}
               />
