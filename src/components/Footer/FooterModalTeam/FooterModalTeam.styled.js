@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { TfiLinkedin } from 'react-icons/tfi';
 import { BsGithub } from 'react-icons/bs';
+import { ReactComponent as CloseIconCross } from '../../../images/icons/close-cross.svg';
 
 export const TeamWrapper = styled.ul`
   text-align: center;
@@ -124,5 +125,77 @@ export const FooterIconLn = styled(TfiLinkedin)`
   &:hover {
     transform: scale(1.3);
     box-shadow: 0 0 13px 3px #0001;
+  }
+`;
+
+export const ModalBackdropStyled = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(33, 33, 33, 0.12);
+  z-index: 1200;
+`;
+
+export const ModalDailyCalorieStyled = styled.div`
+  background-color: ${props => props.theme.colors.white};
+  height: 100%;
+  width: 100%;
+  margin: 0 auto 0;
+  z-index: 999;
+  padding: ${props => props.theme.space[6]}px 0 0 0;
+
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* width: 672px;
+    height: 574px; */
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+  }
+`;
+
+export const CloseIconCrossStyled = styled(CloseIconCross)`
+  display: block;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+  fill: ${props => props.theme.colors.black};
+  :hover,
+  :focus {
+    fill: ${props => props.theme.colors.accent};
+  }
+
+  @media (max-width: 320px) {
+    display: none;
+  }
+`;
+
+export const CloseRectMobileStyled = styled.div`
+  display: none;
+  height: 40px;
+  padding: 16px 20px;
+  background-color: #eff1f3;
+
+  @media (max-width: 320px) {
+    display: block;
+    margin-bottom: 40px;
+  }
+`;
+
+export const CloseIconArrowStyled = styled.img`
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 320px) {
+    display: block;
   }
 `;

@@ -3,7 +3,6 @@ import { FooterContainer, FooterData, FooterSpan } from './Footer.styled';
 import FooterTeamBtn from './FooterTeamBtn';
 
 export default function Footer({ openModal }) {
-  console.log(openModal);
   return (
     <FooterContainer>
       <FooterData>

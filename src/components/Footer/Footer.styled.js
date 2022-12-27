@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -9,10 +10,9 @@ export const FooterContainer = styled.footer`
   font-style: normal;
   font-weight: 400;
   line-height: 1.14;
-  display: flex;
-  bottom: 0;
+  /* bottom: 0;
   position: fixed;
-  z-index: 100;
+  z-index: 100; */
   width: 100%;
 
   @media screen and (min-width: 768px) {

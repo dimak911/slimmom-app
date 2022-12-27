@@ -10,8 +10,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from 'components/Footer/Footer';
 import { teams } from '../Footer/FooterModalTeam/users';
-import { ModalDailyCalorie } from 'components/ModalDailyCalorie';
 import FooterModalTeamList from 'components/Footer/FooterModalTeam/TeamImageGalleryList';
+import { FooterModalTeam } from 'components/Footer/FooterModalTeam/FooterModalTeam';
 
 export const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -19,14 +19,22 @@ export const Layout = () => {
 
   const openModal = () => {
     setIsModalOpen(true);
+    window.document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    window.document.body.style.overflow = 'unset';
   };
 
   return (
     <>
+      {isModalOpen && (
+        <FooterModalTeam closeModal={closeModal}>
+          <FooterModalTeamList users={teams} />
+        </FooterModalTeam>
+      )}
+
       {!isLoggedIn ? (
         <FoneImages>
           <Container>
@@ -36,6 +44,7 @@ export const Layout = () => {
           <Suspense>
             <Outlet />
           </Suspense>
+          <Footer openModal={openModal} />
         </FoneImages>
       ) : (
         <Gradient>
@@ -46,16 +55,10 @@ export const Layout = () => {
           <Suspense>
             <Outlet />
           </Suspense>
+          <Footer openModal={openModal} />
         </Gradient>
       )}
 
-      <Footer openModal={openModal}>
-        {isModalOpen && (
-          <ModalDailyCalorie closeModal={closeModal}>
-            <FooterModalTeamList users={teams} />
-          </ModalDailyCalorie>
-        )}
-      </Footer>
       <ToastContainer
         position="top-right"
         autoClose={2000}
