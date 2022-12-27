@@ -18,7 +18,7 @@ export const calculateSlice = createSlice({
     addCalories: (state, action) => {
       state.formData = action.payload.data;
       state.countedCalories = action.payload.callorie;
-      state.notRecommendedProduct = action.payload.notAllowedFoodCategories;
+      state.notAllowedFoodCategories = action.payload.notRecommendedProduct;
     },
     removeCalories: (state, action) => {
       state.formData = {
@@ -37,12 +37,12 @@ export const calculateSlice = createSlice({
       .addCase(calculation.fulfilled, (state, action) => {
         state.formData = action.payload.data;
         state.countedCalories = action.payload.callorie;
-        state.notRecommendedProduct = action.payload.notAllowedFoodCategories;
+        state.notAllowedFoodCategories = action.payload.notRecommendedProduct;
       })
       .addCase(refreshCalories.fulfilled, (state, action) => {
         state.formData = action.payload.data;
         state.countedCalories = action.payload.callorie;
-        state.notRecommendedProduct = action.payload.notAllowedFoodCategories;
+        state.notAllowedFoodCategories = action.payload.notRecommendedProduct;
       });
   }
 });
