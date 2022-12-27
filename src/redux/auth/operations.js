@@ -2,8 +2,6 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
-axios.defaults.baseURL = 'http://localhost:3001/api/';
-//
 axios.defaults.withCredentials = true;
 
 const token = {
