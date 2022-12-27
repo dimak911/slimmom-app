@@ -1,13 +1,12 @@
 import React, { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
-import { selectIsRefreshing } from 'redux/auth/selectors';
+import { selectIsRefreshing, selectIsLoggedIn, selectUser } from 'redux/auth/selectors';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
-import { selectCalculateValue } from 'redux/calculate/selectors';
 import moment from 'moment';
 import { refreshCalories } from 'redux/calculate/operations';
 
@@ -25,16 +24,18 @@ const DiaryPage = lazy(() => import('pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const calculateData = useSelector(selectCalculateValue);
+  const { callorie } = useSelector(selectUser);
   const { isRefreshing } = useSelector(selectIsRefreshing);
-  const noFormDataDirect = !calculateData.countedCalories
+  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  const noFormDataDirect = !callorie
     ? '/calculate'
     : `/diary/${initialDate}`;
 
   useEffect(() => {
     dispatch(refreshUser());
-    dispatch(refreshCalories());
-  }, [dispatch]);
+    isLoggedIn && dispatch(refreshCalories());
+    !isRefreshing && dispatch(refreshCalories());
+  }, [dispatch, isLoggedIn, isRefreshing]);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>
@@ -74,7 +75,7 @@ export const App = () => {
             path="/diary/:date"
             element={
               <PrivateRoute
-                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
+                redirectTo={!callorie ? '/' : '/login'}
                 component={<DiaryPage />}
               />
             }
@@ -83,12 +84,13 @@ export const App = () => {
             path="/calculate"
             element={
               <PrivateRoute
-                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
+                redirectTo={!callorie ? '/' : '/login'}
                 component={<CalculatorPage />}
               />
             }
           />
         </Route>
+
         <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
     </>
