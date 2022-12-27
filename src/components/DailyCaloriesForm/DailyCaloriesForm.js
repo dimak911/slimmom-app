@@ -37,8 +37,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
     formState: { errors, isValid },
   } = useForm({
     mode: 'onBlur',
-    defaultValues:
-    {
+    defaultValues: {
       height: formData.height,
       age: formData.age,
       currentWeight: formData.currentWeight,
@@ -69,9 +68,10 @@ export const DailyCaloriesForm = ({ openModal }) => {
       data: formData,
     };
     const dataForModal = { countedCalories, notAllowedFoodCategories };
-    dispatch(calculation(dataForDispatch));
-    isLoggedIn ?
-      dispatch(
+
+    isLoggedIn
+      ? dispatch(
+        calculation(dataForDispatch),
         postSideBarInfo({
           callorie: countedCalories,
           notRecommendedProduct: notAllowedFoodCategories,
