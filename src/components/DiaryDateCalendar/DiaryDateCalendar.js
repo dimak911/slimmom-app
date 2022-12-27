@@ -37,10 +37,15 @@ export const DiaryDateCalendar = () => {
 
   const handleChangeDate = value => {
     const date = moment(value).format('DD.MM.YYYY');
-    if (date <= initialDate) {
-      setDiaryDate(date);
-      navigate(`/diary/${formatDate(date)}`);
-    }
+
+    setDiaryDate(date);
+
+    navigate(`/diary/${formatDate(date)}`);
+  };
+
+  const today = moment();
+  const valid = function (diaryDate) {
+    return diaryDate.isBefore(today);
   };
 
   const renderInput = (props, openCalendar) => {
@@ -60,6 +65,7 @@ export const DiaryDateCalendar = () => {
   return (
     <>
       <Datetime
+        isValidDate={valid}
         renderInput={renderInput}
         value={diaryDate}
         dateFormat="DD.MM.YYYY"
