@@ -16,10 +16,12 @@ import {
   ButtonWrap,
   Error,
 } from './LoginForm.styled';
+import { refreshCalories } from "redux/calculate/operations";
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+
   const {
     register,
     handleSubmit,
@@ -42,10 +44,12 @@ export const LogInForm = () => {
       login({
         email: email.toLowerCase(),
         password,
-      })
+      }),
     );
-    toast.error(result.payload.message);
 
+    dispatch(refreshCalories());
+
+    toast.error(result.payload.message);
     reset();
   };
 

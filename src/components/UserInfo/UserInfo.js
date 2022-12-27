@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { logOut } from 'redux/auth/operations';
+import { removeCalories } from 'redux/calculate/slice';
 import { selectUserName } from 'redux/auth/selectors';
 import { AcceptModal } from 'components/AcceptModal';
 import { ReactComponent as BackArrowIcon } from '../../images/icons/back-arrow.svg';
@@ -21,6 +22,7 @@ export const UserInfo = ({ burgerActive }) => {
   const Logout = () => {
     dispatch(logOut());
     navigate('/');
+    dispatch(removeCalories());
   };
 
   const openAcceptModal = () => {
