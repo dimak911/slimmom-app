@@ -8,10 +8,16 @@ import { Container } from 'components/Container.styled';
 import { HeaderUnderline } from 'components/Header/HeaderStyled';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAsync } from 'react-use';
+import { refreshUser } from 'redux/auth/operations';
 
 export const Layout = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  useAsync(async () => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
     <>

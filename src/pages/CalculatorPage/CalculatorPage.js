@@ -5,14 +5,15 @@ import { WrapForm, WrapSideBar, WrapPage } from './CalculatorPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { selectUserData } from 'redux/auth/selectors';
+import { useAsync } from 'react-use';
 
 const CalculatorPage = () => {
   const dispatch = useDispatch();
   const { render } = useSelector(selectUserData);
   console.log(render);
 
-  useEffect(() => {
-    dispatch(refreshUser());
+  useAsync(async () => {
+    await dispatch(refreshUser());
 
     // if (!axios.defaults.headers.common.Authorization) return;
 
