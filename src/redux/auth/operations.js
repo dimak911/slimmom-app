@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+axios.defaults.withCredentials = true;
 
 const token = {
   set(token) {
@@ -63,6 +64,19 @@ export const refreshUser = createAsyncThunk(
     try {
       token.set(state.auth.token);
       const res = await axios.get('/auth/current');
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const refreshToken = createAsyncThunk(
+  'auth/refreshToken',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const res = await axios.post('/auth/refreshToken', credentials);
+      token.set(res.data.result.token);
       return res.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

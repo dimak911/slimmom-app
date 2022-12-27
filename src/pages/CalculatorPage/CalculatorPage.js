@@ -1,4 +1,3 @@
-import React from 'react';
 import { DailyCaloriesForm } from 'components/DailyCaloriesForm';
 import { SideBar } from 'components/SideBar/SideBar';
 import { WrapForm, WrapSideBar, WrapPage } from './CalculatorPage.styled';
