@@ -1,13 +1,12 @@
 import React, { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
-import { selectIsRefreshing, selectIsLoggedIn } from 'redux/auth/selectors';
+import { selectIsRefreshing, selectIsLoggedIn, selectUser } from 'redux/auth/selectors';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
-import { selectCalculateValue } from 'redux/calculate/selectors';
 import moment from 'moment';
 import { refreshCalories } from 'redux/calculate/operations';
 
@@ -25,10 +24,10 @@ const DiaryPage = lazy(() => import('pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const calculateData = useSelector(selectCalculateValue);
+  const { callorie } = useSelector(selectUser);
   const { isRefreshing } = useSelector(selectIsRefreshing);
   const { isLoggedIn } = useSelector(selectIsLoggedIn);
-  const noFormDataDirect = !calculateData.countedCalories
+  const noFormDataDirect = !callorie
     ? '/calculate'
     : `/diary/${initialDate}`;
 
@@ -76,7 +75,7 @@ export const App = () => {
             path="/diary/:date"
             element={
               <PrivateRoute
-                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
+                redirectTo={!callorie ? '/' : '/login'}
                 component={<DiaryPage />}
               />
             }
@@ -85,7 +84,7 @@ export const App = () => {
             path="/calculate"
             element={
               <PrivateRoute
-                redirectTo={!calculateData.countedCalories ? '/' : '/login'}
+                redirectTo={!callorie ? '/' : '/login'}
                 component={<CalculatorPage />}
               />
             }
