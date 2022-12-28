@@ -4,22 +4,20 @@ import { BsGithub } from 'react-icons/bs';
 import { ReactComponent as CloseIconCross } from '../../../images/icons/close-cross.svg';
 
 export const TeamWrapper = styled.ul`
-  text-align: center;
-  min-width: 480px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: 0 auto;
-  @media screen and (min-width: 768px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 60px;
-  }
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 16px;
+
+  padding: 20px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const InfoProfile = styled.div`
   border-radius: 10px;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   overflow: hidden;
   transition: box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -44,35 +42,28 @@ export const Stats = styled.ul`
 
 export const Avatar = styled.img`
   object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px 10px 0 0;
-  margin-bottom: 5px;
-  transition: transform 0.8s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  width: 200px;
+  height: 200px;
+  border-radius: 35px;
   overflow: hidden;
-
-  @media screen and (min-width: 768px) {
-    width: 250px;
-    height: 250px;
-  }
+  padding-top: 10px;
 `;
 
 export const Username = styled.p`
   font-size: 13px;
-  width: 130px;
   margin-bottom: 25px;
   @media screen and (min-width: 768px) {
     margin: 0px auto;
     padding: 16px 0px;
     font-size: 14px;
-    width: 150px;
+    /* width: 150px; */
   }
 `;
 
 export const Role = styled.p`
   padding-bottom: 10px;
+  font-weight: 700;
   font-size: 14px;
-
   color: #ff6b08;
 `;
 
@@ -134,39 +125,41 @@ export const ModalBackdropStyled = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  padding: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(33, 33, 33, 0.12);
-  z-index: 1200;
+  z-index: 1000;
 `;
 
-export const ModalDailyCalorieStyled = styled.div`
+export const ModalTeamStyled = styled.div`
   background-color: ${props => props.theme.colors.white};
-  height: 100%;
-  width: 100%;
-  margin: 0 auto 0;
-  z-index: 999;
-  padding: ${props => props.theme.space[6]}px 0 0 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  z-index: 1000;
+  position: absolute;
+  border-radius: 15px;
+  padding: ${props => props.theme.space[5]}px 0 0 0;
+  overflow: scroll;
 
   @media (min-width: 768px) {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* width: 672px;
-    height: 574px; */
     width: 100%;
     height: 100%;
-    overflow: scroll;
   }
 `;
 
 export const CloseIconCrossStyled = styled(CloseIconCross)`
   display: block;
   position: absolute;
-  top: 25px;
-  right: 25px;
+  z-index: 800;
+  top: 10px;
+  right: 10px;
   cursor: pointer;
   fill: ${props => props.theme.colors.black};
   :hover,
