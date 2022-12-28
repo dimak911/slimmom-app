@@ -19,7 +19,7 @@ import {
 } from './DiaryAddProductForm.styled';
 import crossIcon from '../../images/icons/close-cross.svg';
 
-export const DiaryAddProductForm = ({ img }) => {
+export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -57,6 +57,7 @@ export const DiaryAddProductForm = ({ img }) => {
       date: date,
     };
     dispatch(addDiaryListItem(product));
+    isShowAddForm && openModal();
     setProductInput('');
     reset();
   };

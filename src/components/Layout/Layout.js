@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Suspense, useState } from 'react';
 import { FoneImages, Gradient } from './Layout.styled';
 import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
-import { Container } from 'components/Container.styled';
+// import { Container } from 'components/Container.styled';
 import { HeaderUnderline } from 'components/Header/HeaderStyled';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -45,9 +45,7 @@ export const Layout = () => {
 
       {!isLoggedIn ? (
         <FoneImages>
-          <Container>
-            <Header />
-          </Container>
+          <Header />
           <HeaderUnderline />
           <Suspense>
             <Outlet />
@@ -56,9 +54,7 @@ export const Layout = () => {
         </FoneImages>
       ) : (
         <Gradient>
-          <Container>
-            <Header />
-          </Container>
+          <Header />
           <HeaderUnderline />
           <Suspense>
             <Outlet />

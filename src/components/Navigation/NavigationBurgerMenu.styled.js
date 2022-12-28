@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Section = styled.div`
   display: ${p => (p.burgerActive ? 'block' : 'none')};
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   background-color: #264061;
   width: 100%;

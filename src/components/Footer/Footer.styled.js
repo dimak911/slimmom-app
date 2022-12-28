@@ -38,11 +38,11 @@ export const FooterData = styled.div`
 `;
 
 export const FooterSpan = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: #151a17;
   @media screen and (min-width: 1280px) {
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
 
@@ -73,6 +73,6 @@ export const BtnTeamTitle = styled.span`
   text-align: center;
   letter-spacing: 0.04em;
   @media screen and (min-width: 1280px) {
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
