@@ -107,6 +107,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
             <ClearField
               onClick={() => {
                 setValue('product', '');
+                setProducts([]);
               }}
             >
               <img src={crossIcon} alt="cross" />

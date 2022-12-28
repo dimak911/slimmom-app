@@ -187,6 +187,8 @@ export const ProductSelectList = styled.ul`
   top: 100%;
   left: 0;
   width: 100%;
+  max-height: 400px;
+  overflow: scroll;
   background-color: ${p => p.theme.colors.track};
   color: ${p => p.theme.colors.primary};
   border-radius: ${p => p.theme.radii.md};
