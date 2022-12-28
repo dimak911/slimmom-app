@@ -10,7 +10,8 @@ export const SigninForm = styled.form`
     flex-direction: row;
   }
   @media screen and (max-width: 767px) {
-    padding: 80px 15px;
+    padding: 120px 20px;
+    /* padding: 80px 20px; */
   }
 `;
 
@@ -90,6 +91,9 @@ export const ProductItem = styled.li`
 `;
 
 export const ButtonLogin = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: ${p => p.theme.space[3]}px;
   width: ${p => p.theme.space[3] * 6}px;
   height: ${p => p.theme.space[3] * 6}px;
@@ -118,7 +122,7 @@ export const ButtonLogin = styled.button`
     :focus,
     :active {
       box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
-      transform: translateY(-7px);
+      /* transform: translateY(-7px); */
     }
   }
   transition: opacity 200ms ease-in, transform 200ms ease-in;

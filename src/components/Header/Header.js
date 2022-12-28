@@ -16,10 +16,18 @@ export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [burgerActive, setBurgerActive] = useState(false);
   const { formData } = useSelector(selectCalculateValue);
+  const bodyEl = document.body;
 
-  const burgerAction = () => {
-    setBurgerActive(!burgerActive);
+  const burgerOpen = () => {
+    setBurgerActive(true);
+    bodyEl.style.overflow = 'hidden';
   };
+
+  const burgerClose = () => {
+    setBurgerActive(false);
+    bodyEl.style.overflow = 'visible';
+  };
+
   return (
     <>
       <HeaderStyled>
@@ -29,20 +37,20 @@ export const Header = () => {
         ) : (
           <>
             <NavigationHeader isLoggedIn={isLoggedIn} />
-            <UserInfo burger={burgerActive} setBurger={setBurgerActive} />
+            <UserInfo burger={burgerActive} />
             {formData?.height &&
               (burgerActive ? (
-                <CrossIconStyled onClick={burgerAction} />
+                <CrossIconStyled onClick={burgerClose} />
               ) : (
-                <BurgerIconStyled onClick={burgerAction} />
+                <BurgerIconStyled onClick={burgerOpen} />
               ))}
           </>
         )}
       </HeaderStyled>
 
       <NavigationBurgerMenu
-        burgerActive={burgerActive}
-        setBurger={setBurgerActive}
+        burgerState={burgerActive}
+        burgerClose={burgerClose}
       />
     </>
   );

@@ -20,7 +20,7 @@ import { useParams } from 'react-router-dom';
 // axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
 // axios.defaults.baseURL = 'http://localhost:3001/api/';
 
-export const DiaryAddProductForm = ({ img }) => {
+export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -69,6 +69,7 @@ export const DiaryAddProductForm = ({ img }) => {
       date: date,
     };
     dispatch(addDiaryListItem(product));
+    isShowAddForm && openModal();
     reset();
   };
 
@@ -104,7 +105,11 @@ export const DiaryAddProductForm = ({ img }) => {
           />
           {errors?.weigth && <Error>{errors?.weigth?.message}</Error>}
         </LabelWeigt>
-        <ButtonLogin type="submit" disabled={!isValid}>
+        <ButtonLogin
+          type="submit"
+          disabled={!isValid}
+          // onClick={() => openModal()}
+        >
           {img !== 'Add' ? (
             <img src={img} alt="button to add product" />
           ) : (

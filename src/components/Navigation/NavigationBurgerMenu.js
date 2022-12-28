@@ -3,21 +3,21 @@ import { Link, Section, Wrapper } from './NavigationBurgerMenu.styled';
 import { initialDate } from 'App';
 import { useSelector } from 'react-redux';
 
-export const NavigationBurgerMenu = ({ burgerActive, setBurger }) => {
+export const NavigationBurgerMenu = ({ burgerState, burgerClose }) => {
   const selectedDate = useSelector(getSelectedDate);
 
   return (
-    <Section burgerActive={burgerActive}>
+    <Section burgerActive={burgerState}>
       <Wrapper>
         <Link
           to={`/diary/${
             selectedDate ? selectedDate.split('.').join('-') : initialDate
           }`}
-          onClick={() => setBurger(false)}
+          onClick={burgerClose}
         >
           ЩОДЕННИК
         </Link>
-        <Link to="/calculate" onClick={() => setBurger(false)}>
+        <Link to="/calculate" onClick={burgerClose}>
           КАЛЬКУЛЯТОР
         </Link>
       </Wrapper>

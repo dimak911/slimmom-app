@@ -47,6 +47,8 @@ export const DiaryDateCalendar = () => {
         display="flex"
         alignItems="center"
         gridGap="20px"
+        mb={{ xss: '32px', mm: '60px' }}
+        // mb="32px"
         onClick={openCalendar}
       >
         <DiaryDate>{diaryDate}</DiaryDate>

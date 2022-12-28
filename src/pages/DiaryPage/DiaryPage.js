@@ -4,20 +4,33 @@ import { DairyProductList } from '../../components/DairyProductList/DairyProduct
 import img from '../../images/icons/Vector.png';
 import { DiaryAddProductForm } from '../../components/DiaryAddProductForm/DiaryAddProductForm';
 import { DiaryDateCalendar } from 'components/DiaryDateCalendar/DiaryDateCalendar';
-import { BoxForm, Button, ButtonBox, WrapSideBar, WrapPage, WrapForm } from './DiaryPage.styled';
+import {
+  BoxForm,
+  MobileBoxForm,
+  Button,
+  ButtonBox,
+  WrapSideBar,
+  WrapPage,
+  WrapForm,
+  StyledSubdirectoryIcon,
+  StyledSubdirectoryIconWrapper,
+} from './DiaryPage.styled';
 import { Box } from 'components/Box';
+
+import arrowImg from '../../images/icons/arrow-left-2x.png';
 
 const DiaryPage = () => {
   const [isShowAddForm, setIsShowAddForm] = useState(false);
+
   const openModal = () => {
     setIsShowAddForm(!isShowAddForm);
   };
-  return (
-    <WrapPage>
-      <WrapForm>
-        <Box pl={20}>
-          <DiaryDateCalendar />
 
+  return (
+    <WrapPage isShowAddForm={isShowAddForm}>
+      <WrapForm isShowAddForm={isShowAddForm}>
+        <Box pl={20}>
+          {!isShowAddForm && <DiaryDateCalendar />}
           {!isShowAddForm && (
             <BoxForm>
               <DiaryAddProductForm img={img} />
@@ -33,13 +46,20 @@ const DiaryPage = () => {
           </ButtonBox>
         )}
         {isShowAddForm && (
-          <DiaryAddProductForm img={'Add'} openModal={openModal} />
+          <MobileBoxForm>
+            <StyledSubdirectoryIconWrapper onClick={() => openModal()}>
+              <StyledSubdirectoryIcon src={arrowImg} />
+            </StyledSubdirectoryIconWrapper>
+            <DiaryAddProductForm
+              img={'Add'}
+              isShowAddForm={isShowAddForm}
+              openModal={openModal}
+            />
+          </MobileBoxForm>
         )}
       </WrapForm>
 
-      <WrapSideBar>
-        {!isShowAddForm && <SideBar />}
-      </WrapSideBar>
+      <WrapSideBar>{!isShowAddForm && <SideBar />}</WrapSideBar>
     </WrapPage>
   );
 };

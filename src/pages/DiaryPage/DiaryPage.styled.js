@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 export const BoxForm = styled.div`
-
   @media screen and (max-width: 767px) {
     display: none;
   }
 `;
 
 export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: ${p => p.theme.space[3]}px;
   width: ${p => p.theme.space[3] * 6}px;
   height: ${p => p.theme.space[3] * 6}px;
@@ -33,7 +35,8 @@ export const ButtonBox = styled.div`
 `;
 
 export const WrapForm = styled.div`
-width: 320px;
+  width: 320px;
+  background-color: ${p => p.isShowAddForm && '#fff'};
   margin-top: 80px;
   margin-left: auto;
   margin-right: auto;
@@ -49,7 +52,7 @@ width: 320px;
     margin-top: 147px;
     margin-bottom: 56px;
     margin-left: 0;
-  margin-right: 0;
+    margin-right: 0;
   }
 `;
 
@@ -59,11 +62,41 @@ export const WrapSideBar = styled.div`
 `;
 
 export const WrapPage = styled.div`
+  background-color: ${p => p.isShowAddForm && '#fff'};
   @media (min-width: 1280px) {
     display: flex;
     justify-content: space-between;
-width: 1280px;
-margin-left: auto;
-  margin-right: auto;
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`;
+
+export const StyledSubdirectoryIconWrapper = styled.button`
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 91px;
+  left: 14px;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+export const StyledSubdirectoryIcon = styled.img`
+  width: 12px;
+  height: 7px;
+  cursor: pointer;
+  color: ${props => props.theme.colors.black};
+`;
+
+export const MobileBoxForm = styled.div`
+  margin-top: -80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+
+  @media (min-width: 768px) {
+    display: none;
   }
 `;
