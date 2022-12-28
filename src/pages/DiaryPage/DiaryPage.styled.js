@@ -17,6 +17,12 @@ export const WrapPage = styled.div`
     margin-top: 150px;
   }
 `;
+export const WrapCalendar = styled.div`
+  margin-bottom: 32px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 60px;
+  }
+`;
 
 export const WrapForm = styled.div`
   @media (max-width: 767px) {

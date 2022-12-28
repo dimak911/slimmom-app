@@ -9,6 +9,7 @@ import {
   BoxForm,
   Button,
   ButtonBox,
+  WrapCalendar,
   WrapSideBar,
   WrapPage,
   WrapForm,
@@ -24,7 +25,9 @@ const DiaryPage = () => {
     <WrapPage>
       <WrapForm>
         <Box>
-          <DiaryDateCalendar />
+          <WrapCalendar>
+            <DiaryDateCalendar />
+          </WrapCalendar>
 
           {!isShowAddForm && (
             <BoxForm>

@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 export const CalendarWrap = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 20px;
-  margin-bottom: 32px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 60px;
-  }
+  cursor: pointer;
 `;
 
 export const DiaryDate = styled.span`
@@ -22,9 +19,4 @@ export const DiaryDate = styled.span`
 export const DiaryDateImg = styled.img`
   width: 20px;
   height: 20px;
-  @media screen and (min-width: 768px) {
-    width: 30px;
-    height: 30px;
-  }
-  cursor: pointer;
 `;

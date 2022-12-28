@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchDiaryProducts } from 'redux/products/operations';
-import { fetchDiaryProducts } from 'redux/products/operations';
-import { setSelectedDate } from 'redux/date/slice';
 import { setSelectedDate } from 'redux/date/slice';
 import moment from 'moment';
 import axios from 'axios';
@@ -56,13 +54,9 @@ export const DiaryDateCalendar = () => {
 
   const renderInput = (props, openCalendar) => {
     return (
-      <CalendarWrap>
+      <CalendarWrap onClick={openCalendar}>
         <DiaryDate>{diaryDate}</DiaryDate>
-        <DiaryDateImg
-          src={calendarIcon}
-          alt="calendar"
-          onClick={openCalendar}
-        />
+        <DiaryDateImg src={calendarIcon} alt="calendar" />
       </CalendarWrap>
     );
   };
