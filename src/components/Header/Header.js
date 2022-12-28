@@ -26,7 +26,7 @@ export const Header = () => {
 
   const burgerClose = () => {
     setBurgerActive(false);
-    bodyEl.style.overflow = 'visible';
+    bodyEl.style.overflow = 'unset';
   };
 
   return (
