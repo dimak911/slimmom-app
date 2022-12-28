@@ -111,7 +111,8 @@ export const DesagreeButtonStyled = styled.button`
   transition: box-shadow 300ms ease-in, transform 200ms ease-in;
 
   :hover,
-  :focus {
+  :focus,
+  :active {
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
     transform: translateY(-7px);
   }
@@ -131,10 +132,14 @@ export const AgreeButtonStyled = styled.button`
 
   color: ${p => p.theme.colors.accent};
   cursor: pointer;
-  transition: box-shadow 300ms ease-in, transform 200ms ease-in;
+  transition: box-shadow 300ms ease-in, transform 200ms ease-in,
+    background-color 200ms ease-in, color 200ms ease-in;
 
   :hover,
-  :focus {
+  :focus,
+  :active {
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
     transform: translateY(-7px);
   }

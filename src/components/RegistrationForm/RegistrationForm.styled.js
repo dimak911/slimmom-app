@@ -26,6 +26,7 @@ export const RegisterForm = styled.form`
   }
 
   @media screen and (min-width: 1280px) {
+    padding-left: ${p => p.theme.space[4]}px;
     margin-bottom: 80px;
   }
 `;
