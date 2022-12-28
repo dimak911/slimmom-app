@@ -46,4 +46,10 @@ export const theme = {
     button: '30px',
     round: '50%',
   },
+  breakpoints: {
+    xxs: '0',
+    ss: '320',
+    mm: '768px',
+    ll: '1280px',
+  },
 };
