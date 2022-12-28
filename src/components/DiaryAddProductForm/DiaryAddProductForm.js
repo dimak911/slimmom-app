@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { addDiaryListItem } from 'redux/products/operations';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { addDiaryListItem } from '../../redux/products/operations';
-
+import { searchProductList } from 'helpers/searchProduct';
 import {
   SigninForm,
   ProductForm,
@@ -46,7 +45,7 @@ export const DiaryAddProductForm = ({ img }) => {
   const [callories, setCallories] = useState('');
   useEffect(() => {
     if (productValue.length > 1) {
-      axios.get(`products?productTitle=${productValue}`).then(response => {
+      searchProductList(productValue).then(response => {
         const fetchedProducts = response.data.map(obj => {
           return { title: obj.title.ua, calories: obj.calories };
         });

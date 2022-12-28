@@ -1,22 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import moment from 'moment';
-import Datetime from 'react-datetime';
-import axios from 'axios';
 import { fetchDiaryProducts } from 'redux/products/operations';
-import 'moment/locale/uk';
+import { fetchDiaryProducts } from 'redux/products/operations';
 import { setSelectedDate } from 'redux/date/slice';
-import calendarIcon from '../../images/icons/calendar.svg';
-
+import { setSelectedDate } from 'redux/date/slice';
+import moment from 'moment';
+import axios from 'axios';
+import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+import 'moment/locale/uk';
+
 import {
   DiaryDate,
   DiaryDateImg,
   CalendarWrap,
 } from './DiaryDateCalendar.styled';
+import calendarIcon from '../../images/icons/calendar.svg';
 
 const formatDate = date => date.split('.').join('-');
+const initialDate = moment(new Date()).format('DD.MM.YYYY');
 
 export const DiaryDateCalendar = () => {
   let { date } = useParams();
@@ -25,7 +28,6 @@ export const DiaryDateCalendar = () => {
   const [diaryDate, setDiaryDate] = useState(() => {
     if (date) return date.split('-').join('.');
 
-    const initialDate = moment(new Date()).format('DD.MM.YYYY');
     navigate(`/diary/${formatDate(date)}`);
 
     return initialDate;
@@ -41,8 +43,15 @@ export const DiaryDateCalendar = () => {
 
   const handleChangeDate = value => {
     const date = moment(value).format('DD.MM.YYYY');
+
     setDiaryDate(date);
+
     navigate(`/diary/${formatDate(date)}`);
+  };
+
+  const today = moment();
+  const valid = function (diaryDate) {
+    return diaryDate.isBefore(today);
   };
 
   const renderInput = (props, openCalendar) => {
@@ -61,6 +70,7 @@ export const DiaryDateCalendar = () => {
   return (
     <>
       <Datetime
+        isValidDate={valid}
         renderInput={renderInput}
         value={diaryDate}
         dateFormat="DD.MM.YYYY"
