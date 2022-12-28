@@ -17,7 +17,6 @@ import {
   Error,
 } from './RegistrationForm.styled';
 import { toast } from 'react-toastify';
-import { refreshCalories } from 'redux/calculate/operations';
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -67,8 +66,6 @@ export const RegistrationForm = () => {
           password,
         })
       );
-
-      dispatch(refreshCalories());
 
       toast.error(result.payload.message);
     }

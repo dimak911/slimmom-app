@@ -16,7 +16,6 @@ import {
   ButtonWrap,
   Error,
 } from './LoginForm.styled';
-import { refreshCalories } from "redux/calculate/operations";
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
@@ -46,8 +45,6 @@ export const LogInForm = () => {
         password,
       }),
     );
-
-    dispatch(refreshCalories());
 
     toast.error(result.payload.message);
     reset();

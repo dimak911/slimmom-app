@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchDiaryProducts } from 'redux/products/operations';
 import { setSelectedDate } from 'redux/date/slice';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -11,6 +11,7 @@ import 'moment/locale/uk';
 import { Box } from 'components/Box';
 import { DiaryDate } from './DiaryDateCalendar.styled';
 import calendarIcon from '../../images/icons/calendar.svg';
+import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
 
 const formatDate = date => date.split('.').join('-');
 const initialDate = moment(new Date()).format('DD.MM.YYYY');
@@ -19,6 +20,8 @@ export const DiaryDateCalendar = () => {
   let { date } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
   const [diaryDate, setDiaryDate] = useState(() => {
     if (date) return date.split('-').join('.');
 
@@ -32,8 +35,9 @@ export const DiaryDateCalendar = () => {
 
     const formattedDate = diaryDate.split('.').join('-');
     dispatch(setSelectedDate(diaryDate));
-    dispatch(fetchDiaryProducts(formattedDate));
-  }, [dispatch, diaryDate, navigate]);
+    isLoggedIn && dispatch(fetchDiaryProducts(formattedDate));
+    !isRefreshing && dispatch(fetchDiaryProducts(formattedDate));
+  }, [dispatch, diaryDate, navigate, isLoggedIn, isRefreshing]);
 
   const handleChangeDate = value => {
     const date = moment(value).format('DD.MM.YYYY');
