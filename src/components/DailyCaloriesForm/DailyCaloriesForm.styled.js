@@ -2,10 +2,6 @@ import styled from 'styled-components';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
 export const Form = styled.form`
-  margin-top: ${p =>
-    p.location === '/login' || p.location === '/signup' || p.location === '/'
-      ? '32px'
-      : '72px'};
   padding-left: ${p => p.theme.spaceForm[1]}px;
   padding-right: ${p => p.theme.spaceForm[1]}px;
 
@@ -15,15 +11,9 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 100px;
-    /* margin-top: ${p => p.theme.spaceForm[4]}px; */
     padding-left: ${p => p.theme.space[5]}px;
     padding-right: ${p => p.theme.space[0]}px;
     max-width: 608px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    margin-top: 147px;
   }
 `;
 

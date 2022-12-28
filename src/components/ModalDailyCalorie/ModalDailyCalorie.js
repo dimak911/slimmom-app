@@ -35,6 +35,7 @@ export function ModalDailyCalorie({ closeModal, children, calculateData }) {
         <CloseRectMobileStyled onClick={() => closeModal()}>
           <CloseIconArrowStyled src={closeIconArrow} alt="back arrow" />
         </CloseRectMobileStyled>
+
         {children}
       </ModalDailyCalorieStyled>
     </ModalBackdropStyled>,

@@ -21,6 +21,7 @@ export const ModalDailyCalorieStyled = styled.div`
   margin: 0 auto 0;
   z-index: 999;
   padding: ${props => props.theme.space[6]}px 0 0 0;
+  overflow-y: scroll;
 
   @media (min-width: 768px) {
     position: absolute;
@@ -38,6 +39,8 @@ export const CloseIconCrossStyled = styled(CloseIconCross)`
   top: 25px;
   right: 25px;
   cursor: pointer;
+  transition: fill 200ms ease-in;
+
   fill: ${props => props.theme.colors.black};
   :hover,
   :focus {

@@ -1,16 +1,18 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { login } from 'redux/auth/operations';
+import { refreshCalories } from 'redux/calculate/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
+
 import { Container } from 'components/Container.styled';
 import {
   SigninForm,
   Title,
   InputForm,
   Label,
+  LastLabel,
   ButtonLogin,
   LinkRegister,
   ButtonWrap,
@@ -20,6 +22,7 @@ import {
 export const LogInForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+
   const {
     register,
     handleSubmit,
@@ -44,8 +47,10 @@ export const LogInForm = () => {
         password,
       })
     );
-    toast.error(result.payload.message);
 
+    dispatch(refreshCalories());
+
+    toast.error(result.payload.message);
     reset();
   };
 
@@ -82,7 +87,7 @@ export const LogInForm = () => {
           {errors.email && <Error>{errors.email?.message}</Error>}
         </Label>
 
-        <Label>
+        <LastLabel>
           Пароль *
           <InputForm
             value={passwordValue}
@@ -107,7 +112,7 @@ export const LogInForm = () => {
             })}
           />
           {errors.password && <Error>{errors.password?.message}</Error>}
-        </Label>
+        </LastLabel>
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
           <ButtonLogin type="submit">Авторизуватися</ButtonLogin>

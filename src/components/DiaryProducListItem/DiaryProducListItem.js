@@ -1,6 +1,7 @@
-import React from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeDiaryListItem } from 'redux/products/operations';
+import { AcceptModal } from 'components/AcceptModal';
 
 import {
   ProductName,
@@ -20,6 +21,24 @@ export const DiaryProductListItem = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [isAcceptModalOpen, setIsAcceptModalopen] = useState(false);
+
+  const openAcceptModal = () => {
+    setIsAcceptModalopen(true);
+    window.document.body.style.overflow = 'hidden';
+  };
+
+  const closeAcceptModal = () => {
+    setIsAcceptModalopen(false);
+    window.document.body.style.overflow = 'unset';
+  };
+
+  const deleteAction = () => {
+    setIsAcceptModalopen(false);
+    window.document.body.style.overflow = 'unset';
+    dispatch(removeDiaryListItem(_id));
+  };
+
   return (
     <DiaryProductListItemStyled>
       <ProductName>{productName}</ProductName>
@@ -27,15 +46,25 @@ export const DiaryProductListItem = ({
       <ProductKcal>
         {productCalories} <SuffixKcal>ккал</SuffixKcal>
       </ProductKcal>
-      <RemoveButton
-        type="button"
-        id={_id}
-        onClick={event => {
-          dispatch(removeDiaryListItem(event.currentTarget.id));
-        }}
-      >
+      <RemoveButton type="button" onClick={() => openAcceptModal()}>
         <Cross />
       </RemoveButton>
+      <>
+        {isAcceptModalOpen && (
+          <AcceptModal
+            closeModal={closeAcceptModal}
+            acceptAction={`видалити ${productName}`}
+            agreeButton={{
+              text: 'Видалити',
+              action: deleteAction,
+            }}
+            desagreeButton={{
+              text: 'Залишити',
+              action: closeAcceptModal,
+            }}
+          ></AcceptModal>
+        )}
+      </>
     </DiaryProductListItemStyled>
   );
 };

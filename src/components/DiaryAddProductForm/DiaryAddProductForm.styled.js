@@ -6,12 +6,12 @@ export const SigninForm = styled.form`
   color: ${p => p.theme.colors.secondary};
   display: flex;
   flex-direction: column;
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-  }
   @media screen and (max-width: 767px) {
     padding: 120px 20px;
     /* padding: 80px 20px; */
+  }
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
   }
 `;
 
@@ -41,12 +41,14 @@ export const LabelProduct = styled.label`
   letter-spacing: 0.04em;
   line-height: 1.21;
   width: 285px;
-  @media screen and (min-width: 768px) {
-    width: 240px;
-    margin-right: ${p => p.theme.space[3] * 6}px;
-  }
+
   @media screen and (max-width: 767px) {
     margin-bottom: 32px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 240px;
+    margin-right: 22px;
   }
 `;
 
@@ -67,7 +69,21 @@ export const LabelWeigt = styled.label`
   }
 `;
 
-export const InputForm = styled.input`
+export const ProductForm = styled.input`
+  max-width: 280px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid ${p => p.theme.colors.input};
+
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-style: normal;
+  font-size: ${p => p.theme.fontSizes.xs};
+  letter-spacing: 0.04em;
+  line-height: 1.21;
+`;
+
+export const WeightForm = styled.input`
+  text-align: end;
   max-width: 280px;
   border: none;
   outline: none;
@@ -128,7 +144,6 @@ export const ButtonLogin = styled.button`
   transition: opacity 200ms ease-in, transform 200ms ease-in;
 
   @media screen and (max-width: 767px) {
-    margin-top: 60px;
     padding: 12px 46px;
     width: 176px;
   }
@@ -154,11 +169,5 @@ export const Error = styled.p`
 export const Span = styled.span`
   @media screen and (min-width: 768px) {
     margin-left: auto;
-  }
-`;
-
-export const Div = styled.div`
-  @media screen and (min-width: 768px) {
-    margin-bottom: 60px;
   }
 `;

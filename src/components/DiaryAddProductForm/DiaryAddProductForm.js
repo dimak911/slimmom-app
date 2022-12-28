@@ -1,22 +1,21 @@
-import { useForm } from 'react-hook-form';
-import { addDiaryListItem } from '../../redux/products/operations';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { addDiaryListItem } from 'redux/products/operations';
+import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { searchProductList } from 'helpers/searchProduct';
 import {
   SigninForm,
-  InputForm,
+  ProductForm,
+  WeightForm,
   ProductItem,
   LabelWeigt,
   ButtonLogin,
   Span,
   Error,
   LabelProduct,
-  Div,
 } from './DiaryAddProductForm.styled';
 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 // axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
 // axios.defaults.baseURL = 'http://localhost:3001/api/';
 
@@ -46,7 +45,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
   const [callories, setCallories] = useState('');
   useEffect(() => {
     if (productValue.length > 1) {
-      axios.get(`products?productTitle=${productValue}`).then(response => {
+      searchProductList(productValue).then(response => {
         const fetchedProducts = response.data.map(obj => {
           return { title: obj.title.ua, calories: obj.calories };
         });
@@ -74,25 +73,21 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
   };
 
   return (
-    <Div>
+    <>
       <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
         <LabelProduct>
           Введіть назву продукту
-          <InputForm
+          <ProductForm
             type="text"
             {...register('product', {
               required: 'Введіть назву продукту/страви',
-              // pattern: {
-              //   value: /^А-Яа-яґҐЁёІіЇїЄє'’ʼ\s-$/i,
-              //   message: 'Введіть українською',
-              // },
             })}
           />
           {errors?.product && <Error>{errors?.product?.message}</Error>}
         </LabelProduct>
         <LabelWeigt>
-          <Span>Грами</Span>
-          <InputForm
+          <Span>Вага</Span>
+          <WeightForm
             value={weigthValue}
             type="number"
             {...register('weigth', {
@@ -101,6 +96,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
                 value: 1,
                 message: 'Введіть від 1г',
               },
+              validate: value => Number.isInteger(parseFloat(value)) === true,
             })}
           />
           {errors?.weigth && <Error>{errors?.weigth?.message}</Error>}
@@ -133,6 +129,6 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
           );
         })}
       </ul>
-    </Div>
+    </>
   );
 };
