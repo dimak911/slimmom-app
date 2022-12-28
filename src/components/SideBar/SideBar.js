@@ -1,11 +1,8 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchsideBarInfo } from 'redux/products/operations';
+import { useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { productsList } from 'redux/products/selectors';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import { getSelectedDate } from 'redux/date/selectors';
-import axios from 'axios';
 import { Loader } from 'components/Loader/Loader';
 import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 import { initialDate } from 'helpers/constants';
@@ -22,18 +19,10 @@ import {
 } from './SideBar.styled';
 
 export const SideBar = () => {
-  const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const selectedDate = useSelector(getSelectedDate);
 
-  useEffect(() => {
-    if (!axios.defaults.headers.common.Authorization) return;
-
-    dispatch(fetchsideBarInfo());
-  }, [dispatch]);
-
-  const { countedCalories, notAllowedFoodCategories } =
-    useSelector(selectCalculateValue);
+  const { countedCalories, notAllowedFoodCategories } = useSelector(selectCalculateValue);
   const products = useSelector(productsList);
 
   const totalCalories = products

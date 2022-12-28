@@ -5,6 +5,11 @@ export const CalendarWrap = styled.div`
   align-items: center;
   gap: 20px;
   cursor: pointer;
+  margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const DiaryDate = styled.span`

@@ -5,7 +5,7 @@ import { ReactComponent as CloseIconCross } from '../../../images/icons/close-cr
 
 export const TeamWrapper = styled.ul`
   display: grid;
-  max-width: calc(100vw - 48px);
+
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 16px;
 
@@ -13,6 +13,10 @@ export const TeamWrapper = styled.ul`
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    max-width: calc(100vw - 48px);
+  }
 `;
 
 export const InfoProfile = styled.div`
@@ -56,7 +60,6 @@ export const Username = styled.p`
     margin: 0px auto;
     padding: 16px 0px;
     font-size: 14px;
-    /* width: 150px; */
   }
 `;
 

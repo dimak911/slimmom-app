@@ -1,10 +1,11 @@
+import React, { useEffect } from 'react';
 import { Header } from 'components/Header/Header';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Suspense, useState } from 'react';
 import { FoneImages, Gradient } from './Layout.styled';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
-import { Container } from 'components/Container.styled';
+import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
+// import { Container } from 'components/Container.styled';
 import { HeaderUnderline } from 'components/Header/HeaderStyled';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,10 +13,17 @@ import Footer from 'components/Footer/Footer';
 import { teams } from '../Footer/FooterModalTeam/users';
 import FooterModalTeamList from 'components/Footer/FooterModalTeam/TeamImageGalleryList';
 import { FooterModalTeam } from 'components/Footer/FooterModalTeam/FooterModalTeam';
+import { refreshCalories } from 'redux/calculate/operations';
 
 export const Layout = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    isLoggedIn && !isRefreshing && dispatch(refreshCalories());
+  }, [dispatch, isLoggedIn, isRefreshing]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -37,9 +45,7 @@ export const Layout = () => {
 
       {!isLoggedIn ? (
         <FoneImages>
-          <Container>
-            <Header />
-          </Container>
+          <Header />
           <HeaderUnderline />
           <Suspense>
             <Outlet />
@@ -48,9 +54,7 @@ export const Layout = () => {
         </FoneImages>
       ) : (
         <Gradient>
-          <Container>
-            <Header />
-          </Container>
+          <Header />
           <HeaderUnderline />
           <Suspense>
             <Outlet />

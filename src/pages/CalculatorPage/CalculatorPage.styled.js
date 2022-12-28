@@ -19,23 +19,19 @@ export const WrapPage = styled.div`
 `;
 
 export const WrapForm = styled.div`
-  @media (max-width: 767px) {
-    width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media (min-width: 768px) {
-    display: flex;
-    justify-content: center;
-
-    margin-left: 0;
-    margin-right: 0;
+    width: 610px;
     padding-bottom: 55px;
   }
 
   @media (min-width: 1280px) {
-    margin-bottom: 56px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 32px;
   }
 `;
 
@@ -48,11 +44,11 @@ export const WrapSideBar = styled.div`
   @media (max-width: 767px) {
     padding-top: 40px;
   }
-  @media (max-width: 1287px) {
+  @media (max-width: 1279px) {
     padding-top: 80px;
   }
   @media (min-width: 1280px) {
     background-color: transparent;
-    padding-right: 20px;
+    padding-right: 60px;
   }
 `;

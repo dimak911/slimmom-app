@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
-export const SigninForm = styled.form`
-  align-items: center;
+export const AddProductForm = styled.form`
+  align-items: flex-start;
   color: ${p => p.theme.colors.secondary};
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 767px) {
-    padding: 80px 15px;
+    padding: 80px 20px;
   }
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -32,6 +32,7 @@ export const Title = styled.h2`
 export const LabelProduct = styled.label`
   display: flex;
   flex-direction: column;
+  position: relative;
 
   font-weight: ${p => p.theme.fontWeights.bold};
   font-family: ${VerdanaBold};
@@ -70,6 +71,7 @@ export const LabelWeigt = styled.label`
 
 export const ProductForm = styled.input`
   max-width: 280px;
+  padding-right: 25px;
   border: none;
   outline: none;
   border-bottom: 1px solid ${p => p.theme.colors.input};
@@ -96,16 +98,25 @@ export const WeightForm = styled.input`
 `;
 
 export const ProductItem = styled.li`
+  padding: 10px;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-style: normal;
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
   line-height: 1.21;
-
   cursor: pointer;
+  transition: 200ms ease-in;
+  &:hover,
+  &:active {
+    background-color: grey;
+    border-radius: ${p => p.theme.radii.md};
+  }
 `;
 
 export const ButtonLogin = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: ${p => p.theme.space[3]}px;
   width: ${p => p.theme.space[3] * 6}px;
   height: ${p => p.theme.space[3] * 6}px;
@@ -134,12 +145,13 @@ export const ButtonLogin = styled.button`
     :focus,
     :active {
       box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
-      transform: translateY(-7px);
+      /* transform: translateY(-7px); */
     }
   }
   transition: opacity 200ms ease-in, transform 200ms ease-in;
 
   @media screen and (max-width: 767px) {
+    margin-top: 60px;
     padding: 12px 46px;
     width: 176px;
   }
@@ -166,4 +178,29 @@ export const Span = styled.span`
   @media screen and (min-width: 768px) {
     margin-left: auto;
   }
+`;
+
+export const ProductSelectList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 400px;
+  overflow: scroll;
+  background-color: ${p => p.theme.colors.track};
+  color: ${p => p.theme.colors.primary};
+  border-radius: ${p => p.theme.radii.md};
+  z-index: 2000;
+`;
+
+export const ClearField = styled.button`
+  position: absolute;
+  bottom: 0;
+  right: 30px;
+  border: none;
+  background: transparent;
+  padding: 5px;
+  cursor: pointer;
 `;

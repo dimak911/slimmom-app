@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { login } from 'redux/auth/operations';
-import { refreshCalories } from 'redux/calculate/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
 
@@ -47,8 +46,6 @@ export const LogInForm = () => {
         password,
       })
     );
-
-    dispatch(refreshCalories());
 
     toast.error(result.payload.message);
     reset();

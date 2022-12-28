@@ -5,13 +5,9 @@ import { logOut } from 'redux/auth/operations';
 import { removeCalories } from 'redux/calculate/slice';
 import { selectUserName } from 'redux/auth/selectors';
 import { AcceptModal } from 'components/AcceptModal';
-import { ReactComponent as BackArrowIcon } from '../../images/icons/back-arrow.svg';
-import {
-  UserInfoContainer,
-  UserName,
-  Button,
-  BackLink,
-} from './UserInfo.styled';
+import { UserInfoContainer, UserName, Button } from './UserInfo.styled';
+
+import { Box } from 'components/Box';
 
 export const UserInfo = ({ burgerActive }) => {
   const dispatch = useDispatch();
@@ -41,31 +37,28 @@ export const UserInfo = ({ burgerActive }) => {
 
   return (
     <UserInfoContainer burger={burgerActive} location={location.pathname}>
-      {location.pathname === '/calculate' ? null : (
-        <BackLink to="/calculate">
-          <BackArrowIcon />
-        </BackLink>
-      )}
-      <UserName>{userName}</UserName>
-      <Button type="button" onClick={() => openAcceptModal()}>
-        Вихід
-      </Button>
-      <>
-        {isAcceptModalOpen && (
-          <AcceptModal
-            closeModal={closeAcceptModal}
-            acceptAction={`вийти, ${userName}`}
-            agreeButton={{
-              text: 'Вийти',
-              action: Logout,
-            }}
-            desagreeButton={{
-              text: 'Залишитись',
-              action: closeAcceptModal,
-            }}
-          ></AcceptModal>
-        )}
-      </>
+      <Box display="flex" ml="auto">
+        <UserName>{userName}</UserName>
+        <Button type="button" onClick={() => openAcceptModal()}>
+          Вихід
+        </Button>
+        <>
+          {isAcceptModalOpen && (
+            <AcceptModal
+              closeModal={closeAcceptModal}
+              acceptAction={`вийти, ${userName}`}
+              agreeButton={{
+                text: 'Вийти',
+                action: Logout,
+              }}
+              desagreeButton={{
+                text: 'Залишитись',
+                action: closeAcceptModal,
+              }}
+            ></AcceptModal>
+          )}
+        </>
+      </Box>
     </UserInfoContainer>
   );
 };
