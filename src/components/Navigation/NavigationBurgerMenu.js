@@ -1,7 +1,8 @@
-import { getSelectedDate } from 'redux/date/selectors';
-import { Link, Section, Wrapper } from './NavigationBurgerMenu.styled';
-import { initialDate } from 'App';
 import { useSelector } from 'react-redux';
+import { getSelectedDate } from 'redux/date/selectors';
+import { initialDate } from 'helpers/constants';
+
+import { Link, Section, Wrapper } from './NavigationBurgerMenu.styled';
 
 export const NavigationBurgerMenu = ({ burgerActive, setBurger }) => {
   const selectedDate = useSelector(getSelectedDate);

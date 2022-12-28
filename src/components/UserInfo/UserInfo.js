@@ -20,6 +20,8 @@ export const UserInfo = ({ burgerActive }) => {
   const userName = useSelector(selectUserName);
 
   const Logout = () => {
+    setIsAcceptModalopen(false);
+    window.document.body.style.overflow = 'unset';
     dispatch(logOut());
     navigate('/');
     dispatch(removeCalories());

@@ -67,7 +67,7 @@ export const teams = [
 
   {
     id: 7,
-    username: 'Trotsenko Svitlana',
+    username: 'Svitlana Trotsenko',
     role: 'Developer',
     avatar: Lana,
     linkedin: 'https://www.linkedin.com/in/svetlana-trotsenko',
@@ -107,7 +107,8 @@ export const teams = [
     username: 'Galina Stepanovich',
     role: 'Developer',
     avatar: Galina,
-    linkedin: 'https://www.linkedin.com/company/goit-start-your-career-in-it/',
+    linkedin:
+      'https://www.linkedin.com/in/%D0%B3%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0-%D1%81%D1%82%D0%B5%D0%BF%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%87-202aa825b/',
     github: 'https://github.com/HalynaStep',
   },
 ];

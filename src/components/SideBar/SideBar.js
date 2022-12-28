@@ -1,3 +1,15 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchsideBarInfo } from 'redux/products/operations';
+import { selectIsLoading } from 'redux/loader/selectors';
+import { productsList } from 'redux/products/selectors';
+import { selectCalculateValue } from 'redux/calculate/selectors';
+import { getSelectedDate } from 'redux/date/selectors';
+import axios from 'axios';
+import { Loader } from 'components/Loader/Loader';
+import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
+import { initialDate } from 'helpers/constants';
+
 import {
   SideBarContainer,
   Box,
@@ -8,17 +20,6 @@ import {
   Ul,
   Li,
 } from './SideBar.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchsideBarInfo } from 'redux/products/operations';
-import { selectIsLoading } from 'redux/loader/selectors';
-import { Loader } from 'components/Loader/Loader';
-import { useEffect } from 'react';
-import { productsList } from 'redux/products/selectors';
-import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
-import axios from 'axios';
-import { getSelectedDate } from 'redux/date/selectors';
-import { initialDate } from 'App';
-import { selectCalculateValue } from 'redux/calculate/selectors';
 
 export const SideBar = () => {
   const dispatch = useDispatch();
@@ -31,16 +32,21 @@ export const SideBar = () => {
     dispatch(fetchsideBarInfo());
   }, [dispatch]);
 
-  const { countedCalories, notAllowedFoodCategories } = useSelector(selectCalculateValue);
+  const { countedCalories, notAllowedFoodCategories } =
+    useSelector(selectCalculateValue);
   const products = useSelector(productsList);
 
-  const totalCalories = products.reduce(
-    (accumulator, currentValue) =>
-      accumulator + Number(currentValue.productCalories),
-    0
-  );
+  const totalCalories = products
+    .reduce(
+      (accumulator, currentValue) =>
+        accumulator + Number(currentValue.productCalories),
+      0
+    )
+    .toFixed(2);
   const diffCalories = (Number(countedCalories) - totalCalories).toFixed(2);
-  const percentage = ((totalCalories / Number(countedCalories)) * 100).toFixed(2);
+  const percentage = ((totalCalories / Number(countedCalories)) * 100).toFixed(
+    2
+  );
 
   return (
     <Box>
