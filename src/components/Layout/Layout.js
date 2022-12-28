@@ -14,6 +14,7 @@ import { teams } from '../Footer/FooterModalTeam/users';
 import FooterModalTeamList from 'components/Footer/FooterModalTeam/TeamImageGalleryList';
 import { FooterModalTeam } from 'components/Footer/FooterModalTeam/FooterModalTeam';
 import { refreshCalories } from 'redux/calculate/operations';
+import { Loader } from 'components/Loader/Loader';
 
 export const Layout = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ export const Layout = () => {
             <Header />
           </Container>
           <HeaderUnderline />
-          <Suspense>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
           <Footer openModal={openModal} />
@@ -60,7 +61,7 @@ export const Layout = () => {
             <Header />
           </Container>
           <HeaderUnderline />
-          <Suspense>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
           <Footer openModal={openModal} />
