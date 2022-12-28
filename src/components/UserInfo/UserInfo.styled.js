@@ -54,6 +54,10 @@ export const Button = styled.button`
   :focus {
     color: ${p => p.theme.colors.accent};
   }
+
+  @media screen and (min-width: 1280px) {
+    margin-right: 16px;
+  }
 `;
 
 // export const StyledSubdirectoryIcon = styled.img`
@@ -72,7 +76,8 @@ export const Button = styled.button`
 //   @media (min-width: 768px) {
 //     display: none;
 //   }
-// `;
+//
+//`;
 
 // export const BackLink = styled(NavLink)`
 //   padding: 12px 20px;

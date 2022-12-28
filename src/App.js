@@ -2,17 +2,13 @@ import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/operations';
-import { refreshCalories } from 'redux/calculate/operations';
-import {
-  selectIsRefreshing,
-  selectIsLoggedIn,
-  selectUser,
-} from 'redux/auth/selectors';
+import { selectIsRefreshing, selectUser } from 'redux/auth/selectors';
 import { RestrictedRoute } from 'components/RestrictedRoute';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 import { routes } from 'helpers/constants';
+
 
 const RegistrationPage = lazy(() =>
   import('pages/RegistrationPage/RegistrationPage')
@@ -28,14 +24,11 @@ export const App = () => {
   const dispatch = useDispatch();
   const { callorie } = useSelector(selectUser);
   const { isRefreshing } = useSelector(selectIsRefreshing);
-  const { isLoggedIn } = useSelector(selectIsLoggedIn);
   const noFormDataDirect = !callorie ? routes.calculate : routes.diaryToday;
 
   useEffect(() => {
     dispatch(refreshUser());
-    isLoggedIn && dispatch(refreshCalories());
-    !isRefreshing && dispatch(refreshCalories());
-  }, [dispatch, isLoggedIn, isRefreshing]);
+  }, [dispatch]);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>
