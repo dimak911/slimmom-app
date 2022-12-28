@@ -21,6 +21,7 @@ export const ModalDailyCalorieStyled = styled.div`
   margin: 0 auto 0;
   z-index: 999;
   padding: ${props => props.theme.space[6]}px 0 0 0;
+  overflow-y: scroll;
 
   @media (min-width: 768px) {
     position: absolute;

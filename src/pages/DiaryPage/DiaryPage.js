@@ -1,10 +1,18 @@
-import { SideBar } from '../../components/SideBar/SideBar';
 import { useState } from 'react';
+import { SideBar } from '../../components/SideBar/SideBar';
 import { DairyProductList } from '../../components/DairyProductList/DairyProductList';
-import img from '../../images/icons/Vector.png';
 import { DiaryAddProductForm } from '../../components/DiaryAddProductForm/DiaryAddProductForm';
 import { DiaryDateCalendar } from 'components/DiaryDateCalendar/DiaryDateCalendar';
-import { BoxForm, Button, ButtonBox, WrapSideBar, WrapPage, WrapForm } from './DiaryPage.styled';
+import img from '../../images/icons/Vector.png';
+
+import {
+  BoxForm,
+  Button,
+  ButtonBox,
+  WrapSideBar,
+  WrapPage,
+  WrapForm,
+} from './DiaryPage.styled';
 import { Box } from 'components/Box';
 
 const DiaryPage = () => {
@@ -15,7 +23,7 @@ const DiaryPage = () => {
   return (
     <WrapPage>
       <WrapForm>
-        <Box pl={20}>
+        <Box>
           <DiaryDateCalendar />
 
           {!isShowAddForm && (
@@ -37,9 +45,7 @@ const DiaryPage = () => {
         )}
       </WrapForm>
 
-      <WrapSideBar>
-        {!isShowAddForm && <SideBar />}
-      </WrapSideBar>
+      <WrapSideBar>{!isShowAddForm && <SideBar />}</WrapSideBar>
     </WrapPage>
   );
 };

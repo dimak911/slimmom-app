@@ -1,6 +1,6 @@
-import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { calculation } from 'redux/calculate/operations';
 import { postSideBarInfo } from 'redux/products/operations';
 import { selectCalculateValue } from 'redux/calculate/selectors';
@@ -161,11 +161,11 @@ export const DailyCaloriesForm = ({ openModal }) => {
                   required: 'Будь ласка, введіть бажану вагу',
                   min: {
                     value: 20,
-                    message: 'Мінімальниа вага 20 кг',
+                    message: 'Мінімальна вага 20 кг',
                   },
                   max: {
                     value: 500,
-                    message: 'Максимальниа вага 500 кг',
+                    message: 'Максимальна вага 500 кг',
                   },
                 })}
               />

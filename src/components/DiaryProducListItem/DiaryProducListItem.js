@@ -34,6 +34,8 @@ export const DiaryProductListItem = ({
   };
 
   const deleteAction = () => {
+    setIsAcceptModalopen(false);
+    window.document.body.style.overflow = 'unset';
     dispatch(removeDiaryListItem(_id));
   };
 

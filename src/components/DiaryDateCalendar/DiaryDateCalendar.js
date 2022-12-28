@@ -1,16 +1,20 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 import Datetime from 'react-datetime';
-import { useEffect, useState } from 'react';
-import { Box } from 'components/Box';
-import 'react-datetime/css/react-datetime.css';
-import calendarIcon from '../../images/icons/calendar.svg';
-import { DiaryDate } from './DiaryDateCalendar.styled';
-import { useDispatch } from 'react-redux';
-import { fetchDiaryProducts } from 'redux/products/operations';
-import { useNavigate, useParams } from 'react-router-dom';
-import 'moment/locale/uk';
 import axios from 'axios';
+import { fetchDiaryProducts } from 'redux/products/operations';
+import 'moment/locale/uk';
 import { setSelectedDate } from 'redux/date/slice';
+import calendarIcon from '../../images/icons/calendar.svg';
+
+import 'react-datetime/css/react-datetime.css';
+import {
+  DiaryDate,
+  DiaryDateImg,
+  CalendarWrap,
+} from './DiaryDateCalendar.styled';
 
 const formatDate = date => date.split('.').join('-');
 
@@ -43,15 +47,14 @@ export const DiaryDateCalendar = () => {
 
   const renderInput = (props, openCalendar) => {
     return (
-      <Box
-        display="flex"
-        alignItems="center"
-        gridGap="20px"
-        onClick={openCalendar}
-      >
+      <CalendarWrap>
         <DiaryDate>{diaryDate}</DiaryDate>
-        <img src={calendarIcon} width={20} height={20} alt="calendar" />
-      </Box>
+        <DiaryDateImg
+          src={calendarIcon}
+          alt="calendar"
+          onClick={openCalendar}
+        />
+      </CalendarWrap>
     );
   };
 

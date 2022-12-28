@@ -7,14 +7,14 @@ import { addDiaryListItem } from '../../redux/products/operations';
 
 import {
   SigninForm,
-  InputForm,
+  ProductForm,
+  WeightForm,
   ProductItem,
   LabelWeigt,
   ButtonLogin,
   Span,
   Error,
   LabelProduct,
-  Div,
 } from './DiaryAddProductForm.styled';
 
 // axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
@@ -73,11 +73,11 @@ export const DiaryAddProductForm = ({ img }) => {
   };
 
   return (
-    <Div>
+    <>
       <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
         <LabelProduct>
           Введіть назву продукту
-          <InputForm
+          <ProductForm
             type="text"
             {...register('product', {
               required: 'Введіть назву продукту/страви',
@@ -86,8 +86,8 @@ export const DiaryAddProductForm = ({ img }) => {
           {errors?.product && <Error>{errors?.product?.message}</Error>}
         </LabelProduct>
         <LabelWeigt>
-          <Span>Грами</Span>
-          <InputForm
+          <Span>Вага</Span>
+          <WeightForm
             value={weigthValue}
             type="number"
             {...register('weigth', {
@@ -96,6 +96,7 @@ export const DiaryAddProductForm = ({ img }) => {
                 value: 1,
                 message: 'Введіть від 1г',
               },
+              validate: value => Number.isInteger(parseFloat(value)) === true,
             })}
           />
           {errors?.weigth && <Error>{errors?.weigth?.message}</Error>}
@@ -124,6 +125,6 @@ export const DiaryAddProductForm = ({ img }) => {
           );
         })}
       </ul>
-    </Div>
+    </>
   );
 };

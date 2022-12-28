@@ -1,29 +1,16 @@
 import styled from 'styled-components';
 
-
 export const Box = styled.div`
-  width: 480px;
   background-color: #f0f1f3;
-  @media (max-width: 767px) {
-    margin: 0 auto;
-    padding: 40px 20px;
-    width: 320px;
-    /* position: absolute; */
-  }
+
   @media (min-width: 768px) {
-    padding: 80px 32px;
-    width: 768px;
     display: flex;
     gap: 98px;
 
     background-color: transparent;
   }
   @media (min-width: 1280px) {
-    padding: 0;
-    width: 517px;
-    height: 850px;
     display: block;
-
   }
 `;
 
@@ -35,10 +22,8 @@ export const SideBarContainer = styled.div`
   }
   @media (min-width: 1280px) {
     &:first-child {
-      margin-top: 149px;
       margin-bottom: 60px;
     }
-    margin-left: 94px;
   }
 `;
 

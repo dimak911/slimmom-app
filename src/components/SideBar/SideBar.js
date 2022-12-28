@@ -36,11 +36,13 @@ export const SideBar = () => {
     useSelector(selectCalculateValue);
   const products = useSelector(productsList);
 
-  const totalCalories = products.reduce(
-    (accumulator, currentValue) =>
-      accumulator + Number(currentValue.productCalories),
-    0
-  );
+  const totalCalories = products
+    .reduce(
+      (accumulator, currentValue) =>
+        accumulator + Number(currentValue.productCalories),
+      0
+    )
+    .toFixed(2);
   const diffCalories = (Number(countedCalories) - totalCalories).toFixed(2);
   const percentage = ((totalCalories / Number(countedCalories)) * 100).toFixed(
     2
