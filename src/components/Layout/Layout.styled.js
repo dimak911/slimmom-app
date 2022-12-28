@@ -94,18 +94,18 @@ export const Gradient = styled.div`
   width: 100%;
   background: linear-gradient(
     to top,
-    ${p => p.theme.colors.track} 433px,
-    ${p => p.theme.colors.white} 433px,
-    ${p => p.theme.colors.white} 433px
+    ${p => p.theme.colors.track} 533px,
+    ${p => p.theme.colors.white} 533px,
+    ${p => p.theme.colors.white} 533px
   );
 
   @media screen and (min-width: 768px) {
     background: url(${imgTabl}) no-repeat right bottom,
       linear-gradient(
         to top,
-        ${p => p.theme.colors.track} 326px,
-        ${p => p.theme.colors.white} 326px,
-        ${p => p.theme.colors.white} 326px
+        ${p => p.theme.colors.track} 426px,
+        ${p => p.theme.colors.white} 426px,
+        ${p => p.theme.colors.white} 426px
       );
   }
 

@@ -55,14 +55,18 @@ export const Button = styled.button`
   :focus {
     color: ${p => p.theme.colors.accent};
   }
+
+   @media screen and (min-width: 1280px) {
+    margin-right: 16px;
+   }
 `;
 
 export const StyledSubdirectoryIcon = styled.img`
   display: ${p =>
     p.location === '/login' ||
-    p.location === '/signup' ||
-    p.location === '/' ||
-    p.location === '/calculator'
+      p.location === '/signup' ||
+      p.location === '/' ||
+      p.location === '/calculator'
       ? 'none'
       : 'inline-block'};
   width: 12px;
