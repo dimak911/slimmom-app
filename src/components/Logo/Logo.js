@@ -1,11 +1,12 @@
-import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { routes } from 'helpers/constants';
+
 import logoIcon from '../../images/icons/logo.png';
 import slim from '../../images/icons/Slim.svg';
 import mom from '../../images/icons/Mom.svg';
 
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
 import {
   LogoContainer,
   LogoIcon,
@@ -13,11 +14,10 @@ import {
   LogoSlim,
   LogoMom,
 } from './Logo.styled';
-import { initialDate } from 'App';
 
 export const Logo = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const path = isLoggedIn ? `/diary/${initialDate}` : '/';
+  const path = isLoggedIn ? routes.diaryToday : routes.main;
   const location = useLocation();
 
   return (

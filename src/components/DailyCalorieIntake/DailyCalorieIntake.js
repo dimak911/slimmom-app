@@ -1,3 +1,8 @@
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
+import { routes } from 'helpers/constants';
+
 import {
   ModalsHeadStyled,
   FoodListTitleStyled,
@@ -8,12 +13,14 @@ import {
   LinkStyled,
   ButtonStyled,
 } from './DailyCalorieIntake.styled';
-import { capitalizeFirstLetter } from 'helpers/capitalizeFirstLetter';
 
 export const DailyCalorieIntake = ({
   dataForModal: { countedCalories, notAllowedFoodCategories },
   closeModal,
 }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const redirectTo = isLoggedIn ? routes.diaryToday : routes.signup;
+
   return (
     <>
       <ModalsHeadStyled>
@@ -32,7 +39,7 @@ export const DailyCalorieIntake = ({
           })}
         </FoodListStyled>
       </FoodListWrapperStyled>
-      <LinkStyled to="/signup">
+      <LinkStyled to={redirectTo}>
         <ButtonStyled onClick={() => closeModal()}>
           Почніть худнути
         </ButtonStyled>

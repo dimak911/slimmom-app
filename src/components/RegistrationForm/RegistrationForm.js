@@ -1,6 +1,6 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { registration } from 'redux/auth/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { selectCalculateValue } from 'redux/calculate/selectors';
@@ -11,12 +11,12 @@ import {
   Title,
   InputForm,
   Label,
+  LastLabel,
   ButtonRegister,
   LinkLoggin,
   ButtonWrap,
   Error,
 } from './RegistrationForm.styled';
-import { toast } from 'react-toastify';
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -128,7 +128,7 @@ export const RegistrationForm = () => {
           {errors.email && <Error>{errors.email?.message}</Error>}
         </Label>
 
-        <Label>
+        <LastLabel>
           Пароль *
           <InputForm
             value={passwordValue}
@@ -153,7 +153,7 @@ export const RegistrationForm = () => {
             })}
           />
           {errors.password && <Error>{errors.password?.message}</Error>}
-        </Label>
+        </LastLabel>
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
           <ButtonRegister type="submit">Зареєструватися</ButtonRegister>

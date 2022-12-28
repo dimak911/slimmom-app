@@ -5,14 +5,10 @@ export const FooterContainer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.14;
-  /* bottom: 0;
-  position: fixed;
-  z-index: 100; */
   width: 100%;
 
   @media screen and (min-width: 768px) {

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const RegisterForm = styled.form`
-  margin-top: ${p => p.theme.spaceForm[2]}px;
+  margin-top: 40px;
+  margin-bottom: 100px;
   padding-left: ${p => p.theme.spaceForm[1]}px;
   padding-right: ${p => p.theme.spaceForm[1]}px;
 
@@ -18,14 +19,14 @@ export const RegisterForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: ${p => p.theme.spaceForm[4]}px;
-    margin-bottom: 420px;
+    margin-top: 160px;
+    margin-bottom: 350px;
     padding-left: ${p => p.theme.space[0]}px;
     padding-right: ${p => p.theme.space[0]}px;
   }
 
   @media screen and (min-width: 1280px) {
-    margin-bottom: 180px;
+    margin-bottom: 80px;
   }
 `;
 
@@ -52,17 +53,36 @@ export const Label = styled.label`
   }
 `;
 
+export const LastLabel = styled.label`
+  font-family: Verdana;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
+`;
+
 export const InputForm = styled.input`
   max-width: 280px;
   border: none;
   outline: none;
   border-bottom: 1px solid ${p => p.theme.colors.input};
+
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-family: Verdana-Bold;
+  font-style: normal;
+  font-size: ${p => p.theme.fontSizes.xs};
+  letter-spacing: 0.04em;
+  line-height: 1.21;
 `;
 
 export const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 60px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;

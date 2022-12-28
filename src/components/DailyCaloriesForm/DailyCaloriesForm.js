@@ -1,11 +1,12 @@
-import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { calculation } from 'redux/calculate/operations';
 import { postSideBarInfo } from 'redux/products/operations';
 import { selectCalculateValue } from 'redux/calculate/selectors';
-import { useLocation } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { addCalories } from 'redux/calculate/slice';
+import { bloodTypes } from 'helpers/constants';
 
 import {
   Form,
@@ -55,10 +56,10 @@ export const DailyCaloriesForm = ({ openModal }) => {
     const { height, age, currentWeight, desiredWeight, bloodType } = formData;
     const countedCalories = String(
       10 * currentWeight +
-      6.25 * height -
-      5 * age -
-      161 -
-      10 * (currentWeight - desiredWeight)
+        6.25 * height -
+        5 * age -
+        161 -
+        10 * (currentWeight - desiredWeight)
     );
     const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
     const dataForDispatch = {
@@ -70,15 +71,15 @@ export const DailyCaloriesForm = ({ openModal }) => {
 
     isLoggedIn
       ? dispatch(
-        calculation(dataForDispatch),
-        postSideBarInfo({
-          callorie: countedCalories,
-          notRecommendedProduct: notAllowedFoodCategories,
-        })
-      )
+          calculation(dataForDispatch),
+          postSideBarInfo({
+            callorie: countedCalories,
+            notRecommendedProduct: notAllowedFoodCategories,
+          })
+        )
       : dispatch(addCalories(dataForDispatch));
 
-    !isLoggedIn && openModal(dataForModal);
+    openModal(dataForModal);
   };
 
   const location = useLocation();
@@ -136,11 +137,11 @@ export const DailyCaloriesForm = ({ openModal }) => {
                   required: 'Введіть свою поточну вагу',
                   min: {
                     value: 20,
-                    message: 'Мінімальниа вага 20 кг',
+                    message: 'Мінімальна вага 20 кг',
                   },
                   max: {
                     value: 500,
-                    message: 'Максимальниа вага 500 кг',
+                    message: 'Максимальна вага 500 кг',
                   },
                 })}
               />
@@ -160,11 +161,11 @@ export const DailyCaloriesForm = ({ openModal }) => {
                   required: 'Будь ласка, введіть бажану вагу',
                   min: {
                     value: 20,
-                    message: 'Мінімальниа вага 20 кг',
+                    message: 'Мінімальна вага 20 кг',
                   },
                   max: {
                     value: 500,
-                    message: 'Максимальниа вага 500 кг',
+                    message: 'Максимальна вага 500 кг',
                   },
                 })}
               />
@@ -175,42 +176,18 @@ export const DailyCaloriesForm = ({ openModal }) => {
             <Label>Група крові * </Label>
             <BloodTypeValue>{bloodTypeValue}</BloodTypeValue>
             <RadiobuttonWrapper>
-              <RadiobuttonLabel>
-                <input {...register('bloodType')} type="radio" value="1" />1
-              </RadiobuttonLabel>
-
-              <RadiobuttonLabel>
-                <input
-                  {...register('bloodType', {
-                    required: 'Оберіть свою групу крові',
-                  })}
-                  type="radio"
-                  value="2"
-                />
-                2
-              </RadiobuttonLabel>
-
-              <RadiobuttonLabel>
-                <input
-                  {...register('bloodType', {
-                    required: 'Оберіть свою групу крові',
-                  })}
-                  type="radio"
-                  value="3"
-                />
-                3
-              </RadiobuttonLabel>
-
-              <RadiobuttonLabel>
-                <input
-                  {...register('bloodType', {
-                    required: 'Оберіть свою групу крові',
-                  })}
-                  type="radio"
-                  value="4"
-                />
-                4
-              </RadiobuttonLabel>
+              {bloodTypes.map(type => (
+                <RadiobuttonLabel key={type}>
+                  <input
+                    {...register('bloodType', {
+                      required: 'Оберіть свою групу крові',
+                    })}
+                    type="radio"
+                    value={type}
+                  />
+                  {type}
+                </RadiobuttonLabel>
+              ))}
             </RadiobuttonWrapper>
             {errors?.bloodType && <Error>{errors?.bloodType?.message}</Error>}
           </Column>
