@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { selectUser } from 'redux/auth/selectors';
-import { Link, HeaderNavigationWrapper } from './NavigationStyledHeader';
 import { getSelectedDate } from 'redux/date/selectors';
-import { initialDate } from 'App';
 import { selectCalculateValue } from 'redux/calculate/selectors';
+import { initialDate } from 'helpers/constants';
+
+import { Link, HeaderNavigationWrapper } from './NavigationStyledHeader';
 
 export const NavigationHeader = ({ isLoggedIn }) => {
   const location = useLocation();
@@ -17,24 +18,25 @@ export const NavigationHeader = ({ isLoggedIn }) => {
       isLoggedIn={isLoggedIn}
       location={location.pathname}
     >
-      {isLoggedIn ?
-        ((data?.height || formData?.height) && (
+      {isLoggedIn ? (
+        (data?.height || formData?.height) && (
           <>
             <Link
-              to={`/diary/${selectedDate ? selectedDate.split('.').join('-') : initialDate
-                }`}
+              to={`/diary/${
+                selectedDate ? selectedDate.split('.').join('-') : initialDate
+              }`}
             >
               ЩОДЕННИК
             </Link>
             <Link to="/calculate">КАЛЬКУЛЯТОР</Link>
           </>
-        ))
-        : (
-          <>
-            <Link to="/login">УВІЙТИ</Link>
-            <Link to="/signup">РЕЄСТРАЦІЯ</Link>
-          </>
-        )}
+        )
+      ) : (
+        <>
+          <Link to="/login">УВІЙТИ</Link>
+          <Link to="/signup">РЕЄСТРАЦІЯ</Link>
+        </>
+      )}
     </HeaderNavigationWrapper>
   );
 };

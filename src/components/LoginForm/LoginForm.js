@@ -1,22 +1,23 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { login } from 'redux/auth/operations';
+import { refreshCalories } from 'redux/calculate/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { Loader } from 'components/Loader/Loader';
+
 import { Container } from 'components/Container.styled';
 import {
   SigninForm,
   Title,
   InputForm,
   Label,
+  LastLabel,
   ButtonLogin,
   LinkRegister,
   ButtonWrap,
   Error,
 } from './LoginForm.styled';
-import { refreshCalories } from "redux/calculate/operations";
 
 export const LogInForm = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ export const LogInForm = () => {
       login({
         email: email.toLowerCase(),
         password,
-      }),
+      })
     );
 
     dispatch(refreshCalories());
@@ -86,7 +87,7 @@ export const LogInForm = () => {
           {errors.email && <Error>{errors.email?.message}</Error>}
         </Label>
 
-        <Label>
+        <LastLabel>
           Пароль *
           <InputForm
             value={passwordValue}
@@ -111,7 +112,7 @@ export const LogInForm = () => {
             })}
           />
           {errors.password && <Error>{errors.password?.message}</Error>}
-        </Label>
+        </LastLabel>
 
         <ButtonWrap display="flex" flexDirection="column" alignItems="center">
           <ButtonLogin type="submit">Авторизуватися</ButtonLogin>

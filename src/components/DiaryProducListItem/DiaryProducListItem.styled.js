@@ -3,7 +3,9 @@ import { ReactComponent as cross } from '../../images/icons/close-cross.svg';
 
 export const DiaryProductListItemStyled = styled.li`
   display: flex;
-  margin-bottom: 16px;
+  :not(:last-child) {
+    margin-bottom: 16px;
+  }
 `;
 
 export const ProductName = styled.p`
@@ -12,6 +14,7 @@ export const ProductName = styled.p`
   border-bottom: 1px solid ${p => p.theme.colors.input};
   padding-bottom: ${p => p.theme.space[3]}px;
   margin-right: ${p => p.theme.space[3]}px;
+  line-height: 17px;
 
   @media (min-width: 768px) {
     width: 240px;
@@ -22,6 +25,7 @@ export const ProductName = styled.p`
 
 export const ProductWeight = styled.p`
   width: 49px;
+  line-height: 17px;
   text-align: center;
   border-bottom: 1px solid ${p => p.theme.colors.input};
   padding-bottom: ${p => p.theme.space[3]}px;
@@ -36,6 +40,8 @@ export const ProductWeight = styled.p`
 `;
 
 export const ProductKcal = styled.p`
+  width: 58px;
+  line-height: 17px;
   border-bottom: 1px solid ${p => p.theme.colors.input};
   padding-bottom: ${p => p.theme.space[3]}px;
   margin-right: 17px;

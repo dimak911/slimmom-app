@@ -6,14 +6,14 @@ import { useForm } from 'react-hook-form';
 import { searchProductList } from 'helpers/searchProduct';
 import {
   SigninForm,
-  InputForm,
+  ProductForm,
+  WeightForm,
   ProductItem,
   LabelWeigt,
   ButtonLogin,
   Span,
   Error,
   LabelProduct,
-  Div,
 } from './DiaryAddProductForm.styled';
 
 // axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
@@ -72,25 +72,21 @@ export const DiaryAddProductForm = ({ img }) => {
   };
 
   return (
-    <Div>
+    <>
       <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
         <LabelProduct>
           Введіть назву продукту
-          <InputForm
+          <ProductForm
             type="text"
             {...register('product', {
               required: 'Введіть назву продукту/страви',
-              // pattern: {
-              //   value: /^А-Яа-яґҐЁёІіЇїЄє'’ʼ\s-$/i,
-              //   message: 'Введіть українською',
-              // },
             })}
           />
           {errors?.product && <Error>{errors?.product?.message}</Error>}
         </LabelProduct>
         <LabelWeigt>
-          <Span>Грами</Span>
-          <InputForm
+          <Span>Вага</Span>
+          <WeightForm
             value={weigthValue}
             type="number"
             {...register('weigth', {
@@ -99,6 +95,7 @@ export const DiaryAddProductForm = ({ img }) => {
                 value: 1,
                 message: 'Введіть від 1г',
               },
+              validate: value => Number.isInteger(parseFloat(value)) === true,
             })}
           />
           {errors?.weigth && <Error>{errors?.weigth?.message}</Error>}
@@ -127,6 +124,6 @@ export const DiaryAddProductForm = ({ img }) => {
           );
         })}
       </ul>
-    </Div>
+    </>
   );
 };
