@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addDiaryListItem } from 'redux/products/operations';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { addDiaryListItem } from 'redux/products/operations';
 import { searchProductList } from 'helpers/searchProduct';
 import {
-  SigninForm,
+  AddProductForm,
   ProductForm,
   WeightForm,
   ProductItem,
@@ -14,10 +14,10 @@ import {
   Span,
   Error,
   LabelProduct,
+  ProductSelectList,
+  ClearField,
 } from './DiaryAddProductForm.styled';
-
-// axios.defaults.baseURL = 'https://slim-mom-od0o.onrender.com/api';
-// axios.defaults.baseURL = 'http://localhost:3001/api/';
+import crossIcon from '../../images/icons/close-cross.svg';
 
 export const DiaryAddProductForm = ({ img }) => {
   const dispatch = useDispatch();
@@ -43,17 +43,6 @@ export const DiaryAddProductForm = ({ img }) => {
   const [products, setProducts] = useState([]);
   const [productInput, setProductInput] = useState('');
   const [callories, setCallories] = useState('');
-  useEffect(() => {
-    if (productValue.length > 1) {
-      searchProductList(productValue).then(response => {
-        const fetchedProducts = response.data.map(obj => {
-          return { title: obj.title.ua, calories: obj.calories };
-        });
-        setProducts(fetchedProducts);
-      });
-    }
-    setProducts([]);
-  }, [productValue]);
 
   useEffect(() => {
     setValue('product', productInput);
@@ -68,20 +57,60 @@ export const DiaryAddProductForm = ({ img }) => {
       date: date,
     };
     dispatch(addDiaryListItem(product));
+    setProductInput('');
     reset();
+  };
+
+  const handleChange = value => {
+    if (value.length > 1) {
+      searchProductList(value).then(response => {
+        const fetchedProducts = response.data.map(obj => {
+          return { title: obj.title.ua, calories: obj.calories };
+        });
+        setProducts(fetchedProducts);
+      });
+    }
+    setProducts([]);
   };
 
   return (
     <>
-      <SigninForm onSubmit={handleSubmit(onSubmitForm)}>
+      <AddProductForm onSubmit={handleSubmit(onSubmitForm)}>
         <LabelProduct>
           Введіть назву продукту
-          <ProductForm
-            type="text"
-            {...register('product', {
-              required: 'Введіть назву продукту/страви',
-            })}
-          />
+          <div style={{ position: 'relative' }}>
+            <ProductForm
+              type="text"
+              autoComplete="off"
+              {...register('product', {
+                required: 'Введіть назву продукту/страви',
+                onChange: e => handleChange(e.target.value),
+              })}
+            />
+            {products.length > 0 && (
+              <ProductSelectList>
+                {products.map(product => (
+                  <ProductItem
+                    onClick={event => {
+                      setProductInput(event.target.innerText);
+                      setCallories(product.calories);
+                      setProducts([]);
+                    }}
+                    key={product.title}
+                  >
+                    {product.title}
+                  </ProductItem>
+                ))}
+              </ProductSelectList>
+            )}
+            <ClearField
+              onClick={() => {
+                setValue('product', '');
+              }}
+            >
+              <img src={crossIcon} alt="cross" />
+            </ClearField>
+          </div>
           {errors?.product && <Error>{errors?.product?.message}</Error>}
         </LabelProduct>
         <LabelWeigt>
@@ -100,30 +129,14 @@ export const DiaryAddProductForm = ({ img }) => {
           />
           {errors?.weigth && <Error>{errors?.weigth?.message}</Error>}
         </LabelWeigt>
-        <ButtonLogin type="submit" disabled={!isValid}>
+        <ButtonLogin type="submit" disabled={!isValid || !productInput}>
           {img !== 'Add' ? (
             <img src={img} alt="button to add product" />
           ) : (
             'Додати'
           )}
         </ButtonLogin>
-      </SigninForm>
-      <ul>
-        {products.map(product => {
-          return (
-            <ProductItem
-              onClick={event => {
-                setProductInput(event.target.innerText);
-                setCallories(product.calories);
-                setProducts([]);
-              }}
-              key={product.title}
-            >
-              {product.title}
-            </ProductItem>
-          );
-        })}
-      </ul>
+      </AddProductForm>
     </>
   );
 };
