@@ -2,11 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { registration } from 'redux/auth/operations';
-import { refreshCalories } from 'redux/calculate/operations';
 import { selectIsLoading } from 'redux/loader/selectors';
 import { selectCalculateValue } from 'redux/calculate/selectors';
 import { Loader } from 'components/Loader/Loader';
-
 import { Container } from 'components/Container.styled';
 import {
   RegisterForm,
@@ -68,8 +66,6 @@ export const RegistrationForm = () => {
           password,
         })
       );
-
-      dispatch(refreshCalories());
 
       toast.error(result.payload.message);
     }

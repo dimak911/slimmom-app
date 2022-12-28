@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-  background-color: #f0f1f3;
-
   @media (min-width: 768px) {
     display: flex;
     gap: 98px;
