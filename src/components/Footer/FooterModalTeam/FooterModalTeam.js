@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import {
-  ModalDailyCalorieStyled,
+  ModalTeamStyled,
   ModalBackdropStyled,
   CloseIconCrossStyled,
   CloseIconArrowStyled,
@@ -30,13 +30,13 @@ export function FooterModalTeam({ closeModal, children }) {
 
   return createPortal(
     <ModalBackdropStyled onClick={onBackdropClickHandler}>
-      <ModalDailyCalorieStyled>
+      <ModalTeamStyled>
         <CloseIconCrossStyled onClick={() => closeModal()} />
         <CloseRectMobileStyled onClick={() => closeModal()}>
           <CloseIconArrowStyled src={closeIconArrow} alt="back arrow" />
         </CloseRectMobileStyled>
         {children}
-      </ModalDailyCalorieStyled>
+      </ModalTeamStyled>
     </ModalBackdropStyled>,
     modalContainer
   );
