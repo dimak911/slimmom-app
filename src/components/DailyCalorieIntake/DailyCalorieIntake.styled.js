@@ -78,12 +78,13 @@ export const LinkStyled = styled(NavLink)`
   border-radius: 30px;
   border-color: transparent;
   text-decoration: none;
-  transition: box-shadow 300ms ease-in;
+  transition: box-shadow 300ms ease-in, transform 200ms ease-in;
   cursor: pointer;
 
   :hover,
   :focus {
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
+    transform: translateY(-7px);
   }
 `;
 
@@ -102,4 +103,5 @@ export const ButtonStyled = styled.button`
   text-align: center;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.white};
+  cursor: pointer;
 `;

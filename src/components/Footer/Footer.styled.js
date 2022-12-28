@@ -5,7 +5,6 @@ export const FooterContainer = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

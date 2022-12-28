@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
 
 export const SigninForm = styled.form`
-  margin-top: ${p => p.theme.spaceForm[2]}px;
+  margin-top: 40px;
+  margin-bottom: 100px;
   padding-left: ${p => p.theme.spaceForm[1]}px;
   padding-right: ${p => p.theme.spaceForm[1]}px;
 
@@ -13,14 +14,14 @@ export const SigninForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 495px;
-    margin-top: ${p => p.theme.spaceForm[4]}px;
+    margin-bottom: 350px;
+    margin-top: 160px;
     padding-left: ${p => p.theme.space[0]}px;
     padding-right: ${p => p.theme.space[0]}px;
   }
 
   @media screen and (min-width: 1280px) {
-    margin-bottom: 255px;
+    margin-bottom: 80px;
   }
 `;
 
@@ -57,6 +58,17 @@ export const Label = styled.label`
   }
 `;
 
+export const LastLabel = styled.label`
+  font-family: Verdana;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
+`;
+
 export const InputForm = styled.input`
   max-width: 280px;
   border: none;
@@ -64,7 +76,7 @@ export const InputForm = styled.input`
   border-bottom: 1px solid ${p => p.theme.colors.input};
 
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
+  font-family: Verdana-Bold;
   font-style: normal;
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
@@ -75,6 +87,7 @@ export const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 60px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -109,7 +122,6 @@ export const ButtonLogin = styled.button`
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
 
     /* transform: translateY(-7px); */
-
   }
 
   @media screen and (min-width: 768px) {
@@ -144,7 +156,6 @@ export const LinkRegister = styled(NavLink)`
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
 
     /* transform: translateY(-7px); */
-
   }
 `;
 
