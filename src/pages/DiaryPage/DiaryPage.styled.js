@@ -18,6 +18,7 @@ export const WrapPage = styled.div`
   }
 `;
 export const WrapCalendar = styled.div`
+  display: inline-block;
   margin-bottom: 32px;
   @media screen and (min-width: 768px) {
     margin-bottom: 60px;
