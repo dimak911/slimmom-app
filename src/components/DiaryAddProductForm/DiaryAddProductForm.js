@@ -101,11 +101,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
           />
           {errors?.weigth && <Error>{errors?.weigth?.message}</Error>}
         </LabelWeigt>
-        <ButtonLogin
-          type="submit"
-          disabled={!isValid}
-          // onClick={() => openModal()}
-        >
+        <ButtonLogin type="submit" disabled={!isValid}>
           {img !== 'Add' ? (
             <img src={img} alt="button to add product" />
           ) : (

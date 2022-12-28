@@ -7,8 +7,7 @@ export const SigninForm = styled.form`
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 767px) {
-    padding: 120px 20px;
-    /* padding: 80px 20px; */
+    padding: 80px 20px;
   }
   @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -144,6 +143,7 @@ export const ButtonLogin = styled.button`
   transition: opacity 200ms ease-in, transform 200ms ease-in;
 
   @media screen and (max-width: 767px) {
+    margin-top: 60px;
     padding: 12px 46px;
     width: 176px;
   }
