@@ -202,4 +202,8 @@ export const ClearField = styled.button`
   background: transparent;
   padding: 5px;
   cursor: pointer;
+  transition: 200ms ease-in;
+  &:hover {
+    scale: 1.2;
+  }
 `;
