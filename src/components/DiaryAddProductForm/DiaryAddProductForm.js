@@ -18,6 +18,7 @@ import {
   ClearField,
 } from './DiaryAddProductForm.styled';
 import crossIcon from '../../images/icons/close-cross.svg';
+import { Box } from 'components/Box';
 
 export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
       <AddProductForm onSubmit={handleSubmit(onSubmitForm)}>
         <LabelProduct>
           Введіть назву продукту
-          <div style={{ position: 'relative' }}>
+          <Box position="relative">
             <ProductForm
               type="text"
               autoComplete="off"
@@ -114,7 +115,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
                 <img src={crossIcon} alt="cross" />
               </ClearField>
             )}
-          </div>
+          </Box>
           {errors?.product && <Error>{errors?.product?.message}</Error>}
         </LabelProduct>
         <LabelWeigt>

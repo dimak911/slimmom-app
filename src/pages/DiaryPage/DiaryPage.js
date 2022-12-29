@@ -47,12 +47,12 @@ const DiaryPage = () => {
         }
         {isShowAddForm && (
           <Box
-            width={'100%'}
-            height="100%"
+            width="100%"
+            height="100vh"
             left="0"
             top="122px"
             position="absolute"
-            zIndex="1"
+            zIndex="9999"
             bg="white"
           >
             <MobileBoxForm>

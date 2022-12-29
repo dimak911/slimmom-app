@@ -58,6 +58,7 @@ export const FoneImages = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    height: 100%;
     background-image: url(${descktopLeafs1x}), url(${descktopBanana1x}),
       url(${descktopStrawberry1x}), url(${descktopFone1x});
     background-size: 746px, 498px, 286px, 602px;
@@ -110,6 +111,7 @@ export const Gradient = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    height: 100vh;
     background: url(${imgDesc}) no-repeat right bottom,
       linear-gradient(
         to left,
