@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import VerdanaBold from '../../fonts/VerdanaBold.ttf';
+import { ReactComponent as cross } from '../../images/icons/close-cross.svg';
 
 export const AddProductForm = styled.form`
   align-items: flex-start;
@@ -207,3 +208,28 @@ export const ClearField = styled.button`
     scale: 1.2;
   }
 `;
+
+export const Cross = styled(cross)`
+  display: block;
+  width: 10px;
+  height: 10px;
+  opacity: 0.6;
+
+  fill: ${props => props.theme.colors.black};
+
+  :hover,
+  :focus,
+  :active {
+    fill: ${props => props.theme.colors.accent};
+    opacity: 1;
+  }
+
+  transition: opacity 200ms ease-in, fill 200ms ease-in;
+
+  @media (min-width: 768px) {
+    width: 12px;
+    height: 12px;
+  }
+`;
+
+Cross.defaultProps = { src: cross, alt: 'cross' };

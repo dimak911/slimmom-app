@@ -45,7 +45,7 @@ export const Label = styled.label`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: ${p => p.theme.spaceForm[2]}px;
+  padding-bottom: ${p => p.theme.spaceForm[2]}px;
 
   font-weight: ${p => p.theme.fontWeights.bold};
   font-family: Verdana;
@@ -61,9 +61,15 @@ export const Label = styled.label`
 
 export const LastLabel = styled.label`
   font-family: Verdana;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.xs};
+  letter-spacing: 0.04em;
+  line-height: 1.21;
+
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-bottom: ${p => p.theme.spaceForm[2]}px;
 
   @media screen and (min-width: 768px) {
     width: 240px;
@@ -121,8 +127,6 @@ export const ButtonLogin = styled.button`
   :hover,
   :focus {
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
-
-    /* transform: translateY(-7px); */
   }
 
   @media screen and (min-width: 768px) {
@@ -155,19 +159,18 @@ export const LinkRegister = styled(NavLink)`
   :hover,
   :focus {
     box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
-
-    /* transform: translateY(-7px); */
   }
 `;
 
 export const Error = styled.p`
+  position: absolute;
+  top: 40px;
+  left: 0;
   max-width: 100%;
   margin: ${p => p.theme.space[0]}px;
 
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
   font-style: italic;
-  font-size: ${p => p.theme.fontSizes.xs};
+  font-size: 12px;
   letter-spacing: 0.04em;
   line-height: 1.21;
   text-decoration: none;

@@ -16,8 +16,8 @@ import {
   LabelProduct,
   ProductSelectList,
   ClearField,
+  Cross,
 } from './DiaryAddProductForm.styled';
-import crossIcon from '../../images/icons/close-cross.svg';
 
 export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
   const dispatch = useDispatch();
@@ -111,7 +111,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
                   setProducts([]);
                 }}
               >
-                <img src={crossIcon} alt="cross" />
+                <Cross />
               </ClearField>
             )}
           </div>
