@@ -96,7 +96,7 @@ export const RadiobuttonLabel = styled.label`
 
 export const BloodTypeValue = styled.p`
   margin: 0;
-  min-height: 16px;
+  min-height: 18px;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-family: ${VerdanaBold};
   font-style: normal;

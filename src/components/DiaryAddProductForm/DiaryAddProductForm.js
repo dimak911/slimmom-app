@@ -104,14 +104,16 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
                 ))}
               </ProductSelectList>
             )}
-            <ClearField
-              onClick={() => {
-                setValue('product', '');
-                setProducts([]);
-              }}
-            >
-              <Cross />
-            </ClearField>
+            {productValue && (
+              <ClearField
+                onClick={() => {
+                  setValue('product', '');
+                  setProducts([]);
+                }}
+              >
+                <Cross />
+              </ClearField>
+            )}
           </div>
           {errors?.product && <Error>{errors?.product?.message}</Error>}
         </LabelProduct>

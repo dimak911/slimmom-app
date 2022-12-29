@@ -187,7 +187,6 @@ export const ProductSelectList = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
   max-height: 400px;
   overflow: scroll;
   background-color: ${p => p.theme.colors.track};
@@ -204,6 +203,10 @@ export const ClearField = styled.button`
   background: transparent;
   padding: 5px;
   cursor: pointer;
+  transition: 200ms ease-in;
+  &:hover {
+    scale: 1.2;
+  }
 `;
 
 export const Cross = styled(cross)`
