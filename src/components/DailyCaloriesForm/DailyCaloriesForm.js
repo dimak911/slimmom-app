@@ -184,6 +184,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
                     })}
                     type="radio"
                     value={type}
+                    style={{ marginRight: '4px' }}
                   />
                   {type}
                 </RadiobuttonLabel>
