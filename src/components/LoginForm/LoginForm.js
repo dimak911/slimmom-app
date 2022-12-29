@@ -60,7 +60,7 @@ export const LogInForm = () => {
           Електронна пошта *
           <InputForm
             value={emailValue}
-            type="email"
+            type="text"
             {...register('email', {
               required: {
                 value: true,

@@ -67,7 +67,6 @@ export const Cross = styled(cross)`
   width: 10px;
   height: 10px;
   opacity: 0.6;
-  cursor: pointer;
 
   fill: ${props => props.theme.colors.black};
 
@@ -90,5 +89,7 @@ Cross.defaultProps = { src: cross, alt: 'cross' };
 
 export const RemoveButton = styled.button`
   border: none;
-  background-color: inherit;
+  background: transparent;
+  padding: 5px;
+  cursor: pointer;
 `;

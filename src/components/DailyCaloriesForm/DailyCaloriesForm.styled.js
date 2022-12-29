@@ -55,7 +55,6 @@ export const Label = styled.label`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: ${p => p.theme.spaceForm[2]}px;
 
   font-weight: ${p => p.theme.fontWeights.bold};
   font-family: ${VerdanaBold};
@@ -64,9 +63,26 @@ export const Label = styled.label`
   letter-spacing: 0.04em;
   line-height: 1.21;
 
-  :last-of-type {
-    margin-bottom: 0;
+  :not(:last-child) {
+    padding-bottom: ${p => p.theme.spaceForm[2]}px;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
+`;
+
+export const RadioButtonGroupLabel = styled.label`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-family: ${VerdanaBold};
+  font-style: normal;
+  font-size: ${p => p.theme.fontSizes.xs};
+  letter-spacing: 0.04em;
+  line-height: 1.21;
 
   @media screen and (min-width: 768px) {
     width: 240px;
@@ -93,7 +109,7 @@ export const BloodTypeValue = styled.p`
 
 export const RadiobuttonWrapper = styled.div`
   display: flex;
-  margin-bottom: ${p => p.theme.spaceForm[2]}px;
+  padding-bottom: ${p => p.theme.spaceForm[2]}px;
   padding-top: ${p => p.theme.spaceForm[0]}px;
   border-top: 1px solid ${p => p.theme.colors.input};
 `;
@@ -154,7 +170,6 @@ export const ButtonSubmit = styled.button`
     :hover,
     :focus {
       box-shadow: 0px 15px 20px rgba(252, 132, 45, 0.4);
-      /* transform: translateY(-7px); */
     }
   }
 
@@ -168,13 +183,14 @@ export const ButtonSubmit = styled.button`
 `;
 
 export const Error = styled.p`
+  position: absolute;
+  top: 40px;
+  left: 0;
   max-width: 100%;
   margin: ${p => p.theme.space[0]}px;
 
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-family: ${VerdanaBold};
   font-style: italic;
-  font-size: ${p => p.theme.fontSizes.xs};
+  font-size: 12px;
   letter-spacing: 0.04em;
   line-height: 1.21;
   text-decoration: none;

@@ -15,6 +15,7 @@ import {
   Label,
   ButtonSubmit,
   ButtonWrap,
+  RadioButtonGroupLabel,
   RadiobuttonLabel,
   BloodTypeValue,
   RadiobuttonWrapper,
@@ -173,7 +174,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
                 <Error>{errors?.desiredWeight?.message}</Error>
               )}
             </Label>
-            <Label>Група крові * </Label>
+            <RadioButtonGroupLabel>Група крові * </RadioButtonGroupLabel>
             <BloodTypeValue>{bloodTypeValue}</BloodTypeValue>
             <RadiobuttonWrapper>
               {bloodTypes.map(type => (
