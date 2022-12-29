@@ -49,7 +49,7 @@ export const productListSlice = createSlice({
       return state;
     });
     builder.addCase(addDiaryListItem.fulfilled, (state, action) => {
-      state.productsDiary.push(action.payload);
+      state.productsDiary.unshift(action.payload);
     });
   },
 });
