@@ -9,7 +9,6 @@ import { GlobalStyle } from 'components/GlobalStyle';
 import { Layout } from 'components/Layout/Layout';
 import { routes } from 'helpers/constants';
 
-
 const RegistrationPage = lazy(() =>
   import('pages/RegistrationPage/RegistrationPage')
 );
@@ -23,9 +22,9 @@ const DiaryPage = lazy(() => import('pages/DiaryPage/DiaryPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { callorie } = useSelector(selectUser);
+  const { calorie } = useSelector(selectUser);
   const { isRefreshing } = useSelector(selectIsRefreshing);
-  const noFormDataDirect = !callorie ? routes.calculate : routes.diaryToday;
+  const noFormDataDirect = !calorie ? routes.calculate : routes.diaryToday;
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -69,7 +68,7 @@ export const App = () => {
             path={routes.diaryPath}
             element={
               <PrivateRoute
-                redirectTo={!callorie ? routes.main : routes.login}
+                redirectTo={!calorie ? routes.main : routes.login}
                 component={<DiaryPage />}
               />
             }
@@ -78,7 +77,7 @@ export const App = () => {
             path={routes.calculate}
             element={
               <PrivateRoute
-                redirectTo={!callorie ? routes.main : routes.login}
+                redirectTo={!calorie ? routes.main : routes.login}
                 component={<CalculatorPage />}
               />
             }

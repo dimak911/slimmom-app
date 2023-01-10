@@ -63,7 +63,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
     );
     const notAllowedFoodCategories = getCategoriesByBloodType(bloodType);
     const dataForDispatch = {
-      callorie: countedCalories,
+      calorie: countedCalories,
       notRecommendedProduct: notAllowedFoodCategories,
       data: formData,
     };
@@ -73,7 +73,7 @@ export const DailyCaloriesForm = ({ openModal }) => {
       ? dispatch(
           calculation(dataForDispatch),
           postSideBarInfo({
-            callorie: countedCalories,
+            calorie: countedCalories,
             notRecommendedProduct: notAllowedFoodCategories,
           })
         )

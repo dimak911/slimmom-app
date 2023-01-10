@@ -12,12 +12,12 @@ export const calculateSlice = createSlice({
       bloodType: '',
     },
     countedCalories: null,
-    notAllowedFoodCategories: []
+    notAllowedFoodCategories: [],
   },
   reducers: {
     addCalories: (state, action) => {
       state.formData = action.payload.data;
-      state.countedCalories = action.payload.callorie;
+      state.countedCalories = action.payload.calorie;
       state.notAllowedFoodCategories = action.payload.notRecommendedProduct;
     },
     removeCalories: (state, action) => {
@@ -36,15 +36,15 @@ export const calculateSlice = createSlice({
     builder
       .addCase(calculation.fulfilled, (state, action) => {
         state.formData = action.payload.data;
-        state.countedCalories = action.payload.callorie;
+        state.countedCalories = action.payload.calorie;
         state.notAllowedFoodCategories = action.payload.notRecommendedProduct;
       })
       .addCase(refreshCalories.fulfilled, (state, action) => {
         state.formData = action.payload.data;
-        state.countedCalories = action.payload.callorie;
+        state.countedCalories = action.payload.calorie;
         state.notAllowedFoodCategories = action.payload.notRecommendedProduct;
       });
-  }
+  },
 });
 
 export const { removeCalories, addCalories } = calculateSlice.actions;
