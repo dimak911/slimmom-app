@@ -20,7 +20,7 @@ import {
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();
-  const calculateAndCallorieData = useSelector(selectCalculateValue);
+  const calculateAndCalorieData = useSelector(selectCalculateValue);
   const isLoading = useSelector(selectIsLoading);
 
   const {
@@ -44,14 +44,14 @@ export const RegistrationForm = () => {
   const onSubmitForm = async registrationData => {
     const { name, email, password } = registrationData;
 
-    if (calculateAndCallorieData?.countedCalories) {
+    if (calculateAndCalorieData?.countedCalories) {
       const { countedCalories, notAllowedFoodCategories, formData } =
-        calculateAndCallorieData;
+        calculateAndCalorieData;
       const dataForDispatch = {
         name,
         email: email.toLowerCase(),
         password,
-        callorie: countedCalories,
+        calorie: countedCalories,
         data: formData,
         notRecommendedProduct: notAllowedFoodCategories,
       };

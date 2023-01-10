@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { addDiaryListItem } from 'redux/products/operations';
 import { searchProductList } from 'helpers/searchProduct';
+import useDebounce from 'hooks/useDebounce';
 import {
   AddProductForm,
   ProductForm,
   WeightForm,
   ProductItem,
-  LabelWeigt,
+  LabelWeight,
   ButtonLogin,
   Span,
   Error,
@@ -20,6 +21,9 @@ import {
 import crossIcon from '../../images/icons/close-cross.svg';
 
 export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
+  const [valueToDebounce, setValueToDebounce] = useState('');
+  const debouncedValue = useDebounce(valueToDebounce, 1000);
+
   const dispatch = useDispatch();
   const {
     register,
@@ -32,28 +36,39 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
     mode: 'onChange',
     defaultValues: {
       product: '',
-      weigth: '',
+      weight: '',
     },
   });
 
   const productValue = watch('product');
-  const weigthValue = watch('weigth');
+  const weightValue = watch('weight');
   let { date } = useParams();
 
   const [products, setProducts] = useState([]);
   const [productInput, setProductInput] = useState('');
-  const [callories, setCallories] = useState('');
+  const [calories, setCalories] = useState('');
 
   useEffect(() => {
     setValue('product', productInput);
   }, [setValue, productInput]);
 
+  useEffect(() => {
+    if (!debouncedValue) return;
+
+    searchProductList(debouncedValue).then(response => {
+      const fetchedProducts = response.data.map(obj => {
+        return { title: obj.title.ua, calories: obj.calories };
+      });
+      setProducts(fetchedProducts);
+    });
+  }, [debouncedValue]);
+
   const onSubmitForm = () => {
-    const calloriesCounted = ((callories * weigthValue) / 100).toString();
+    const caloriesCounted = ((calories * weightValue) / 100).toString();
     const product = {
       productName: productValue,
-      productWeight: weigthValue,
-      productCalories: calloriesCounted,
+      productWeight: weightValue,
+      productCalories: caloriesCounted,
       date: date,
     };
     dispatch(addDiaryListItem(product));
@@ -64,12 +79,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
 
   const handleChange = value => {
     if (value.length > 1) {
-      searchProductList(value).then(response => {
-        const fetchedProducts = response.data.map(obj => {
-          return { title: obj.title.ua, calories: obj.calories };
-        });
-        setProducts(fetchedProducts);
-      });
+      setValueToDebounce(value);
     }
     setProducts([]);
   };
@@ -94,7 +104,7 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
                   <ProductItem
                     onClick={event => {
                       setProductInput(event.target.innerText);
-                      setCallories(product.calories);
+                      setCalories(product.calories);
                       setProducts([]);
                     }}
                     key={product.title}
@@ -117,12 +127,12 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
           </div>
           {errors?.product && <Error>{errors?.product?.message}</Error>}
         </LabelProduct>
-        <LabelWeigt>
+        <LabelWeight>
           <Span>Вага</Span>
           <WeightForm
-            value={weigthValue}
+            value={weightValue}
             type="number"
-            {...register('weigth', {
+            {...register('weight', {
               required: 'Введіть вагу продукту',
               min: {
                 value: 1,
@@ -131,8 +141,8 @@ export const DiaryAddProductForm = ({ img, isShowAddForm, openModal }) => {
               validate: value => Number.isInteger(parseFloat(value)) === true,
             })}
           />
-          {errors?.weigth && <Error>{errors?.weigth?.message}</Error>}
-        </LabelWeigt>
+          {errors?.weight && <Error>{errors?.weight?.message}</Error>}
+        </LabelWeight>
         <ButtonLogin type="submit" disabled={!isValid || !productInput}>
           {img !== 'Add' ? (
             <img src={img} alt="button to add product" />
