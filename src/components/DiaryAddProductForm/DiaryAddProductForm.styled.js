@@ -52,7 +52,7 @@ export const LabelProduct = styled.label`
   }
 `;
 
-export const LabelWeigt = styled.label`
+export const LabelWeight = styled.label`
   display: flex;
   flex-direction: column;
 
