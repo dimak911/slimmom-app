@@ -24,14 +24,15 @@ export const WrapForm = styled.div`
   margin-right: auto;
 
   @media (min-width: 768px) {
-    width: 610px;
+    width: 636px;
     padding-bottom: 55px;
+    padding-left: 32px;
   }
 
   @media (min-width: 1280px) {
     margin-left: 0;
     margin-right: 0;
-    padding-left: 32px;
+    padding-left: 16px;
   }
 `;
 
@@ -108,14 +109,9 @@ export const StyledSubdirectoryIcon = styled.img`
 `;
 
 export const MobileBoxForm = styled.div`
-  /* margin-top: -40px; */
-  padding-left: 20px;
-  padding-right: 20px;
-  /* padding-bottom: 20px; */
-  /* z-index: 100; */
   position: absolute;
+  padding: 0px;
   width: 100%;
-  height: 100%;
 
   @media (min-width: 768px) {
     display: none;

@@ -14,18 +14,23 @@ export const ProductName = styled.p`
   border-bottom: 1px solid ${p => p.theme.colors.input};
   padding-bottom: ${p => p.theme.space[3]}px;
   margin-right: ${p => p.theme.space[3]}px;
-  line-height: 17px;
+  line-height: 1.21;
 
   @media (min-width: 768px) {
     width: 240px;
     padding-bottom: 20px;
     margin-right: 22px;
   }
+
+  @media (min-width: 1280px) {
+    margin-right: 48px;
+  }
 `;
 
 export const ProductWeight = styled.p`
   width: 49px;
-  line-height: 17px;
+  line-height: 1.21;
+  /* line-height: 17px; */
   text-align: center;
   border-bottom: 1px solid ${p => p.theme.colors.input};
   padding-bottom: ${p => p.theme.space[3]}px;
@@ -37,11 +42,16 @@ export const ProductWeight = styled.p`
     padding-bottom: 20px;
     margin-right: 46px;
   }
+
+  @media (min-width: 768px) {
+    margin-right: 32px;
+  }
 `;
 
 export const ProductKcal = styled.p`
   width: 58px;
-  line-height: 17px;
+  /* line-height: 17px; */
+  line-height: 1.21;
   border-bottom: 1px solid ${p => p.theme.colors.input};
   padding-bottom: ${p => p.theme.space[3]}px;
   margin-right: 17px;

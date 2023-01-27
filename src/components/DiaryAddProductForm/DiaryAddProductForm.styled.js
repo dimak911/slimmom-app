@@ -40,7 +40,9 @@ export const LabelProduct = styled.label`
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
   line-height: 1.21;
-  width: 285px;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (max-width: 767px) {
     margin-bottom: 32px;
@@ -48,7 +50,12 @@ export const LabelProduct = styled.label`
 
   @media screen and (min-width: 768px) {
     width: 240px;
+    margin-left: 0px;
     margin-right: 22px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-right: 48px;
   }
 `;
 
@@ -62,9 +69,17 @@ export const LabelWeight = styled.label`
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
   line-height: 1.21;
-  width: 285px;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
   @media screen and (min-width: 768px) {
     width: 107px;
+    margin-left: 0px;
+    margin-right: 87px;
+  }
+
+  @media screen and (min-width: 1280px) {
     margin-right: ${p => p.theme.spaceForm[3]}px;
   }
 `;
@@ -81,10 +96,18 @@ export const ProductForm = styled.input`
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
   line-height: 1.21;
+
+  @media (max-width: 767px) {
+    width: 280px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
 `;
 
 export const WeightForm = styled.input`
-  text-align: end;
+  text-align: start;
   max-width: 280px;
   border: none;
   outline: none;
@@ -95,6 +118,10 @@ export const WeightForm = styled.input`
   font-size: ${p => p.theme.fontSizes.xs};
   letter-spacing: 0.04em;
   line-height: 1.21;
+
+  @media (min-width: 768px) {
+    text-align: end;
+  }
 `;
 
 export const ProductItem = styled.li`
@@ -154,6 +181,8 @@ export const ButtonLogin = styled.button`
     margin-top: 60px;
     padding: 12px 46px;
     width: 176px;
+    margin-left: auto;
+    margin-right: auto;
   }
   @media screen and (min-width: 768px) {
     margin-right: ${p => p.theme.space[5]}px;

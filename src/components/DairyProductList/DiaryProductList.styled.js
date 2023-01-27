@@ -6,11 +6,9 @@ export const DiaryProductListStyled = styled.ul`
   margin-top: 32px;
 
   @media screen and (min-width: 768px) {
-    padding-right: 40px;
     margin-top: 60px;
-
     max-height: 250px;
-    max-width: 610px;
+    max-width: 633px;
     overflow-y: auto;
   }
 
